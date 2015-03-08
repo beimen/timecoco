@@ -1,2 +1,2 @@
-# Timecoco
-It's an open source timeline note app.
+# timecoco
+It's a timeline note app.

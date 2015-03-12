@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4A665D0C-63A1-44BD-88BA-EDCA24EF9686</string>
+	<key>IDESourceControlProjectName</key>
+	<string>timecoco</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE204E7CBF5D824DEB5FCC7C48C3D63B79D8B879</key>
+		<string>https://github.com/beimen/timecoco.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>timecoco/timecoco.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE204E7CBF5D824DEB5FCC7C48C3D63B79D8B879</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/beimen/timecoco.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE204E7CBF5D824DEB5FCC7C48C3D63B79D8B879</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE204E7CBF5D824DEB5FCC7C48C3D63B79D8B879</string>
+			<key>IDESourceControlWCCName</key>
+			<string>timecoco</string>
+		</dict>
+	</array>
+</dict>
+</plist>

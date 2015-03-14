@@ -1,24 +1,32 @@
 //
-//  ViewController.m
+//  TCHomepageVC.m
 //  timecoco
 //
 //  Created by Hong Xie on 9/3/15.
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TCHomepageVC.h"
 
-@interface ViewController ()
+@interface TCHomepageVC ()
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation ViewController
+@implementation TCHomepageVC
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"miaow");
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

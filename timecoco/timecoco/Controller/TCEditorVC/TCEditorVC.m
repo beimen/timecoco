@@ -16,12 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_back"] Target:self Selector:@selector(backAction:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImages:@[[UIImage imageNamed:@"button_confirm"], [UIImage imageNamed:@"button_confirm_disable"]] Target:self Selector:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Navigation action
+
+- (void)backAction:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

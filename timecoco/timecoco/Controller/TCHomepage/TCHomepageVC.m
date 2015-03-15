@@ -7,11 +7,14 @@
 //
 
 #import "TCHomepageVC.h"
+#import "TCHomepageCell.h"
 #import "TCEditorVC.h"
 
 @interface TCHomepageVC ()
 
 @end
+
+#define CellIdentifier      (@"TCHomepgeCell")
 
 @implementation TCHomepageVC
 
@@ -27,6 +30,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = TC_WHITE_COLOR;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"] Target:self Selector:@selector(addAction:)];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.allowsSelection = NO;
+    self.tableView.backgroundColor = TC_BACK_COLOR;
+//    self.tableView setStyle = UITableViewStylePlain;
+    [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,18 +53,19 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 0;
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 75.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
-    // Configure the cell...
+    TCHomepageCell *cell = (TCHomepageCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     return cell;
 }

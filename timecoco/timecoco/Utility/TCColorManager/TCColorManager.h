@@ -16,6 +16,7 @@
 #define TC_BACK_COLOR      UIColorFromRGB(0xf9f6f3)
 #define TC_WHITE_COLOR     UIColorFromRGB(0xffffff)
 #define TC_DARK_GRAY_COLOR UIColorFromRGB(0x404040)
+#define TC_CLEAR_COLOR     [UIColor clearColor]
 
 @interface TCColorManager : NSObject
 

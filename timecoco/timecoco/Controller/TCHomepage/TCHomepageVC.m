@@ -7,6 +7,7 @@
 //
 
 #import "TCHomepageVC.h"
+#import "TCEditorVC.h"
 
 @interface TCHomepageVC ()
 
@@ -25,12 +26,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"] Target:self Selector:@selector(addAction:)];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Navigationbar action
+
+- (void)addAction:(UIBarButtonItem *)sender {
+    TCEditorVC *vc = [[TCEditorVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Table view data source

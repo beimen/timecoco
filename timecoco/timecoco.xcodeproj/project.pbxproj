@@ -13,11 +13,12 @@
 		F582193D1AAD48A800357355 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F582193C1AAD48A800357355 /* Images.xcassets */; };
 		F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582193E1AAD48A800357355 /* LaunchScreen.xib */; };
 		F582194C1AAD48A800357355 /* timecocoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F582194B1AAD48A800357355 /* timecocoTests.m */; };
-		FE1478541AB487BC007C8395 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1478531AB487BC007C8395 /* TCHomepageVC.m */; };
 		FE1478571AB48823007C8395 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1478561AB48823007C8395 /* TCColorManager.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
-		FE1E782C1AB5213A000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E782B1AB5213A000157B6 /* TCEditorVC.m */; };
+		FE1E78341AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78331AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m */; };
+		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
+		FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +46,17 @@
 		F582194A1AAD48A800357355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F582194B1AAD48A800357355 /* timecocoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timecocoTests.m; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
-		FE1478531AB487BC007C8395 /* TCHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageVC.m; sourceTree = "<group>"; };
 		FE1478551AB48823007C8395 /* TCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColorManager.h; sourceTree = "<group>"; };
 		FE1478561AB48823007C8395 /* TCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColorManager.m; sourceTree = "<group>"; };
 		FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageCell.h; sourceTree = "<group>"; };
 		FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageCell.m; sourceTree = "<group>"; };
 		FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCHomepageCell.xib; sourceTree = "<group>"; };
-		FE1E782A1AB5213A000157B6 /* TCEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditorVC.h; sourceTree = "<group>"; };
-		FE1E782B1AB5213A000157B6 /* TCEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorVC.m; sourceTree = "<group>"; };
+		FE1E78321AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+TCButtonManager.h"; sourceTree = "<group>"; };
+		FE1E78331AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+TCButtonManager.m"; sourceTree = "<group>"; };
+		FE1E78351AB538D1000157B6 /* timecoco-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "timecoco-Prefix.pch"; sourceTree = "<group>"; };
+		FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageVC.m; sourceTree = "<group>"; };
+		FE1E783B1AB53FA5000157B6 /* TCEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditorVC.h; sourceTree = "<group>"; };
+		FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 			children = (
 				F58219301AAD48A800357355 /* Info.plist */,
 				F58219311AAD48A800357355 /* main.m */,
+				FE1E78351AB538D1000157B6 /* timecoco-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -154,8 +159,8 @@
 		FE1478491AB486A5007C8395 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FE1E783A1AB53FA5000157B6 /* TCEditor */,
 				FE1478511AB487BC007C8395 /* TCHomepage */,
-				FE1E78291AB5211A000157B6 /* TCEditorVC */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 		FE14784D1AB486A5007C8395 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				FE1E78311AB53267000157B6 /* TCButtonManager */,
 				FE1478501AB48755007C8395 /* TCColorManager */,
 			);
 			path = Utility;
@@ -180,8 +186,8 @@
 		FE1478511AB487BC007C8395 /* TCHomepage */ = {
 			isa = PBXGroup;
 			children = (
+				FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */,
 				FE1478521AB487BC007C8395 /* TCHomepageVC.h */,
-				FE1478531AB487BC007C8395 /* TCHomepageVC.m */,
 				FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */,
 				FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */,
 				FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */,
@@ -189,13 +195,22 @@
 			path = TCHomepage;
 			sourceTree = "<group>";
 		};
-		FE1E78291AB5211A000157B6 /* TCEditorVC */ = {
+		FE1E78311AB53267000157B6 /* TCButtonManager */ = {
 			isa = PBXGroup;
 			children = (
-				FE1E782A1AB5213A000157B6 /* TCEditorVC.h */,
-				FE1E782B1AB5213A000157B6 /* TCEditorVC.m */,
+				FE1E78321AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.h */,
+				FE1E78331AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m */,
 			);
-			path = TCEditorVC;
+			path = TCButtonManager;
+			sourceTree = "<group>";
+		};
+		FE1E783A1AB53FA5000157B6 /* TCEditor */ = {
+			isa = PBXGroup;
+			children = (
+				FE1E783B1AB53FA5000157B6 /* TCEditorVC.h */,
+				FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */,
+			);
+			path = TCEditor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,9 +350,10 @@
 			files = (
 				FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */,
 				FE1478571AB48823007C8395 /* TCColorManager.m in Sources */,
-				FE1E782C1AB5213A000157B6 /* TCEditorVC.m in Sources */,
+				FE1E78341AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,
+				FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */,
 				F58219351AAD48A800357355 /* AppDelegate.m in Sources */,
-				FE1478541AB487BC007C8395 /* TCHomepageVC.m in Sources */,
+				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "timecoco/timecoco-Prefix.pch";
 				INFOPLIST_FILE = timecoco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -467,6 +484,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "timecoco/timecoco-Prefix.pch";
 				INFOPLIST_FILE = timecoco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -10,11 +10,15 @@
 
 @implementation UIBarButtonItem (TCButtonManager)
 
-+ (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image Target:(id)target Selector:(SEL)selector {
++ (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image
+                                           Target:(id)target
+                                         Selector:(SEL)selector {
     return [self createBarButtonItemWithImages:@[image] Target:target Selector:selector];
 }
 
-+ (UIBarButtonItem *)createBarButtonItemWithImages:(NSArray *)images Target:(id)target Selector:(SEL)selector {
++ (UIBarButtonItem *)createBarButtonItemWithImages:(NSArray *)images
+                                            Target:(id)target
+                                          Selector:(SEL)selector {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setImage:images[0] forState:UIControlStateNormal];
@@ -26,7 +30,7 @@
         [button setImage:images[3] forState:UIControlStateHighlighted];
     }
     [button sizeToFit];
-    return [[UIBarButtonItem alloc]initWithCustomView:button];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 @end

@@ -16,9 +16,9 @@
 		FE1478571AB48823007C8395 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1478561AB48823007C8395 /* TCColorManager.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
-		FE1E782C1AB5213A000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E782B1AB5213A000157B6 /* TCEditorVC.m */; };
 		FE1E78341AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78331AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m */; };
 		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
+		FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,12 +51,12 @@
 		FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageCell.h; sourceTree = "<group>"; };
 		FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageCell.m; sourceTree = "<group>"; };
 		FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCHomepageCell.xib; sourceTree = "<group>"; };
-		FE1E782A1AB5213A000157B6 /* TCEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditorVC.h; sourceTree = "<group>"; };
-		FE1E782B1AB5213A000157B6 /* TCEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorVC.m; sourceTree = "<group>"; };
 		FE1E78321AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+TCButtonManager.h"; sourceTree = "<group>"; };
 		FE1E78331AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+TCButtonManager.m"; sourceTree = "<group>"; };
 		FE1E78351AB538D1000157B6 /* timecoco-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "timecoco-Prefix.pch"; sourceTree = "<group>"; };
 		FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageVC.m; sourceTree = "<group>"; };
+		FE1E783B1AB53FA5000157B6 /* TCEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditorVC.h; sourceTree = "<group>"; };
+		FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +159,8 @@
 		FE1478491AB486A5007C8395 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FE1E783A1AB53FA5000157B6 /* TCEditor */,
 				FE1478511AB487BC007C8395 /* TCHomepage */,
-				FE1E78291AB5211A000157B6 /* TCEditorVC */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,15 +195,6 @@
 			path = TCHomepage;
 			sourceTree = "<group>";
 		};
-		FE1E78291AB5211A000157B6 /* TCEditorVC */ = {
-			isa = PBXGroup;
-			children = (
-				FE1E782A1AB5213A000157B6 /* TCEditorVC.h */,
-				FE1E782B1AB5213A000157B6 /* TCEditorVC.m */,
-			);
-			path = TCEditorVC;
-			sourceTree = "<group>";
-		};
 		FE1E78311AB53267000157B6 /* TCButtonManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +202,15 @@
 				FE1E78331AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m */,
 			);
 			path = TCButtonManager;
+			sourceTree = "<group>";
+		};
+		FE1E783A1AB53FA5000157B6 /* TCEditor */ = {
+			isa = PBXGroup;
+			children = (
+				FE1E783B1AB53FA5000157B6 /* TCEditorVC.h */,
+				FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */,
+			);
+			path = TCEditor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,9 +351,9 @@
 				FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */,
 				FE1478571AB48823007C8395 /* TCColorManager.m in Sources */,
 				FE1E78341AB532D5000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,
-				FE1E782C1AB5213A000157B6 /* TCEditorVC.m in Sources */,
 				FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */,
 				F58219351AAD48A800357355 /* AppDelegate.m in Sources */,
+				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

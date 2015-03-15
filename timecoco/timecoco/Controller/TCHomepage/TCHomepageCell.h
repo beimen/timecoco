@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCDairy.h"
+
+typedef enum {
+    TCHomepageCellTypeWorkday = 0,
+    TCHomepageCellTypeHoliday
+} TCHomepageCellType;
 
 @interface TCHomepageCell : UITableViewCell
+
+@property (nonatomic, assign) TCHomepageCellType cellType;
+@property (nonatomic, strong) TCDairy *dairy;
 
 @end

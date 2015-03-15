@@ -18,11 +18,11 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
     [button setImage:images[0] forState:UIControlStateNormal];
-    if (images.count >= 1) {
+    if (images.count > 1) {
         [button setImage:images[1] forState:UIControlStateDisabled];
-    } else if (images.count >= 2) {
+    } else if (images.count > 2) {
         [button setImage:images[2] forState:UIControlStateSelected];
-    } else if (images.count >= 3) {
+    } else if (images.count > 3) {
         [button setImage:images[3] forState:UIControlStateHighlighted];
     }
     [button sizeToFit];

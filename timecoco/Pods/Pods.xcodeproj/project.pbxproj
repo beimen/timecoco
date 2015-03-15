@@ -61,7 +61,7 @@
 		DC88320CC0AACC73CBC74705 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7FB9C7942D2F1FC7CA3600 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		F94133FEEDFE6B8F5857E197 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		FE1E782F1AB52AB7000157B6 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		FE1E78301AB52E0B000157B6 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile.lock; path = ../Podfile.lock; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +99,8 @@
 		1321362F747FA80AA9A3DDA7 = {
 			isa = PBXGroup;
 			children = (
+				FE1E78301AB52E0B000157B6 /* Podfile.lock */,
 				B283C489254F793DA9A30635 /* Podfile */,
-				FE1E782F1AB52AB7000157B6 /* Podfile.lock */,
 				B78B2625604A9E0B0D062CE9 /* Frameworks */,
 				E22996A7B738FA5475309DAA /* Pods */,
 				4B63E953FEB328815126C6AD /* Products */,

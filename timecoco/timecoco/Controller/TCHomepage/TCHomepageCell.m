@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
+@property (nonatomic, strong) UILabel *contentLabel;
 
 @end
 
@@ -30,6 +31,7 @@
         self.cellType = TCHomepageCellTypeWorkday;
         [self dashLine];
         [self frameBorder];
+        [self contentLabel];
     }
     return self;
 }
@@ -64,10 +66,22 @@
 
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
-        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 40, 75)];
+        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, 75)];
         [self.contentView addSubview:self.frameBorder];
     }
     return _frameBorder;
+}
+
+- (UILabel *)contentLabel {
+    if (_contentLabel == nil) {
+        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 65, 65)];
+        _contentLabel.textColor = TC_TEXT_COLOR;
+        _contentLabel.font = [UIFont systemFontOfSize:15];
+        _contentLabel.numberOfLines = 0;
+        _contentLabel.text = @"这仅仅是用于测试的一段话。现在的代码还都是伪数据，接下来要用上真实的数据。";
+        [self.frameBorder addSubview:_contentLabel];
+    }
+    return _contentLabel;
 }
 
 @end

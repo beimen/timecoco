@@ -10,4 +10,6 @@
 
 @interface TCFrameBorderView : UIView
 
+@property (nonatomic, copy) UIColor *lineColor; //虚线颜色
+
 @end

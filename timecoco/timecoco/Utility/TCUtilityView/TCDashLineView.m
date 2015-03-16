@@ -10,6 +10,8 @@
 
 @implementation TCDashLineView
 
+@synthesize lineColor = _lineColor;
+
 - (void)awakeFromNib {
     self.backgroundColor = TC_CLEAR_COLOR;
 }
@@ -35,8 +37,16 @@
     CGContextStrokePath(context);
 }
 
+- (UIColor *)lineColor {
+    if (_lineColor == nil) {
+        self.lineColor = TC_RED_COLOR;
+    }
+    return _lineColor;
+}
+
 - (void)setLineColor:(UIColor *)lineColor {
     _lineColor = lineColor;
+    
     [self setNeedsDisplay];
 }
 

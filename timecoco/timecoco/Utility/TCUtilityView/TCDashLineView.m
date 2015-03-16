@@ -10,12 +10,15 @@
 
 @implementation TCDashLineView
 
+- (void)awakeFromNib {
+    self.backgroundColor = TC_CLEAR_COLOR;
+}
+
 - (id)initWithFrame:(CGRect)frame {
 
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        self.backgroundColor = TC_CLEAR_COLOR;
+        [self awakeFromNib];
     }
     return self;
 }

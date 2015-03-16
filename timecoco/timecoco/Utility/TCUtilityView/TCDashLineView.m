@@ -32,4 +32,9 @@
     CGContextStrokePath(context);
 }
 
+- (void)setLineColor:(UIColor *)lineColor {
+    _lineColor = lineColor;
+    [self setNeedsDisplay];
+}
+
 @end

@@ -21,4 +21,6 @@
 
 @interface TCColorManager : NSObject
 
++ (UIColor *)changeColorForType:(NSUInteger)type;
+
 @end

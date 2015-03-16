@@ -21,6 +21,8 @@
 		FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */; };
 		FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */; };
 		FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78441AB54814000157B6 /* TCColorManager.m */; };
+		FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883711AB71B16002C6817 /* TCHomepageHeader.m */; };
+		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
@@ -66,6 +68,10 @@
 		FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+TCButtonManager.m"; sourceTree = "<group>"; };
 		FE1E78431AB54814000157B6 /* TCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColorManager.h; sourceTree = "<group>"; };
 		FE1E78441AB54814000157B6 /* TCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColorManager.m; sourceTree = "<group>"; };
+		FE3883701AB71B16002C6817 /* TCHomepageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageHeader.h; sourceTree = "<group>"; };
+		FE3883711AB71B16002C6817 /* TCHomepageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageHeader.m; sourceTree = "<group>"; };
+		FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageFooter.h; sourceTree = "<group>"; };
+		FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageFooter.m; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
 		FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatabaseManager.m; sourceTree = "<group>"; };
 		FE78B8391AB577FF0026241E /* TCDairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairy.h; sourceTree = "<group>"; };
@@ -189,6 +195,10 @@
 				FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */,
 				FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */,
 				FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */,
+				FE3883701AB71B16002C6817 /* TCHomepageHeader.h */,
+				FE3883711AB71B16002C6817 /* TCHomepageHeader.m */,
+				FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */,
+				FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */,
 			);
 			path = TCHomepage;
 			sourceTree = "<group>";
@@ -415,8 +425,10 @@
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
+				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
+				FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

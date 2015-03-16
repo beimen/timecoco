@@ -29,7 +29,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2.0);
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
-    CGRect rectangle = CGRectMake(15, 5, self.frame.size.width - 4 - 15, 65);
+    CGRect rectangle = CGRectMake(15, 6, self.frame.size.width - 4 - 15, 63);
     CGContextAddRect(context, rectangle);
     CGContextStrokePath(context);
     CGContextSetFillColorWithColor(context, TC_WHITE_COLOR.CGColor);
@@ -45,7 +45,7 @@
 
 - (void)setLineColor:(UIColor *)lineColor {
     _lineColor = lineColor;
-    
+
     [self setNeedsDisplay];
 }
 

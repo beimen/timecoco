@@ -11,8 +11,8 @@
 @implementation TCDashLineView
 
 - (id)initWithFrame:(CGRect)frame {
-    
-    self= [super initWithFrame:frame];
+
+    self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.backgroundColor = TC_CLEAR_COLOR;
@@ -24,11 +24,11 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     CGContextSetLineWidth(context, MIN(self.frame.size.height, self.frame.size.width) * 2);
-    CGContextSetStrokeColorWithColor(context,self.lineColor.CGColor);
-    CGFloat lengths[] = {2,3};
+    CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
+    CGFloat lengths[] = {2, 3};
     CGContextSetLineDash(context, 0, lengths, 2);
-    CGContextMoveToPoint(context,self.startPoint.x,self.startPoint.y);
-    CGContextAddLineToPoint(context,self.endPoint.x,self.endPoint.y);
+    CGContextMoveToPoint(context, self.startPoint.x, self.startPoint.y);
+    CGContextAddLineToPoint(context, self.endPoint.x, self.endPoint.y);
     CGContextStrokePath(context);
 }
 

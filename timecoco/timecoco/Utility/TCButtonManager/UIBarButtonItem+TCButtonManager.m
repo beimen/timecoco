@@ -13,7 +13,7 @@
 + (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image
                                            Target:(id)target
                                          Selector:(SEL)selector {
-    return [self createBarButtonItemWithImages:@[image] Target:target Selector:selector];
+    return [self createBarButtonItemWithImages:@[ image ] Target:target Selector:selector];
 }
 
 + (UIBarButtonItem *)createBarButtonItemWithImages:(NSArray *)images

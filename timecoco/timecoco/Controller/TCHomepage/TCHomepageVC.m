@@ -14,14 +14,13 @@
 
 @end
 
-#define CellIdentifier      (@"TCHomepgeCell")
+#define CellIdentifier (@"TCHomepgeCell")
 
 @implementation TCHomepageVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
     }
     return self;
 }
@@ -30,11 +29,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = TC_WHITE_COLOR;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"] Target:self Selector:@selector(addAction:)];
-    
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
-//    self.tableView setStyle = UITableViewStylePlain;
+    //    self.tableView setStyle = UITableViewStylePlain;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
 }
 
@@ -65,8 +64,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TCHomepageCell *cell = (TCHomepageCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    TCHomepageCell *cell = (TCHomepageCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
     return cell;
 }
 

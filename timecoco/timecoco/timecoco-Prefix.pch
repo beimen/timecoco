@@ -13,5 +13,6 @@
 #import "UIBarButtonItem+TCButtonManager.h"
 #import "TCColorManager.h"
 #import "TCDatabaseManager.h"
+#import "TCUtility.h"
 
 #endif

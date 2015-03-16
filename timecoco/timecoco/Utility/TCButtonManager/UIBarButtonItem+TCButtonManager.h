@@ -10,7 +10,7 @@
 
 @interface UIBarButtonItem (TCButtonManager)
 
-+ (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image Target:(id)target Selector:(SEL) selector;
++ (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image Target:(id)target Selector:(SEL)selector;
 
 + (UIBarButtonItem *)createBarButtonItemWithImages:(NSArray *)images Target:(id)target Selector:(SEL)selector;
 

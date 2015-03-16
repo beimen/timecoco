@@ -8,10 +8,12 @@
 
 #import "TCHomepageCell.h"
 #import "TCDashLineView.h"
+#import "TCFrameBorderView.h"
 
 @interface TCHomepageCell ()
 
 @property (nonatomic, strong) TCDashLineView *dashLine;
+@property (nonatomic, strong) TCFrameBorderView *frameBorder;
 
 @end
 
@@ -19,7 +21,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -28,6 +29,7 @@
         self.contentView.backgroundColor = TC_BACK_COLOR;
         self.cellType = TCHomepageCellTypeWorkday;
         [self dashLine];
+        [self frameBorder];
     }
     return self;
 }
@@ -58,6 +60,14 @@
         [self.contentView addSubview:self.dashLine];
     }
     return _dashLine;
+}
+
+- (TCFrameBorderView *)frameBorder {
+    if (_frameBorder == nil) {
+        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 40, 75)];
+        [self.contentView addSubview:self.frameBorder];
+    }
+    return _frameBorder;
 }
 
 @end

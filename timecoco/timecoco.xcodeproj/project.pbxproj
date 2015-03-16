@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		45F1B7B664FFA4F3B435425E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458F8C5AD373A8B938EDE394 /* libPods.a */; };
+		F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F55A53921AB69781007AD020 /* TCFrameBorderView.m */; };
 		F58219321AAD48A800357355 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58219311AAD48A800357355 /* main.m */; };
 		F58219351AAD48A800357355 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58219341AAD48A800357355 /* AppDelegate.m */; };
 		F582193D1AAD48A800357355 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F582193C1AAD48A800357355 /* Images.xcassets */; };
 		F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582193E1AAD48A800357355 /* LaunchScreen.xib */; };
 		F582194C1AAD48A800357355 /* timecocoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F582194B1AAD48A800357355 /* timecocoTests.m */; };
+		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
 		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
@@ -38,6 +40,8 @@
 		458F8C5AD373A8B938EDE394 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		78898387119EB02C5D9794B4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EBCC1FEE7FB7540F9994FB95 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F55A53911AB69781007AD020 /* TCFrameBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFrameBorderView.h; sourceTree = "<group>"; };
+		F55A53921AB69781007AD020 /* TCFrameBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFrameBorderView.m; sourceTree = "<group>"; };
 		F582192C1AAD48A800357355 /* timecoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timecoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F58219301AAD48A800357355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F58219311AAD48A800357355 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 		F58219451AAD48A800357355 /* timecocoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timecocoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582194A1AAD48A800357355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F582194B1AAD48A800357355 /* timecocoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timecocoTests.m; sourceTree = "<group>"; };
+		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
+		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
 		FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageCell.h; sourceTree = "<group>"; };
 		FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageCell.m; sourceTree = "<group>"; };
@@ -199,6 +205,8 @@
 		FE1E783E1AB54814000157B6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				F5E895BC1AB6C41000862723 /* TCUtility.h */,
+				F5E895BD1AB6C41000862723 /* TCUtility.m */,
 				FE78B83C1AB57C520026241E /* TCUtilityView */,
 				FE78B8321AB569FC0026241E /* TCDatabaseManager */,
 				FE1E783F1AB54814000157B6 /* TCButtonManager */,
@@ -254,6 +262,8 @@
 		FE78B83C1AB57C520026241E /* TCUtilityView */ = {
 			isa = PBXGroup;
 			children = (
+				F55A53911AB69781007AD020 /* TCFrameBorderView.h */,
+				F55A53921AB69781007AD020 /* TCFrameBorderView.m */,
 				FE78B83D1AB57C750026241E /* TCDashLineView.h */,
 				FE78B83E1AB57C750026241E /* TCDashLineView.m */,
 			);
@@ -396,9 +406,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */,
+				F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */,
 				FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */,
 				FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */,
 				F58219351AAD48A800357355 /* AppDelegate.m in Sources */,
+				F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */,
 				FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */,
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,

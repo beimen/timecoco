@@ -8,6 +8,8 @@
 
 #import "TCHomepageVC.h"
 #import "TCHomepageCell.h"
+#import "TCHomepageHeader.h"
+#import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
 
 @interface TCHomepageVC ()
@@ -15,6 +17,8 @@
 @end
 
 #define CellIdentifier (@"TCHomepgeCell")
+#define CellHeaderIdentifier (@"TCHomepageHeader")
+#define CellFooterIdentifier (@"TCHomepageFooter")
 
 @implementation TCHomepageVC
 
@@ -33,8 +37,9 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
-    //    self.tableView setStyle = UITableViewStylePlain;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[TCHomepageHeader class] forHeaderFooterViewReuseIdentifier:CellHeaderIdentifier];
+    [self.tableView registerClass:[TCHomepageFooter class] forHeaderFooterViewReuseIdentifier:CellFooterIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +57,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -63,10 +68,42 @@
     return 75.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCHomepageCell *cell = (TCHomepageCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    if (indexPath.section == 0) {
+        cell.cellType = TCHomepageCellTypeHoliday;
+    } else if (indexPath.section == 1) {
+        cell.cellType = TCHomepageCellTypeWorkday;
+    }
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    TCHomepageHeader *header = (TCHomepageHeader *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellHeaderIdentifier];
+    if (section == 0) {
+        header.headerType = TCHomepageHeaderTypeHoliday;
+    } else if (section == 1) {
+        header.headerType = TCHomepageHeaderTypeWorkday;
+    }
+    return header;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    TCHomepageFooter *footer = (TCHomepageFooter *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellFooterIdentifier];
+    if (section == 0) {
+        footer.footerType = TCHomepageFooterTypeHoliday;
+    } else if (section == 1) {
+        footer.footerType = TCHomepageFooterTypeWorkday;
+    }
+    return footer;
 }
 
 @end

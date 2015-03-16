@@ -10,8 +10,10 @@
 #import "TCDairy.h"
 
 typedef enum {
-    TCHomepageCellTypeWorkday = 0,
-    TCHomepageCellTypeHoliday
+    TCHomepageCellTypeWorkday = 1,
+    TCHomepageCellTypeHoliday,
+    
+    TCHomepageCellTypeDefault = TCHomepageCellTypeWorkday
 } TCHomepageCellType;
 
 @interface TCHomepageCell : UITableViewCell

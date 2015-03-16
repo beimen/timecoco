@@ -20,27 +20,27 @@
 
 @implementation TCHomepageCell
 
+@synthesize cellType = _cellType;
+
 - (void)awakeFromNib {
-    // Initialization code
+    self.contentView.backgroundColor = TC_BACK_COLOR;
+    [self dashLine];
+    [self frameBorder];
+    [self contentLabel];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = TC_BACK_COLOR;
-        self.cellType = TCHomepageCellTypeWorkday;
-        [self dashLine];
-        [self frameBorder];
-        [self contentLabel];
+        [self awakeFromNib];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.cellType == TCHomepageCellTypeWorkday) {
-        //self.contentView.backgroundColor = TC_RED_COLOR;
-    }
+    _dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
+    _frameBorder.lineColor = _dashLine.lineColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -51,6 +51,15 @@
 
 - (void)setCellType:(TCHomepageCellType)cellType {
     _cellType = cellType;
+
+    [self setNeedsLayout];
+}
+
+- (TCHomepageCellType)cellType {
+    if (_cellType == 0) {
+        self.cellType = TCHomepageCellTypeDefault;
+    }
+    return _cellType;
 }
 
 - (TCDashLineView *)dashLine {
@@ -58,7 +67,7 @@
         self.dashLine = [[TCDashLineView alloc] initWithFrame:CGRectMake(24, 0, 2, 75)];
         _dashLine.startPoint = CGPointMake(0, 0);
         _dashLine.endPoint = CGPointMake(0, 75);
-        _dashLine.lineColor = TC_RED_COLOR;
+
         [self.contentView addSubview:self.dashLine];
     }
     return _dashLine;

@@ -10,4 +10,14 @@
 
 @implementation TCColorManager
 
++ (UIColor *)changeColorForType:(NSUInteger)type {
+    UIColor *color = [UIColor new];
+    if (type == 1) {
+        color = TC_GRAY_COLOR;
+    } else if (type == 2) {
+        color = TC_RED_COLOR;
+    }
+    return color;
+}
+
 @end

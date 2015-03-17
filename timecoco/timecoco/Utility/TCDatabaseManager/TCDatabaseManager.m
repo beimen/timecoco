@@ -10,4 +10,10 @@
 
 @implementation TCDatabaseManager
 
+- (NSString *)getDatabasePath {
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *datebasePath = [documentPath stringByAppendingPathComponent:@"timecoco.db"];
+    return datebasePath;
+}
+
 @end

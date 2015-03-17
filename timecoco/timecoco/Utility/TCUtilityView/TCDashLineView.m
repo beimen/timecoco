@@ -17,7 +17,6 @@
 }
 
 - (id)initWithFrame:(CGRect)frame {
-
     self = [super initWithFrame:frame];
     if (self) {
         [self awakeFromNib];
@@ -46,7 +45,7 @@
 
 - (void)setLineColor:(UIColor *)lineColor {
     _lineColor = lineColor;
-    
+
     [self setNeedsDisplay];
 }
 

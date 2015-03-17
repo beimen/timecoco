@@ -14,6 +14,7 @@
 		F582193D1AAD48A800357355 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F582193C1AAD48A800357355 /* Images.xcassets */; };
 		F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582193E1AAD48A800357355 /* LaunchScreen.xib */; };
 		F582194C1AAD48A800357355 /* timecocoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F582194B1AAD48A800357355 /* timecocoTests.m */; };
+		F5AED7561AB8243C00263839 /* timecoco.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = F5AED7551AB8243C00263839 /* timecoco.sqlite */; };
 		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
@@ -54,6 +55,7 @@
 		F58219451AAD48A800357355 /* timecocoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timecocoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F582194A1AAD48A800357355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F582194B1AAD48A800357355 /* timecocoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timecocoTests.m; sourceTree = "<group>"; };
+		F5AED7551AB8243C00263839 /* timecoco.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = timecoco.sqlite; sourceTree = "<group>"; };
 		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
 		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		F582192F1AAD48A800357355 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F5AED7551AB8243C00263839 /* timecoco.sqlite */,
 				F58219301AAD48A800357355 /* Info.plist */,
 				F58219311AAD48A800357355 /* main.m */,
 				FE1E78351AB538D1000157B6 /* timecoco-Prefix.pch */,
@@ -364,6 +367,7 @@
 			files = (
 				F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */,
 				F582193D1AAD48A800357355 /* Images.xcassets in Resources */,
+				F5AED7561AB8243C00263839 /* timecoco.sqlite in Resources */,
 				FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

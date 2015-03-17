@@ -15,8 +15,9 @@ typedef enum {
 
 @interface TCDairy : NSObject
 
+@property (nonatomic, assign) NSInteger primaryId;
 @property (nonatomic, assign) TCDairyType type;
+@property (nonatomic, assign) CGFloat pointTime;
 @property (nonatomic, copy) NSString *content;
-@property (nonatomic, copy) NSDate *creatTime;
 
 @end

@@ -16,4 +16,12 @@
 
 + (NSString *)getDatabasePathWithName:(NSString *)databaseName;
 
++ (void)createTable;
+
++ (NSArray *)storedDairyList;
+
++ (void)addDairy:(TCDairy *)dairy;
+
++ (void)removeDairy:(TCDairy *)dairy;
+
 @end

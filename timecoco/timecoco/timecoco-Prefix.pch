@@ -10,9 +10,14 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
 #import "UIBarButtonItem+TCButtonManager.h"
 #import "TCColorManager.h"
 #import "TCDatabaseManager.h"
 #import "TCUtility.h"
+#import "TCConstant.h"
+#import "TCNotification.h"
+
+#import "TCDairy.h"
 
 #endif

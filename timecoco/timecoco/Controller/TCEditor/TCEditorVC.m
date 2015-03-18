@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UITextView *textView;
+@property (nonatomic, assign) TCDairyType dairyType;
 
 @end
 
@@ -25,6 +26,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self setUpUI];
     self.textView.delegate = self;
+    self.dairyType = TCDairyTypeNormal;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -33,6 +35,7 @@
 }
 
 - (void)dealloc {
+    NSLog(@"TCEditor dealloated.");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +49,14 @@
 }
 
 - (void)confirmAction:(UIBarButtonItem *)sender {
+    TCDairy *dairy = [TCDairy new];
+    dairy.pointTime = [[NSDate date] timeIntervalSince1970];
+    dairy.timeZoneInterval = [[NSTimeZone localTimeZone] secondsFromGMT];
+    dairy.type = self.dairyType;
+    dairy.content = [self stringDeleteSideWhite:self.textView.text];
+
+    [TCDatabaseManager addDairy:dairy];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -72,11 +83,18 @@
     self.navigationItem.rightBarButtonItem.enabled = [self isNotEmpty:textView.text];
 }
 
-- (BOOL)isNotEmpty:(NSString *)string {
+#pragma mark - NSString method
+
+- (NSString *)stringDeleteSideWhite:(NSString *)string {
     //去除两端的空格之类的东西
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *stringTrans = [string stringByTrimmingCharactersInSet:whitespace];
+    return stringTrans;
+}
+
+- (BOOL)isNotEmpty:(NSString *)string {
     //去除中间的空格
+    NSString *stringTrans = [self stringDeleteSideWhite:string];
     stringTrans = [stringTrans stringByReplacingOccurrencesOfString:@" " withString:@""];
     return stringTrans.length;
 }

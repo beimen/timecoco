@@ -20,8 +20,8 @@
 
 + (NSArray *)storedDairyList;
 
-+ (void)addDairy:(TCDairy *)dairy;
++ (BOOL)addDairy:(TCDairy *)dairy;
 
-+ (void)removeDairy:(TCDairy *)dairy;
++ (BOOL)removeDairy:(TCDairy *)dairy;
 
 @end

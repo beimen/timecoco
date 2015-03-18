@@ -20,7 +20,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped]];
     [self.window makeKeyAndVisible];
-    [self initialDatabase];
     return YES;
 }
 
@@ -44,12 +43,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (void)initialDatabase {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[TCDatabaseManager getDatabasePathWithName:DB_FULL_NAME]]) {
-        [TCDatabaseManager initialize];
-    }
 }
 
 @end

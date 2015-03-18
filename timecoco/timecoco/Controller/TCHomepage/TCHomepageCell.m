@@ -20,7 +20,7 @@
 
 @implementation TCHomepageCell
 
-@synthesize cellType = _cellType;
+//@synthesize cellType = _cellType;
 
 - (void)awakeFromNib {
     self.contentView.backgroundColor = TC_BACK_COLOR;
@@ -47,18 +47,18 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setCellType:(TCHomepageCellType)cellType {
-    _cellType = cellType;
+//- (void)setCellType:(TCHomepageCellType)cellType {
+//    _cellType = cellType;
+//
+//    [self setNeedsLayout];
+//}
 
-    [self setNeedsLayout];
-}
-
-- (TCHomepageCellType)cellType {
-    if (_cellType == 0) {
-        self.cellType = TCHomepageCellTypeDefault;
-    }
-    return _cellType;
-}
+//- (TCHomepageCellType)cellType {
+//    if (_cellType == 0) {
+//        self.cellType = TCHomepageCellTypeDefault;
+//    }
+//    return _cellType;
+//}
 
 - (TCDashLineView *)dashLine {
     if (_dashLine == nil) {
@@ -89,6 +89,20 @@
         [self.frameBorder addSubview:_contentLabel];
     }
     return _contentLabel;
+}
+
+- (void)setDairy:(TCDairy *)dairy {
+    _dairy = dairy;
+
+    _contentLabel.text = dairy.content;
+    if ([self estimateWeekend:dairy]) {
+    }
+    _cellType = [self estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
+}
+
+- (BOOL)estimateWeekend:(TCDairy *)dairy {
+    NSInteger day = (dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY + 3;
+    return ((day % 7) > 4);
 }
 
 @end

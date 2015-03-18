@@ -10,8 +10,9 @@
 
 typedef enum {
     TCHomepageFooterTypeWorkday = 1,
+    TCHomepageFooterTypeWeekend,
     TCHomepageFooterTypeHoliday,
-    
+
     TCHomepageFooterTypeDefault = TCHomepageFooterTypeWorkday
 } TCHomepageFooterType;
 

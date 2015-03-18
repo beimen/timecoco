@@ -128,16 +128,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCHomepageCell *cell = (TCHomepageCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     cell.dairy = [self.dairyList objectAtIndex:([self getDairyCountBeforeSection:indexPath.section] + indexPath.row)];
-    
+
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TCHomepageHeader *header = (TCHomepageHeader *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellHeaderIdentifier];
     if (section == 0) {
-        header.headerType = TCHomepageHeaderTypeHoliday;
+        header.headerType = TCHomepageHeaderTypeWeekend;
     } else if (section == 1) {
         header.headerType = TCHomepageHeaderTypeWorkday;
     }
@@ -147,7 +147,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     TCHomepageFooter *footer = (TCHomepageFooter *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellFooterIdentifier];
     if (section == 0) {
-        footer.footerType = TCHomepageFooterTypeHoliday;
+        footer.footerType = TCHomepageFooterTypeWeekend;
     } else if (section == 1) {
         footer.footerType = TCHomepageFooterTypeWorkday;
     }

@@ -16,6 +16,8 @@
         color = TC_GRAY_COLOR;
     } else if (type == 2) {
         color = TC_RED_COLOR;
+    } else {
+        color = TC_CLEAR_COLOR;
     }
     return color;
 }

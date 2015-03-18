@@ -93,16 +93,15 @@
 
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
-    
+
     _contentLabel.text = dairy.content;
     if ([self estimateWeekend:dairy]) {
-        
     }
     _cellType = [self estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
 }
 
 - (BOOL)estimateWeekend:(TCDairy *)dairy {
-    NSInteger day = (dairy.timeZoneInterval + (NSInteger)dairy.pointTime) / T_DAY + 3;
+    NSInteger day = (dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY + 3;
     return ((day % 7) > 4);
 }
 

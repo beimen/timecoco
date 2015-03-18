@@ -10,6 +10,7 @@
 
 typedef enum {
     TCHomepageHeaderTypeWorkday = 1,
+    TCHomepageHeaderTypeWeekend,
     TCHomepageHeaderTypeHoliday,
     
     TCHomepageHeaderTypeDefault = TCHomepageHeaderTypeWorkday

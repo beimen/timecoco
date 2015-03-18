@@ -56,6 +56,8 @@
 		F582194B1AAD48A800357355 /* timecocoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timecocoTests.m; sourceTree = "<group>"; };
 		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
 		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
+		FE03F6071AB9CC8800597FAA /* TCNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNotification.h; sourceTree = "<group>"; };
+		FE03F6081AB9CCB800597FAA /* TCConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstant.h; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
 		FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageCell.h; sourceTree = "<group>"; };
 		FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageCell.m; sourceTree = "<group>"; };
@@ -217,6 +219,8 @@
 			children = (
 				F5E895BC1AB6C41000862723 /* TCUtility.h */,
 				F5E895BD1AB6C41000862723 /* TCUtility.m */,
+				FE03F6071AB9CC8800597FAA /* TCNotification.h */,
+				FE03F6081AB9CCB800597FAA /* TCConstant.h */,
 				FE78B83C1AB57C520026241E /* TCUtilityView */,
 				FE78B8321AB569FC0026241E /* TCDatabaseManager */,
 				FE1E783F1AB54814000157B6 /* TCButtonManager */,

@@ -91,4 +91,10 @@
     return _contentLabel;
 }
 
+- (void)setDairy:(TCDairy *)dairy {
+    _dairy = dairy;
+    
+    _contentLabel.text = dairy.content;
+}
+
 @end

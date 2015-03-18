@@ -12,13 +12,15 @@
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
 
-@interface TCHomepageVC ()
-
-@end
-
 #define CellIdentifier (@"TCHomepgeCell")
 #define CellHeaderIdentifier (@"TCHomepageHeader")
 #define CellFooterIdentifier (@"TCHomepageFooter")
+
+@interface TCHomepageVC ()
+
+@property (nonatomic, copy) NSArray *dairyList;
+
+@end
 
 @implementation TCHomepageVC
 
@@ -42,6 +44,12 @@
     [self.tableView registerClass:[TCHomepageFooter class] forHeaderFooterViewReuseIdentifier:CellFooterIdentifier];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self getDairyListData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -53,14 +61,19 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)getDairyListData {
+    self.dairyList = [TCDatabaseManager storedDairyList];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.dairyList.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,6 +95,7 @@
     } else if (indexPath.section == 1) {
         cell.cellType = TCHomepageCellTypeWorkday;
     }
+    cell.dairy = [self.dairyList objectAtIndex:indexPath.section];
     return cell;
 }
 

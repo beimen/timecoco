@@ -31,7 +31,7 @@ dispatch_queue_t queue;
     [manager inDatabase:^(FMDatabase *db) {
         [db open];
         
-        [db executeUpdate:@"CREATE TABLE IF NOT EXISTS timecoco_dairy (pointTime DOUBLE NOT NULL , content VARCHAR NOT NULL , type INTEGER NOT NULL DEFAULT 0, primaryId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE)"];
+        [db executeUpdate:@"CREATE TABLE IF NOT EXISTS timecoco_dairy (pointTime DOUBLE NOT NULL , timeZoneInterval INTEGER NOT NULL , content VARCHAR NOT NULL , type INTEGER NOT NULL DEFAULT 0, primaryId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE)"];
         
         NSLog(@"%@",db.lastErrorMessage);
         
@@ -44,48 +44,50 @@ dispatch_queue_t queue;
     [manager inDatabase:^(FMDatabase *db) {
         [db open];
         
-        FMResultSet *set = [db executeQuery:@"select pointTime,content,type,primaryId from timecoco_dairy order by pointTime asc"];
+        FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy order by pointTime asc"];
         while (set.next) {
             TCDairy *dairy = [TCDairy new];
             dairy.pointTime = [set doubleForColumnIndex:0];
-            dairy.content = [set stringForColumnIndex:1];
-            dairy.type = [set intForColumnIndex:2];
-            dairy.primaryId = [set intForColumnIndex:3];
+            dairy.timeZoneInterval = [set intForColumnIndex:1];
+            dairy.content = [set stringForColumnIndex:2];
+            dairy.type = [set intForColumnIndex:3];
+            dairy.primaryId = [set intForColumnIndex:4];
             
             [items addObject:dairy];
         }
-        
         [set close];
+        
         [db close];
     }];
     return items;
 }
 
-+ (void)addDairy:(TCDairy *)dairy {
++ (BOOL)addDairy:(TCDairy *)dairy {
+    __block BOOL addResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         [db open];
-
-        [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,content,type) values(%f, %@, %ld)",
-                                    dairy.pointTime,
-                                    dairy.content,
-                                    (long) dairy.type];
-
-        NSLog(@"%@", db.lastErrorMessage);
+        
+        addResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type) values(%f, %ld, %@, %ld)",dairy.pointTime, (long)dairy.timeZoneInterval, dairy.content, (long)dairy.type];
+        
+        NSLog(@"%i,%@", addResult, db.lastErrorMessage);
         
         [db close];
     }];
+    return addResult;
 }
 
-+ (void)removeDairy:(TCDairy *)dairy {
++ (BOOL)removeDairy:(TCDairy *)dairy {
+    __block BOOL removeResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         [db open];
         
-        [db executeUpdateWithFormat:@"delete from timecoco_dairy where primaryId = %ld", (long)dairy.primaryId];
+        removeResult = [db executeUpdateWithFormat:@"delete from timecoco_dairy where primaryId = %ld", (long)dairy.primaryId];
         
         NSLog(@"%@", db.lastErrorMessage);
         
         [db close];
     }];
+    return removeResult;
 }
 
 @end

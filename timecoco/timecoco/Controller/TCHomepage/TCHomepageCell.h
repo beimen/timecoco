@@ -11,6 +11,7 @@
 
 typedef enum {
     TCHomepageCellTypeWorkday = 1,
+    TCHomepageCellTypeWeekend,
     TCHomepageCellTypeHoliday,
     
     TCHomepageCellTypeDefault = TCHomepageCellTypeWorkday

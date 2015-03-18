@@ -19,6 +19,7 @@
 @interface TCHomepageVC ()
 
 @property (nonatomic, copy) NSArray *dairyList;
+@property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
 
 @end
 
@@ -46,8 +47,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     [self getDairyListData];
+    self.dairyListDateIndex = [self generateDateIndex];
+
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,19 +65,53 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - DairyList and DateIndex
+
 - (void)getDairyListData {
     self.dairyList = [TCDatabaseManager storedDairyList];
-    [self.tableView reloadData];
 }
+
+- (NSMutableArray *)generateDateIndex {
+    NSMutableArray *dateIndex = [NSMutableArray new];
+    __block NSInteger lastDate = 0;
+    [self.dairyList enumerateObjectsUsingBlock:^(TCDairy *dairy, NSUInteger idx, BOOL *stop) {
+        NSInteger date = (NSInteger)(dairy.pointTime + dairy.timeZoneInterval) / T_DAY;
+        if ([dateIndex lastObject] && (date == lastDate)) {
+            int lastDateCount = [[dateIndex lastObject] intValue];
+            [dateIndex replaceObjectAtIndex:(dateIndex.count - 1) withObject:[NSNumber numberWithInteger:(lastDateCount + 1)]];
+        } else {
+            [dateIndex addObject:[NSNumber numberWithInteger:1]];
+            lastDate = date;
+        }
+    }];
+    return dateIndex;
+}
+
+- (NSInteger)getDairyCountBeforeSection:(NSUInteger)section {
+    __block NSInteger count = 0;
+    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
+        if (idx < section) {
+            count += [num integerValue];
+        }
+    }];
+    return count;
+}
+
+//#pragma mark - Date handle
+//
+//- (BOOL)estimateWeekend:(NSInteger)interval {
+//    NSInteger day = interval / T_DAY + 3;
+//    return ((day % 7) > 4);
+//}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dairyList.count;
+    return self.dairyListDateIndex.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [[self.dairyListDateIndex objectAtIndex:section] intValue];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,12 +128,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCHomepageCell *cell = (TCHomepageCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.cellType = TCHomepageCellTypeHoliday;
-    } else if (indexPath.section == 1) {
-        cell.cellType = TCHomepageCellTypeWorkday;
-    }
-    cell.dairy = [self.dairyList objectAtIndex:indexPath.section];
+    
+    cell.dairy = [self.dairyList objectAtIndex:([self getDairyCountBeforeSection:indexPath.section] + indexPath.row)];
+    
     return cell;
 }
 

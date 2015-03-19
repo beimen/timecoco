@@ -35,6 +35,7 @@
     [super layoutSubviews];
     self.verticalDashLine.lineColor = [TCColorManager changeColorForType:self.headerType];
     self.horizontalDashLine.lineColor = _verticalDashLine.lineColor;
+    self.timeLabel.textColor = [TCColorManager changeTextColorForType:self.headerType];
 }
 
 - (TCDashLineView *)verticalDashLine {
@@ -65,6 +66,27 @@
     _dairy = dairy;
 
     self.headerType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageHeaderTypeWeekend : TCHomepageHeaderTypeWorkday;
+
+    [self setUpTimeText:dairy];
+}
+
+- (UILabel *)timeLabel {
+    if (_timeLabel == nil) {
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 12, 100, 12)];
+        _timeLabel.font = [UIFont boldSystemFontOfSize:12];
+
+        [self.contentView addSubview:_timeLabel];
+    }
+    return _timeLabel;
+}
+
+- (void)setUpTimeText:(TCDairy *)dairy {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:dairy.pointTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd"];
+    NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];//其实可以用上边@"dd-c"然后获得对应的序号，然后再组合
+    NSInteger order = [TCTimeManager weekdayOrder:(dairy.timeZoneInterval + (NSInteger) dairy.pointTime)];
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
 }
 
 @end

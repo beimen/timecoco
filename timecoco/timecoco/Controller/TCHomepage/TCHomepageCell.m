@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
+@property (nonatomic, strong) UILabel *hourLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 
 @end
@@ -74,6 +75,7 @@
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
         self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, 75)];
+        
         [self.contentView addSubview:self.frameBorder];
     }
     return _frameBorder;
@@ -86,6 +88,7 @@
         _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.numberOfLines = 0;
         _contentLabel.text = @"这仅仅是用于测试的一段话。现在的代码还都是伪数据，接下来要用上真实的数据。";
+        
         [self.frameBorder addSubview:_contentLabel];
     }
     return _contentLabel;
@@ -95,14 +98,8 @@
     _dairy = dairy;
 
     _contentLabel.text = dairy.content;
-    if ([self estimateWeekend:dairy]) {
-    }
-    _cellType = [self estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
-}
 
-- (BOOL)estimateWeekend:(TCDairy *)dairy {
-    NSInteger day = (dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY + 3;
-    return ((day % 7) > 4);
+    _cellType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
 }
 
 @end

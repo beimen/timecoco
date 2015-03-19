@@ -18,4 +18,6 @@
 
 + (BOOL)estimateWeekend:(TCDairy *)dairy;
 
++ (NSInteger)weekdayOrder:(NSInteger)intervalSince1970;
+
 @end

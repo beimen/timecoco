@@ -74,14 +74,16 @@
 - (NSMutableArray *)generateDateIndex {
     NSMutableArray *dateIndex = [NSMutableArray new];
     __block NSInteger lastDate = 0;
+    __block NSInteger lastTimeZoneInterval = 0;
     [self.dairyList enumerateObjectsUsingBlock:^(TCDairy *dairy, NSUInteger idx, BOOL *stop) {
         NSInteger date = (NSInteger)(dairy.pointTime + dairy.timeZoneInterval) / T_DAY;
-        if ([dateIndex lastObject] && (date == lastDate)) {
+        if ([dateIndex lastObject] && (date == lastDate) && (lastTimeZoneInterval = dairy.timeZoneInterval)) {
             int lastDateCount = [[dateIndex lastObject] intValue];
             [dateIndex replaceObjectAtIndex:(dateIndex.count - 1) withObject:[NSNumber numberWithInteger:(lastDateCount + 1)]];
         } else {
             [dateIndex addObject:[NSNumber numberWithInteger:1]];
             lastDate = date;
+            lastTimeZoneInterval = dairy.timeZoneInterval;
         }
     }];
     return dateIndex;
@@ -96,13 +98,6 @@
     }];
     return count;
 }
-
-//#pragma mark - Date handle
-//
-//- (BOOL)estimateWeekend:(NSInteger)interval {
-//    NSInteger day = interval / T_DAY + 3;
-//    return ((day % 7) > 4);
-//}
 
 #pragma mark - Table view data source
 

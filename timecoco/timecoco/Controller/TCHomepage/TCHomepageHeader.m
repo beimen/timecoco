@@ -14,6 +14,7 @@
 @property (nonatomic, assign) TCHomepageHeaderType headerType;
 @property (nonatomic, strong) TCDashLineView *verticalDashLine;
 @property (nonatomic, strong) TCDashLineView *horizontalDashLine;
+@property (nonatomic, strong) UILabel *timeLabel;
 
 @end
 

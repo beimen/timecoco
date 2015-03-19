@@ -12,6 +12,7 @@
 
 @interface TCHomepageCell ()
 
+@property (nonatomic, assign) TCHomepageCellType cellType;
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) UILabel *hourLabel;

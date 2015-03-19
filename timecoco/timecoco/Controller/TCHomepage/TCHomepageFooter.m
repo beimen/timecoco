@@ -11,13 +11,12 @@
 
 @interface TCHomepageFooter ()
 
+@property (nonatomic, assign) TCHomepageFooterType footerType;
 @property (nonatomic, strong) TCDashLineView *dashLine;
 
 @end
 
 @implementation TCHomepageFooter
-
-@synthesize footerType = _footerType;
 
 - (void)awakeFromNib {
 }
@@ -35,19 +34,6 @@
     self.dashLine.lineColor = [TCColorManager changeColorForType:self.footerType];
 }
 
-- (void)setFooterType:(TCHomepageFooterType)footerType {
-    _footerType = footerType;
-
-    [self setNeedsLayout];
-}
-
-- (TCHomepageFooterType)footerType {
-    if (_footerType == 0) {
-        self.footerType = TCHomepageFooterTypeDefault;
-    }
-    return _footerType;
-}
-
 - (TCDashLineView *)dashLine {
     if (_dashLine == nil) {
         self.dashLine = [[TCDashLineView alloc] initWithFrame:CGRectMake(24, 0, 2, 10)];
@@ -57,6 +43,12 @@
         [self.contentView addSubview:_dashLine];
     }
     return _dashLine;
+}
+
+- (void)setDairy:(TCDairy *)dairy {
+    _dairy = dairy;
+    
+    self.footerType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageFooterTypeWeekend : TCHomepageFooterTypeWorkday;
 }
 
 @end

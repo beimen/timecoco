@@ -136,21 +136,17 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TCHomepageHeader *header = (TCHomepageHeader *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellHeaderIdentifier];
-    if (section == 0) {
-        header.headerType = TCHomepageHeaderTypeWeekend;
-    } else if (section == 1) {
-        header.headerType = TCHomepageHeaderTypeWorkday;
-    }
+
+    header.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
+
     return header;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     TCHomepageFooter *footer = (TCHomepageFooter *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellFooterIdentifier];
-    if (section == 0) {
-        footer.footerType = TCHomepageFooterTypeWeekend;
-    } else if (section == 1) {
-        footer.footerType = TCHomepageFooterTypeWorkday;
-    }
+
+    footer.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
+
     return footer;
 }
 

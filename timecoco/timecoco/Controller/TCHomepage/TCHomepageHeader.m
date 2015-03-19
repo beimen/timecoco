@@ -11,14 +11,13 @@
 
 @interface TCHomepageHeader ()
 
+@property (nonatomic, assign) TCHomepageHeaderType headerType;
 @property (nonatomic, strong) TCDashLineView *verticalDashLine;
 @property (nonatomic, strong) TCDashLineView *horizontalDashLine;
 
 @end
 
 @implementation TCHomepageHeader
-
-@synthesize headerType = _headerType;
 
 - (void)awakeFromNib {
 }
@@ -35,19 +34,6 @@
     [super layoutSubviews];
     self.verticalDashLine.lineColor = [TCColorManager changeColorForType:self.headerType];
     self.horizontalDashLine.lineColor = _verticalDashLine.lineColor;
-}
-
-- (void)setHeaderType:(TCHomepageHeaderType)headerType {
-    _headerType = headerType;
-
-    [self setNeedsLayout];
-}
-
-- (TCHomepageHeaderType)headerType {
-    if (_headerType == 0) {
-        self.headerType = TCHomepageHeaderTypeDefault;
-    }
-    return _headerType;
 }
 
 - (TCDashLineView *)verticalDashLine {
@@ -72,6 +58,12 @@
         [self.contentView addSubview:_horizontalDashLine];
     }
     return _horizontalDashLine;
+}
+
+- (void)setDairy:(TCDairy *)dairy {
+    _dairy = dairy;
+
+    self.headerType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageHeaderTypeWeekend : TCHomepageHeaderTypeWorkday;
 }
 
 @end

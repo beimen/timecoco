@@ -19,7 +19,6 @@ typedef enum {
 
 @interface TCHomepageCell : UITableViewCell
 
-@property (nonatomic, assign) TCHomepageCellType cellType;
-@property (nonatomic, strong) TCDairy *dairy;
+@property (nonatomic, weak) TCDairy *dairy;
 
 @end

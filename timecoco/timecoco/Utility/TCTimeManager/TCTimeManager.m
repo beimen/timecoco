@@ -10,6 +10,12 @@
 
 @implementation TCTimeManager
 
++ (NSInteger)getHourValue:(TCDairy *)dairy {
+    NSInteger hourValue = 0;
+    hourValue = ((dairy.timeZoneInterval + (NSInteger) dairy.pointTime) % T_DAY) / T_HOUR;
+    return hourValue;
+}
+
 + (BOOL)estimateWeekend:(TCDairy *)dairy {
     NSInteger day = (dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY + 3;
     return ((day % 7) > 4);

@@ -10,6 +10,8 @@
 
 @interface TCTimeManager : NSObject
 
++ (NSInteger)getHourValue:(TCDairy *)dairy;
+
 + (BOOL)estimateWeekend:(TCDairy *)dairy;
 
 @end

@@ -20,7 +20,6 @@
 @synthesize footerType = _footerType;
 
 - (void)awakeFromNib {
-    [self dashLine];
 }
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
@@ -33,7 +32,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _dashLine.lineColor = [TCColorManager changeColorForType:self.footerType];
+    self.dashLine.lineColor = [TCColorManager changeColorForType:self.footerType];
 }
 
 - (void)setFooterType:(TCHomepageFooterType)footerType {

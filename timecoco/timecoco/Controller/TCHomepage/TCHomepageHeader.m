@@ -21,8 +21,6 @@
 @synthesize headerType = _headerType;
 
 - (void)awakeFromNib {
-    [self verticalDashLine];
-    [self horizontalDashLine];
 }
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
@@ -35,8 +33,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _verticalDashLine.lineColor = [TCColorManager changeColorForType:self.headerType];
-    _horizontalDashLine.lineColor = _verticalDashLine.lineColor;
+    self.verticalDashLine.lineColor = [TCColorManager changeColorForType:self.headerType];
+    self.horizontalDashLine.lineColor = _verticalDashLine.lineColor;
 }
 
 - (void)setHeaderType:(TCHomepageHeaderType)headerType {

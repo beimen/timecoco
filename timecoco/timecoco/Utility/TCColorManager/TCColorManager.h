@@ -23,4 +23,6 @@
 
 + (UIColor *)changeColorForType:(NSUInteger)type;
 
++ (UIColor *)changeTextColorForType:(NSUInteger)type;
+
 @end

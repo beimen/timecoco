@@ -12,8 +12,10 @@
 
 @interface TCHomepageCell ()
 
+@property (nonatomic, assign) TCHomepageCellType cellType;
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
+@property (nonatomic, strong) UILabel *hourLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 
 @end
@@ -24,9 +26,6 @@
 
 - (void)awakeFromNib {
     self.contentView.backgroundColor = TC_BACK_COLOR;
-    [self dashLine];
-    [self frameBorder];
-    [self contentLabel];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -39,8 +38,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
-    _frameBorder.lineColor = _dashLine.lineColor;
+    self.dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
+    self.frameBorder.lineColor = _dashLine.lineColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -74,6 +73,7 @@
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
         self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, 75)];
+
         [self.contentView addSubview:self.frameBorder];
     }
     return _frameBorder;
@@ -85,24 +85,31 @@
         _contentLabel.textColor = TC_TEXT_COLOR;
         _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.text = @"这仅仅是用于测试的一段话。现在的代码还都是伪数据，接下来要用上真实的数据。";
+
         [self.frameBorder addSubview:_contentLabel];
     }
     return _contentLabel;
 }
 
+- (UILabel *)hourLabel {
+    if (_hourLabel == nil) {
+        self.hourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.frame.size.height / 2 - 10, 20, 20)];
+        _hourLabel.textColor = TC_TEXT_COLOR;
+        _hourLabel.textAlignment = NSTextAlignmentRight;
+        _hourLabel.font = [UIFont systemFontOfSize:10];
+
+        [self.contentView addSubview:_hourLabel];
+    }
+    return _hourLabel;
+}
+
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
 
-    _contentLabel.text = dairy.content;
-    if ([self estimateWeekend:dairy]) {
-    }
-    _cellType = [self estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
-}
+    self.contentLabel.text = dairy.content;
+    self.hourLabel.text = [NSString stringWithFormat:@"%li", (long) [TCTimeManager getHourValue:dairy]];
 
-- (BOOL)estimateWeekend:(TCDairy *)dairy {
-    NSInteger day = (dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY + 3;
-    return ((day % 7) > 4);
+    self.cellType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
 }
 
 @end

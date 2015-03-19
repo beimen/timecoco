@@ -18,6 +18,6 @@ typedef enum {
 
 @interface TCHomepageHeader : UITableViewHeaderFooterView
 
-@property (nonatomic, assign) TCHomepageHeaderType headerType;
+@property (nonatomic, weak) TCDairy *dairy;
 
 @end

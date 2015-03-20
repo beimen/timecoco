@@ -39,8 +39,15 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+
+    self.dashLine.frame = CGRectMake(24, 0, 2, self.contentView.frame.size.height);
+    self.dashLine.endPoint = CGPointMake(0, self.contentView.frame.size.height);
     self.dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
+
+    self.frameBorder.frame = CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.frame.size.height);
     self.frameBorder.lineColor = _dashLine.lineColor;
+
+    self.contentLabel.frame = CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.frame.size.height - 10);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

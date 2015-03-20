@@ -28,12 +28,17 @@
     return hourValue;
 }
 
++ (NSInteger)weekOrderSince1970:(TCDairy *)dairy {
+    NSInteger order = ((dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY - 4) / 7;
+    return order;
+}
+
 + (BOOL)estimateWeekend:(TCDairy *)dairy {
-    NSInteger order = [self weekdayOrder:(dairy.timeZoneInterval + (NSInteger) dairy.pointTime)];
+    NSInteger order = [self dayOrderInWeek:(dairy.timeZoneInterval + (NSInteger) dairy.pointTime)];
     return (order == 5) || (order == 6); //基于1970年1月1日星期四，算出如果余数=5或者=6时，为周六和周天
 }
 
-+ (NSInteger)weekdayOrder:(NSInteger)intervalSince1970 {
++ (NSInteger)dayOrderInWeek:(NSInteger)intervalSince1970 {
     NSInteger order = (intervalSince1970 / T_DAY + 3) % 7;
     return order;
 }

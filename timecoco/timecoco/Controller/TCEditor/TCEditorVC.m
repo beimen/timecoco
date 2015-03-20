@@ -28,7 +28,7 @@
     self.navigationItem.rightBarButtonItems = @[ [UIBarButtonItem createBarButtonItemWithImages:@[ [UIImage imageNamed:@"button_confirm"],
                                                                                                    [UIImage imageNamed:@"button_confirm_disable"] ]
                                                                                          Target:self
-                                                                                       Selector:@selector(confirmAction:)]];
+                                                                                       Selector:@selector(confirmAction:)] ];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self setUpUI];
     self.textView.delegate = self;
@@ -74,9 +74,13 @@
 
 - (void)confirmAction:(UIBarButtonItem *)sender {
     TCDairy *dairy = [TCDairy new];
-    dairy.pointTime = [[NSDate date] timeIntervalSince1970];
     dairy.timeZoneInterval = [[NSTimeZone localTimeZone] secondsFromGMT];
     dairy.type = self.dairyType;
+    if (self.dairyType == TCDairyTypeNormal) {
+        dairy.pointTime = [[NSDate date] timeIntervalSince1970];
+    } else {
+        dairy.pointTime = (((NSInteger)[[NSDate date] timeIntervalSince1970] + dairy.timeZoneInterval) / T_DAY) * T_DAY - dairy.timeZoneInterval;
+    }
     dairy.content = [self stringDeleteSideWhite:self.textView.text];
 
     [TCDatabaseManager addDairy:dairy];

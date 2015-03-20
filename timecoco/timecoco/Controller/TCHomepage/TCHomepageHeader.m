@@ -83,9 +83,21 @@
 - (void)setUpTimeText:(TCDairy *)dairy {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dairy.pointTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd"];
+    
+    BOOL showMonth = 0;
+    if (self.lastDairy) {
+        showMonth = ([TCTimeManager weekOrderSince1970:self.lastDairy] != [TCTimeManager weekOrderSince1970:dairy]);
+    } else {
+        showMonth = YES;
+    }
+    if (showMonth) {
+        [formatter setDateFormat:@"MM月dd日"];
+    } else {
+        [formatter setDateFormat:@"dd日"];
+    }
+    
     NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];//其实可以用上边@"dd-c"然后获得对应的序号，然后再组合
-    NSInteger order = [TCTimeManager weekdayOrder:(dairy.timeZoneInterval + (NSInteger) dairy.pointTime)];
+    NSInteger order = [TCTimeManager dayOrderInWeek:(dairy.timeZoneInterval + (NSInteger) dairy.pointTime)];
     self.timeLabel.text = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
 }
 

@@ -16,8 +16,10 @@
 
 + (NSInteger)getHourValue:(TCDairy *)dairy;
 
++ (NSInteger)weekOrderSince1970:(TCDairy *)dairy;
+
 + (BOOL)estimateWeekend:(TCDairy *)dairy;
 
-+ (NSInteger)weekdayOrder:(NSInteger)intervalSince1970;
++ (NSInteger)dayOrderInWeek:(NSInteger)intervalSince1970;
 
 @end

@@ -107,7 +107,11 @@
     _dairy = dairy;
 
     self.contentLabel.text = dairy.content;
-    self.hourLabel.text = [NSString stringWithFormat:@"%li", (long) [TCTimeManager getHourValue:dairy]];
+    if (dairy.type == TCDairyTypeNormal) {
+        self.hourLabel.text = [NSString stringWithFormat:@"%li", (long) [TCTimeManager getHourValue:dairy]];
+    } else {
+        self.hourLabel.text = @"";
+    }
 
     self.cellType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
 }

@@ -132,6 +132,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TCHomepageHeader *header = (TCHomepageHeader *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellHeaderIdentifier];
 
+    if (section) {
+        header.lastDairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section] - 1];
+    } else {
+        header.lastDairy = nil;
+    }
+    
     header.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
 
     return header;

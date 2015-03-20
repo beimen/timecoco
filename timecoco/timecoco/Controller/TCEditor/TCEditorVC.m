@@ -20,21 +20,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = TC_BACK_COLOR;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_back"] Target:self Selector:@selector(backAction:)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImages:@[ [UIImage imageNamed:@"button_confirm"], [UIImage imageNamed:@"button_confirm_disable"] ] Target:self Selector:@selector(confirmAction:)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_back"]
+                                                                                   Target:self
+                                                                                 Selector:@selector(backAction:)];
+    self.navigationItem.rightBarButtonItems = @[ [UIBarButtonItem createBarButtonItemWithImages:@[ [UIImage imageNamed:@"button_confirm"],
+                                                                                                   [UIImage imageNamed:@"button_confirm_disable"] ]
+                                                                                         Target:self
+                                                                                       Selector:@selector(confirmAction:)] ];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self setUpUI];
     self.textView.delegate = self;
     self.dairyType = TCDairyTypeNormal;
+    [self.textView becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.textView becomeFirstResponder];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+}
+
+- (void)keyboardDidChangeFrame:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    CGRect keyboardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSLog(@"%f", keyboardRect.size.height);
+    if (keyboardRect.size.height) {
+        self.textView.frame = CGRectMake(10, 10 + CGRectGetMaxY(self.navigationController.navigationBar.frame), self.view.frame.size.width - 20, self.view.frame.size.height - keyboardRect.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame) - 20);
+    }
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"TCEditor dealloated.");
 }
 
@@ -50,9 +74,13 @@
 
 - (void)confirmAction:(UIBarButtonItem *)sender {
     TCDairy *dairy = [TCDairy new];
-    dairy.pointTime = [[NSDate date] timeIntervalSince1970];
     dairy.timeZoneInterval = [[NSTimeZone localTimeZone] secondsFromGMT];
     dairy.type = self.dairyType;
+    if (self.dairyType == TCDairyTypeNormal) {
+        dairy.pointTime = [[NSDate date] timeIntervalSince1970];
+    } else {
+        dairy.pointTime = (((NSInteger)[[NSDate date] timeIntervalSince1970] + dairy.timeZoneInterval) / T_DAY) * T_DAY - dairy.timeZoneInterval;
+    }
     dairy.content = [self stringDeleteSideWhite:self.textView.text];
 
     [TCDatabaseManager addDairy:dairy];
@@ -63,16 +91,12 @@
 #pragma mark - UI
 
 - (void)setUpUI {
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10, self.view.frame.size.width - 20, self.view.bounds.size.height / 3)];
-    lineView.backgroundColor = TC_WHITE_COLOR;
-    lineView.layer.borderColor = TC_RED_COLOR.CGColor;
-    lineView.layer.borderWidth = 1.0f;
-    [self.view addSubview:lineView];
-    self.lineView = lineView;
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5 + 10, 5 + CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10, self.lineView.frame.size.width - 10, self.lineView.frame.size.height - 10)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5, 5 + CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10, self.view.frame.size.width - 10, self.view.frame.size.height / 2)];
     textView.backgroundColor = TC_WHITE_COLOR;
     textView.textColor = TC_DARK_GRAY_COLOR;
     textView.font = [UIFont systemFontOfSize:16.0f];
+    textView.layer.borderColor = TC_RED_COLOR.CGColor;
+    textView.layer.borderWidth = 1.0f;
     [self.view addSubview:textView];
     self.textView = textView;
 }

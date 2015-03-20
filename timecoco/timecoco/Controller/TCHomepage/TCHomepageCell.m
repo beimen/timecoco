@@ -25,7 +25,8 @@
 //@synthesize cellType = _cellType;
 
 - (void)awakeFromNib {
-    self.contentView.backgroundColor = TC_BACK_COLOR;
+    self.contentView.backgroundColor = TC_CLEAR_COLOR;
+    self.backgroundColor = TC_CLEAR_COLOR;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -38,8 +39,15 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+
+    self.dashLine.frame = CGRectMake(24, 0, 2, self.contentView.frame.size.height);
+    self.dashLine.endPoint = CGPointMake(0, self.contentView.frame.size.height);
     self.dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
+
+    self.frameBorder.frame = CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.frame.size.height);
     self.frameBorder.lineColor = _dashLine.lineColor;
+
+    self.contentLabel.frame = CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.frame.size.height - 10);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -61,9 +69,9 @@
 
 - (TCDashLineView *)dashLine {
     if (_dashLine == nil) {
-        self.dashLine = [[TCDashLineView alloc] initWithFrame:CGRectMake(24, 0, 2, 75)];
+        self.dashLine = [[TCDashLineView alloc] initWithFrame:CGRectMake(24, 0, 2, self.contentView.frame.size.height)];
         _dashLine.startPoint = CGPointMake(0, 0);
-        _dashLine.endPoint = CGPointMake(0, 75);
+        _dashLine.endPoint = CGPointMake(0, self.contentView.frame.size.height);
 
         [self.contentView addSubview:self.dashLine];
     }
@@ -72,7 +80,7 @@
 
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
-        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, 75)];
+        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.frame.size.height)];
 
         [self.contentView addSubview:self.frameBorder];
     }
@@ -81,7 +89,7 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 65, 65)];
+        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.frame.size.height - 10)];
         _contentLabel.textColor = TC_TEXT_COLOR;
         _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.numberOfLines = 0;

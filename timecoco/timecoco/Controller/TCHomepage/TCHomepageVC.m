@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = TC_WHITE_COLOR;
+    self.view.backgroundColor = TC_RED_COLOR;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"] Target:self Selector:@selector(addAction:)];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -110,7 +110,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 75.0f;
+    TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairyCountBeforeSection:indexPath.section] + indexPath.row)];
+
+    return [self cellHeightWithContent:dairy.content];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -137,7 +139,7 @@
     } else {
         header.lastDairy = nil;
     }
-    
+
     header.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
 
     return header;
@@ -149,6 +151,20 @@
     footer.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
 
     return footer;
+}
+
+- (CGFloat)cellHeightWithContent:(NSString *)string {
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    NSDictionary *attrs = @{
+        NSFontAttributeName : [UIFont systemFontOfSize:15],
+        NSParagraphStyleAttributeName : style
+    };
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)
+                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                    attributes:attrs
+                                       context:nil];
+    return ((rect.size.height > 65.0f) ? (int) rect.size.height / 5 * 5 + 15 : 65) + 10;
 }
 
 @end

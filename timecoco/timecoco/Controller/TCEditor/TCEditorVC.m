@@ -41,17 +41,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 }
 
-- (void)keyboardDidChangeFrame:(NSNotification *)notification {
+- (void)keyboardWillChangeFrame:(NSNotification *)notification {
     NSDictionary *userInfo = [notification userInfo];
     CGRect keyboardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    NSLog(@"%f", keyboardRect.size.height);
     if (keyboardRect.size.height) {
         self.textView.frame = CGRectMake(10, 10 + CGRectGetMaxY(self.navigationController.navigationBar.frame), self.view.frame.size.width - 20, self.view.frame.size.height - keyboardRect.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame) - 20);
     }

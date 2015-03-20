@@ -44,7 +44,7 @@ dispatch_queue_t queue;
     [manager inDatabase:^(FMDatabase *db) {
         [db open];
         
-        FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy order by pointTime asc"];
+        FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy order by pointTime asc, type desc"];
         while (set.next) {
             TCDairy *dairy = [TCDairy new];
             dairy.pointTime = [set doubleForColumnIndex:0];

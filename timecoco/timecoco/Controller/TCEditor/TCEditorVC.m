@@ -8,6 +8,8 @@
 
 #import "TCEditorVC.h"
 
+#define ALERT_TAG_TCEDITOR (12)
+
 @interface TCEditorVC () <UITextViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) UIView *lineView;
@@ -68,6 +70,16 @@
 #pragma mark - Navigation action
 
 - (void)backAction:(UIBarButtonItem *)sender {
+    if (self.textView.text.length) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"当前有内容，是否确定退出。"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"确认", nil];
+        alertView.tag = ALERT_TAG_TCEDITOR;
+        [alertView show];
+        return;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -129,6 +141,18 @@
     NSString *stringTrans = [self stringDeleteSideWhite:string];
     stringTrans = [stringTrans stringByReplacingOccurrencesOfString:@" " withString:@""];
     return stringTrans.length;
+}
+
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == ALERT_TAG_TCEDITOR) {
+        if (buttonIndex == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            return;
+        }
+    }
 }
 
 @end

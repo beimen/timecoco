@@ -20,6 +20,7 @@
 
 @property (nonatomic, copy) NSArray *dairyList;
 @property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
+@property (nonatomic, assign) BOOL firstAppear;
 
 @end
 
@@ -28,6 +29,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.firstAppear = YES;
     }
     return self;
 }
@@ -49,9 +51,17 @@
     [super viewDidAppear:animated];
 
     [self getDairyListData];
+    
+    if (self.dairyListDateIndex && ![self.dairyListDateIndex isEqualToArray:[self generateDateIndex]]) {
+        self.firstAppear = YES;
+    }
     self.dairyListDateIndex = [self generateDateIndex];
 
     [self.tableView reloadData];
+    if (self.firstAppear) {
+        self.firstAppear = NO;
+        [self scrollToLastDairy];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,6 +175,13 @@
                                     attributes:attrs
                                        context:nil];
     return ((rect.size.height > 65.0f) ? (int) rect.size.height / 5 * 5 + 15 : 65) + 10;
+}
+
+- (void)scrollToLastDairy {
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.dairyListDateIndex lastObject] integerValue] - 1
+                                                              inSection:self.dairyListDateIndex.count - 1]
+                          atScrollPosition:UITableViewScrollPositionBottom
+                                  animated:NO];
 }
 
 @end

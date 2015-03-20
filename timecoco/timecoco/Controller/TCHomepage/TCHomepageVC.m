@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = TC_WHITE_COLOR;
+    self.view.backgroundColor = TC_RED_COLOR;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"] Target:self Selector:@selector(addAction:)];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

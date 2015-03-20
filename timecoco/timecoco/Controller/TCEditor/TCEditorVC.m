@@ -8,7 +8,7 @@
 
 #import "TCEditorVC.h"
 
-@interface TCEditorVC () <UITextViewDelegate>
+@interface TCEditorVC () <UITextViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UITextView *textView;
@@ -82,9 +82,18 @@
     }
     dairy.content = [self stringDeleteSideWhite:self.textView.text];
 
-    [TCDatabaseManager addDairy:dairy];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (dairy.content.length > 1000) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"字数不能超过1000个字。"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确认"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        [TCDatabaseManager addDairy:dairy];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - UI

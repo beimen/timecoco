@@ -50,6 +50,7 @@
     self.contentLabel.frame = CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.frame.size.height - 10);
     
     self.hourLabel.frame = CGRectMake(0, self.contentView.frame.size.height / 2 - 10, 20, 20);
+    self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

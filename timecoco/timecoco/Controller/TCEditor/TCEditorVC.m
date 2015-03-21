@@ -70,7 +70,7 @@
 #pragma mark - Navigation action
 
 - (void)backAction:(UIBarButtonItem *)sender {
-    if (self.textView.text.length) {
+    if ([self isNotEmpty:self.textView.text]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                             message:@"当前有内容，是否确定退出。"
                                                            delegate:self

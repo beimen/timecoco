@@ -4,11 +4,14 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - REFrostedViewController (2.4.7)
 
 DEPENDENCIES:
   - FMDB
+  - REFrostedViewController (~> 2.4.7)
 
 SPEC CHECKSUMS:
   FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
+  REFrostedViewController: 08870a24788191339608b80b2bd4fce549858f0d
 
 COCOAPODS: 0.36.0

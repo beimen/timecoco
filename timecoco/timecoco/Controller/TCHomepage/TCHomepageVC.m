@@ -58,7 +58,7 @@
     self.dairyListDateIndex = [self generateDateIndex];
 
     [self.tableView reloadData];
-    if (self.firstAppear) {
+    if (self.firstAppear && self.dairyList.count) {
         self.firstAppear = NO;
         [self scrollToLastDairy];
     }

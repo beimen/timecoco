@@ -30,12 +30,13 @@
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
     frostedViewController.liveBlur = YES;
     frostedViewController.delegate = self;
+    frostedViewController.panGestureEnabled = YES;
     UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
     [frostedViewController.view addGestureRecognizer:gesture];
 
     self.frostedViewController = frostedViewController;
 
-    self.window.rootViewController = frostedViewController;
+    self.window.rootViewController = self.frostedViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -62,28 +63,30 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender {
-    [self.frostedViewController panGestureRecognized:sender];
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
+    if ([[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCHomepageVC class]]) {
+        [self.frostedViewController panGestureRecognized:recognizer];
+    }
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer {
-//    NSLog(@"didRecongnize");
+    //    NSLog(@"didRecongnize");
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController willShowMenuViewController:(UIViewController *)menuViewController {
-//    NSLog(@"willShowMenuViewController");
+    //    NSLog(@"willShowMenuViewController");
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didShowMenuViewController:(UIViewController *)menuViewController {
-//    NSLog(@"didShowMenuViewController");
+    //    NSLog(@"didShowMenuViewController");
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController {
-//    NSLog(@"willHideMenuViewController");
+    //    NSLog(@"willHideMenuViewController");
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController {
-//    NSLog(@"didHideMenuViewController");
+    //    NSLog(@"didHideMenuViewController");
 }
 
 @end

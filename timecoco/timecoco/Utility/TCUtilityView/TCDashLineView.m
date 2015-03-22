@@ -27,7 +27,7 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
-    CGContextSetLineWidth(context, MIN(self.frame.size.height, self.frame.size.width) * 2);
+    CGContextSetLineWidth(context, MIN(self.height, self.width) * 2);
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
     CGFloat lengths[] = {2, 3};
     CGContextSetLineDash(context, 0, lengths, 2);

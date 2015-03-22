@@ -54,7 +54,7 @@
     NSDictionary *userInfo = [notification userInfo];
     CGRect keyboardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if (keyboardRect.size.height) {
-        self.textView.frame = CGRectMake(10, 10 + CGRectGetMaxY(self.navigationController.navigationBar.frame), self.view.frame.size.width - 20, self.view.frame.size.height - keyboardRect.size.height - CGRectGetMaxY(self.navigationController.navigationBar.frame) - 20);
+        self.textView.height = self.view.height - keyboardRect.size.height - self.navigationController.navigationBar.bottom - 20;
     }
 }
 
@@ -111,7 +111,7 @@
 #pragma mark - UI
 
 - (void)setUpUI {
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(5, 5 + CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10, self.view.frame.size.width - 10, self.view.frame.size.height / 2)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10 + self.navigationController.navigationBar.bottom, self.view.width - 20, 0)];
     textView.backgroundColor = TC_WHITE_COLOR;
     textView.textColor = TC_DARK_GRAY_COLOR;
     textView.font = [UIFont systemFontOfSize:16.0f];

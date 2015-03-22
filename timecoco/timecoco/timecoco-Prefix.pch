@@ -12,6 +12,8 @@
 #import <Foundation/Foundation.h>
 
 #import "UIBarButtonItem+TCButtonManager.h"
+#import "UIView+Frame.h"
+
 #import "TCColorManager.h"
 #import "TCDatabaseManager.h"
 #import "TCTimeManager.h"

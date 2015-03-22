@@ -40,16 +40,16 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    self.dashLine.frame = CGRectMake(24, 0, 2, self.contentView.frame.size.height);
+    self.dashLine.height = self.contentView.height;
     self.dashLine.endPoint = CGPointMake(0, self.contentView.frame.size.height);
     self.dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
 
-    self.frameBorder.frame = CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.frame.size.height);
+    self.frameBorder.height = self.contentView.height;
     self.frameBorder.lineColor = _dashLine.lineColor;
 
-    self.contentLabel.frame = CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.frame.size.height - 10);
+    self.contentLabel.height = self.contentView.height - 10;
     
-    self.hourLabel.frame = CGRectMake(0, self.contentView.frame.size.height / 2 - 10, 20, 20);
+    self.hourLabel.y = self.contentView.height / 2 - 10;
     self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
 }
 
@@ -72,9 +72,9 @@
 
 - (TCDashLineView *)dashLine {
     if (_dashLine == nil) {
-        self.dashLine = [[TCDashLineView alloc] initWithFrame:CGRectMake(24, 0, 2, self.contentView.frame.size.height)];
+        self.dashLine = [[TCDashLineView alloc] initWithFrame:CGRectMake(24, 0, 2, self.contentView.height)];
         _dashLine.startPoint = CGPointMake(0, 0);
-        _dashLine.endPoint = CGPointMake(0, self.contentView.frame.size.height);
+        _dashLine.endPoint = CGPointMake(0, self.contentView.height);
 
         [self.contentView addSubview:self.dashLine];
     }
@@ -83,7 +83,7 @@
 
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
-        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.frame.size.height)];
+        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.height)];
 
         [self.contentView addSubview:self.frameBorder];
     }
@@ -92,7 +92,7 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.frame.size.height - 10)];
+        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.height - 10)];
         _contentLabel.textColor = TC_TEXT_COLOR;
         _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.numberOfLines = 0;
@@ -104,7 +104,7 @@
 
 - (UILabel *)hourLabel {
     if (_hourLabel == nil) {
-        self.hourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.frame.size.height / 2 - 10, 20, 20)];
+        self.hourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.height / 2 - 10, 20, 20)];
         _hourLabel.textColor = TC_TEXT_COLOR;
         _hourLabel.textAlignment = NSTextAlignmentRight;
         _hourLabel.font = [UIFont systemFontOfSize:10];

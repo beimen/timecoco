@@ -17,6 +17,8 @@
 		F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC9B1ABBBFBE0062167C /* TCEditorOptionView.m */; };
 		F5CDC8C31ABA70A000EB9396 /* TCTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CDC8C21ABA70A000EB9396 /* TCTimeManager.m */; };
 		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
+		FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */; };
+		FE0387C11ABEB73C007A3831 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387C01ABEB73C007A3831 /* UIView+Frame.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
 		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
@@ -63,6 +65,10 @@
 		F5CDC8C21ABA70A000EB9396 /* TCTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTimeManager.m; sourceTree = "<group>"; };
 		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
 		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
+		FE0387BB1ABE65F1007A3831 /* TCMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMenuVC.h; sourceTree = "<group>"; };
+		FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMenuVC.m; sourceTree = "<group>"; };
+		FE0387BF1ABEB73C007A3831 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		FE0387C01ABEB73C007A3831 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		FE03F6071AB9CC8800597FAA /* TCNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNotification.h; sourceTree = "<group>"; };
 		FE03F6081AB9CCB800597FAA /* TCConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstant.h; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
@@ -199,9 +205,28 @@
 			path = TCTimeManager;
 			sourceTree = "<group>";
 		};
+		FE0387BA1ABE658A007A3831 /* TCMenu */ = {
+			isa = PBXGroup;
+			children = (
+				FE0387BB1ABE65F1007A3831 /* TCMenuVC.h */,
+				FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */,
+			);
+			path = TCMenu;
+			sourceTree = "<group>";
+		};
+		FE0387BE1ABEB71E007A3831 /* TCCategory */ = {
+			isa = PBXGroup;
+			children = (
+				FE0387BF1ABEB73C007A3831 /* UIView+Frame.h */,
+				FE0387C01ABEB73C007A3831 /* UIView+Frame.m */,
+			);
+			path = TCCategory;
+			sourceTree = "<group>";
+		};
 		FE1478491AB486A5007C8395 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FE0387BA1ABE658A007A3831 /* TCMenu */,
 				FE1E783A1AB53FA5000157B6 /* TCEditor */,
 				FE1478511AB487BC007C8395 /* TCHomepage */,
 			);
@@ -242,6 +267,7 @@
 				F5E895BD1AB6C41000862723 /* TCUtility.m */,
 				FE03F6071AB9CC8800597FAA /* TCNotification.h */,
 				FE03F6081AB9CCB800597FAA /* TCConstant.h */,
+				FE0387BE1ABEB71E007A3831 /* TCCategory */,
 				FE1E783F1AB54814000157B6 /* TCButtonManager */,
 				FE1E78421AB54814000157B6 /* TCColorManager */,
 				FE78B8321AB569FC0026241E /* TCDatabaseManager */,
@@ -467,7 +493,9 @@
 				FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */,
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,
+				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
+				FE0387C11ABEB73C007A3831 /* UIView+Frame.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,

@@ -16,7 +16,7 @@
     self.backgroundColor = TC_CLEAR_COLOR;
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self awakeFromNib];

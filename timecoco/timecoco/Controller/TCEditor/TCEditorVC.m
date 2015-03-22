@@ -111,7 +111,7 @@
 #pragma mark - UI
 
 - (void)setUpUI {
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10 + self.navigationController.navigationBar.bottom, self.view.width - 20, 0)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10 + self.navigationController.navigationBar.bottom, self.view.width - 20, 100)];
     textView.backgroundColor = TC_WHITE_COLOR;
     textView.textColor = TC_DARK_GRAY_COLOR;
     textView.font = [UIFont systemFontOfSize:16.0f];

@@ -9,8 +9,12 @@
 #import "AppDelegate.h"
 #import "TCDatabaseManager.h"
 #import "TCHomepageVC.h"
+#import "TCMenuVC.h"
+#import "REFrostedViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <REFrostedViewControllerDelegate, UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) REFrostedViewController *frostedViewController;
 
 @end
 
@@ -18,7 +22,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped]];
+
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped]];
+    TCMenuVC *menuController = [[TCMenuVC alloc] initWithStyle:UITableViewStylePlain];
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.liveBlur = YES;
+    frostedViewController.delegate = self;
+    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+    [frostedViewController.view addGestureRecognizer:gesture];
+
+    self.frostedViewController = frostedViewController;
+
+    self.window.rootViewController = frostedViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -43,6 +60,30 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender {
+    [self.frostedViewController panGestureRecognized:sender];
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer {
+//    NSLog(@"didRecongnize");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController willShowMenuViewController:(UIViewController *)menuViewController {
+//    NSLog(@"willShowMenuViewController");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didShowMenuViewController:(UIViewController *)menuViewController {
+//    NSLog(@"didShowMenuViewController");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController {
+//    NSLog(@"willHideMenuViewController");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController {
+//    NSLog(@"didHideMenuViewController");
 }
 
 @end

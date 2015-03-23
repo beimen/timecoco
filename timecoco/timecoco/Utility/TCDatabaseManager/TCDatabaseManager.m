@@ -29,21 +29,15 @@ dispatch_queue_t queue;
 
 + (void)createTable {
     [manager inDatabase:^(FMDatabase *db) {
-        [db open];
-        
         [db executeUpdate:@"CREATE TABLE IF NOT EXISTS timecoco_dairy (pointTime DOUBLE NOT NULL , timeZoneInterval INTEGER NOT NULL , content VARCHAR NOT NULL , type INTEGER NOT NULL DEFAULT 0, primaryId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE)"];
         
         NSLog(@"%@",db.lastErrorMessage);
-        
-        [db close];
     }];
 }
 
 + (NSArray *)storedDairyList {
     __block NSMutableArray *items = [NSMutableArray new];
     [manager inDatabase:^(FMDatabase *db) {
-        [db open];
-        
         FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy order by pointTime asc, type desc"];
         while (set.next) {
             TCDairy *dairy = [TCDairy new];
@@ -55,9 +49,6 @@ dispatch_queue_t queue;
             
             [items addObject:dairy];
         }
-        [set close];
-        
-        [db close];
     }];
     return items;
 }
@@ -65,13 +56,9 @@ dispatch_queue_t queue;
 + (BOOL)addDairy:(TCDairy *)dairy {
     __block BOOL addResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
-        [db open];
-        
         addResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type) values(%f, %ld, %@, %ld)",dairy.pointTime, (long)dairy.timeZoneInterval, dairy.content, (long)dairy.type];
         
         NSLog(@"%i,%@", addResult, db.lastErrorMessage);
-        
-        [db close];
     }];
     return addResult;
 }
@@ -79,13 +66,9 @@ dispatch_queue_t queue;
 + (BOOL)removeDairy:(TCDairy *)dairy {
     __block BOOL removeResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
-        [db open];
-        
         removeResult = [db executeUpdateWithFormat:@"delete from timecoco_dairy where primaryId = %ld", (long)dairy.primaryId];
         
         NSLog(@"%@", db.lastErrorMessage);
-        
-        [db close];
     }];
     return removeResult;
 }

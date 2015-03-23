@@ -10,36 +10,45 @@
 
 @implementation TCTimeManager
 
++ (NSInteger)getIntervalFrom:(TCDairy *)dairy {
+    return dairy.timeZoneInterval + (NSInteger) dairy.pointTime;
+}
+
 + (NSInteger)getSecondValue:(TCDairy *)dairy {
     NSInteger secondValue = 0;
-    secondValue = (dairy.timeZoneInterval + (NSInteger) dairy.pointTime) % T_MINUTE;
+    secondValue = [self getIntervalFrom:dairy] % T_MINUTE;
     return secondValue;
 }
 
 + (NSInteger)getMinuteValue:(TCDairy *)dairy {
     NSInteger minuteValue = 0;
-    minuteValue = ((dairy.timeZoneInterval + (NSInteger) dairy.pointTime) % T_HOUR) / T_MINUTE;
+    minuteValue = ([self getIntervalFrom:dairy] % T_HOUR) / T_MINUTE;
     return minuteValue;
 }
 
 + (NSInteger)getHourValue:(TCDairy *)dairy {
     NSInteger hourValue = 0;
-    hourValue = ((dairy.timeZoneInterval + (NSInteger) dairy.pointTime) % T_DAY) / T_HOUR;
+    hourValue = ([self getIntervalFrom:dairy] % T_DAY) / T_HOUR;
     return hourValue;
 }
 
++ (NSInteger)yearOrderSince1970:(TCDairy *)dairy {
+    NSInteger order = ([self getIntervalFrom:dairy] / T_DAY - 4) / 7;
+    return order;
+}
+
 + (NSInteger)weekOrderSince1970:(TCDairy *)dairy {
-    NSInteger order = ((dairy.timeZoneInterval + (NSInteger) dairy.pointTime) / T_DAY - 4) / 7;
+    NSInteger order = ([self getIntervalFrom:dairy] / T_DAY + 3) / 7;
     return order;
 }
 
 + (BOOL)estimateWeekend:(TCDairy *)dairy {
-    NSInteger order = [self dayOrderInWeek:(dairy.timeZoneInterval + (NSInteger) dairy.pointTime)];
+    NSInteger order = [self dayOrderInWeek:dairy];
     return (order == 5) || (order == 6); //基于1970年1月1日星期四，算出如果余数=5或者=6时，为周六和周天
 }
 
-+ (NSInteger)dayOrderInWeek:(NSInteger)intervalSince1970 {
-    NSInteger order = (intervalSince1970 / T_DAY + 3) % 7;
++ (NSInteger)dayOrderInWeek:(TCDairy *)dairy {
+    NSInteger order = ([self getIntervalFrom:dairy] / T_DAY + 3) % 7;
     return order;
 }
 

@@ -19,7 +19,7 @@
 }
 
 - (CGFloat)y {
-    return CGRectGetMinY(self.frame);;
+    return CGRectGetMinY(self.frame);
 }
 
 - (void)setY:(CGFloat)y {
@@ -58,12 +58,12 @@
     return CGRectGetMaxY(self.frame);
 }
 
-- (void)setSize:(CGSize)size {
-    self.frame = CGRectMake(self.x, self.y, size.width, size.height);
-}
-
 - (CGSize)size {
     return self.frame.size;
+}
+
+- (void)setSize:(CGSize)size {
+    self.frame = CGRectMake(self.x, self.y, size.width, size.height);
 }
 
 - (CGPoint)origin {

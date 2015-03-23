@@ -10,6 +10,8 @@
 
 @interface TCTimeManager : NSObject
 
+//这里的方法都是获取对应时区的时间的
+
 + (NSInteger)getSecondValue:(TCDairy *)dairy;
 
 + (NSInteger)getMinuteValue:(TCDairy *)dairy;
@@ -20,6 +22,6 @@
 
 + (BOOL)estimateWeekend:(TCDairy *)dairy;
 
-+ (NSInteger)dayOrderInWeek:(NSInteger)intervalSince1970;
++ (NSInteger)dayOrderInWeek:(TCDairy *)dairy;
 
 @end

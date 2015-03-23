@@ -11,27 +11,23 @@
 @implementation TCColorManager
 
 + (UIColor *)changeColorForType:(NSUInteger)type {
-    UIColor *color = [UIColor new];
     if (type == 1) {
-        color = TC_GRAY_COLOR;
+        return TC_GRAY_COLOR;
     } else if (type == 2) {
-        color = TC_RED_COLOR;
+        return TC_RED_COLOR;
     } else {
-        color = TC_CLEAR_COLOR;
+        return TC_CLEAR_COLOR;
     }
-    return color;
 }
 
 + (UIColor *)changeTextColorForType:(NSUInteger)type {
-    UIColor *color = [UIColor new];
     if (type == 1) {
-        color = TC_TEXT_COLOR;
+        return TC_TEXT_COLOR;
     } else if (type == 2) {
-        color = TC_RED_COLOR;
+        return TC_RED_COLOR;
     } else {
-        color = TC_CLEAR_COLOR;
+        return TC_CLEAR_COLOR;
     }
-    return color;
 }
 
 @end

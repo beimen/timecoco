@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSArray *dairyList;
 @property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
+@property (nonatomic, assign) NSInteger yearNowValue;
 
 @end
 
@@ -50,7 +51,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
+    
     [self getDairyListData];
     
     if (self.dairyListDateIndex && ![self.dairyListDateIndex isEqualToArray:[self generateDateIndex]]) {
@@ -58,7 +59,8 @@
     }
     self.dairyListDateIndex = [self generateDateIndex];
 
-    [self.tableView reloadData];
+    [self refreshTodayDate];
+    
     if (self.firstAppear && self.dairyList.count) {
         self.firstAppear = NO;
         [self scrollToLastDairy];
@@ -151,6 +153,7 @@
         header.lastDairy = nil;
     }
 
+    header.yearNowValue = self.yearNowValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
 
     return header;
@@ -183,6 +186,14 @@
                                                               inSection:self.dairyListDateIndex.count - 1]
                           atScrollPosition:UITableViewScrollPositionBottom
                                   animated:NO];
+}
+
+- (void)refreshTodayDate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY"];
+    self.yearNowValue = [formatter stringFromDate:[NSDate date]].integerValue;
+    
+    [self.tableView reloadData];
 }
 
 @end

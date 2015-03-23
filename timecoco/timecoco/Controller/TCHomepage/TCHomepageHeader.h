@@ -20,5 +20,6 @@ typedef enum {
 
 @property (nonatomic, weak) TCDairy *dairy;
 @property (nonatomic, weak) TCDairy *lastDairy;
+@property (nonatomic, assign) NSInteger yearNowValue;
 
 @end

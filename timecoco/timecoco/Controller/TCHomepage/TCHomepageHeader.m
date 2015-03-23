@@ -72,7 +72,7 @@
 
 - (UILabel *)timeLabel {
     if (_timeLabel == nil) {
-        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 12, 100, 12)];
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 12, SCREEN_WIDTH - 50, 12)];
         _timeLabel.font = [UIFont boldSystemFontOfSize:12];
 
         [self.contentView addSubview:_timeLabel];
@@ -84,6 +84,9 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dairy.pointTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
+    [formatter setDateFormat:@"YYYY"];
+    BOOL showYear = (self.yearNowValue != [formatter stringFromDate:[NSDate date]].integerValue);
+    
     BOOL showMonth = 0;
     if (self.lastDairy) {
         showMonth = ([TCTimeManager weekOrderSince1970:self.lastDairy] != [TCTimeManager weekOrderSince1970:dairy]);
@@ -92,13 +95,22 @@
     }
     if (showMonth) {
         [formatter setDateFormat:@"MM月dd日"];
+        if (showYear) {
+            [formatter setDateFormat:@"YYYY年MM月dd日"];
+        }
     } else {
         [formatter setDateFormat:@"dd日"];
     }
-
-    NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ]; //其实可以用上边@"dd-c"然后获得对应的序号，然后再组合
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval]];
+    
+    NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];
     NSInteger order = [TCTimeManager dayOrderInWeek:dairy];
     self.timeLabel.text = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
+    
+    BOOL showTimeZone = ([[NSTimeZone localTimeZone] secondsFromGMT] != dairy.timeZoneInterval);
+    if (showTimeZone) {
+        self.timeLabel.text = [self.timeLabel.text stringByAppendingFormat:@"   %@",[NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval].name];
+    }
 }
 
 @end

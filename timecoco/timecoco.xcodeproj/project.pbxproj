@@ -27,6 +27,7 @@
 		FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78441AB54814000157B6 /* TCColorManager.m */; };
 		FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883711AB71B16002C6817 /* TCHomepageHeader.m */; };
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
+		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
@@ -87,6 +88,8 @@
 		FE3883711AB71B16002C6817 /* TCHomepageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageHeader.m; sourceTree = "<group>"; };
 		FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageFooter.h; sourceTree = "<group>"; };
 		FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageFooter.m; sourceTree = "<group>"; };
+		FE4572671AC1B14600CE4C7C /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
+		FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
 		FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatabaseManager.m; sourceTree = "<group>"; };
 		FE78B8391AB577FF0026241E /* TCDairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairy.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 			children = (
 				FE0387BF1ABEB73C007A3831 /* UIView+Frame.h */,
 				FE0387C01ABEB73C007A3831 /* UIView+Frame.m */,
+				FE4572671AC1B14600CE4C7C /* UIImage+Extensions.h */,
+				FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */,
 			);
 			path = TCCategory;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
 				FE0387C11ABEB73C007A3831 /* UIView+Frame.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
+				FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
 				FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */,

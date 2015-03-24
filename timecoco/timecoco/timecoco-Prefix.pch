@@ -13,6 +13,7 @@
 
 #import "UIBarButtonItem+TCButtonManager.h"
 #import "UIView+Frame.h"
+#import "UIImage+Extensions.h"
 
 #import "TCColorManager.h"
 #import "TCDatabaseManager.h"

@@ -95,7 +95,7 @@
     } else if (self.type == TCEditorVCTypeEdit) {
         if (![self isNotEmpty:self.textView.text]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"确定删除记录吗？"
+                                                                message:@"当前没有任何有效内容，是要删除该记录吗？"
                                                                delegate:self
                                                       cancelButtonTitle:@"取消"
                                                       otherButtonTitles:@"确认", nil];

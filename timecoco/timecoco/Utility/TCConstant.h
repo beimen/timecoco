@@ -9,9 +9,11 @@
 #ifndef timecoco_TCConstant_h
 #define timecoco_TCConstant_h
 
-#define T_MINUTE    60
-#define T_HOUR      3600
-#define T_DAY       86400
-#define T_WEEK      604800
+#define T_MINUTE        60
+#define T_HOUR          3600
+#define T_DAY           86400
+#define T_WEEK          604800
+#define DB_FULL_NAME    @"timecoco.db"
+#define DB_VERSION      1
 
 #endif

@@ -8,15 +8,9 @@
 
 #import "FMDatabaseQueue.h"
 
-#define DB_FULL_NAME @"timecoco.db"
-
 @class TCDairy;
 
 @interface TCDatabaseManager : FMDatabaseQueue
-
-+ (NSString *)getDatabasePathWithName:(NSString *)databaseName;
-
-+ (void)createTable;
 
 + (NSArray *)storedDairyList;
 

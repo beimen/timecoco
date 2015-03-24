@@ -8,7 +8,8 @@
 
 #import "TCEditorVC.h"
 
-#define ALERT_TAG_TCEDITOR (12)
+#define ALERT_TAG_TCEDITOR_BACK (12)
+#define ALERT_TAG_TCEDITOR_REMOVE (24)
 
 @interface TCEditorVC () <UITextViewDelegate, UIAlertViewDelegate>
 
@@ -35,6 +36,10 @@
     [self setUpUI];
     self.textView.delegate = self;
     self.dairyType = TCDairyTypeNormal;
+    if (self.type == TCEditorVCTypeEdit) {
+        self.textView.text = self.editDairy.content;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
     [self.textView becomeFirstResponder];
 }
 
@@ -71,13 +76,13 @@
 #pragma mark - Navigation action
 
 - (void)backAction:(UIBarButtonItem *)sender {
-    if ([self isNotEmpty:self.textView.text]) {
+    if ([self isNotEmpty:self.textView.text] && self.type == TCEditorVCTypeAdd) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"当前有内容，是否确定退出。"
+                                                            message:@"当前有内容，是否确定退出？"
                                                            delegate:self
                                                   cancelButtonTitle:@"取消"
                                                   otherButtonTitles:@"确认", nil];
-        alertView.tag = ALERT_TAG_TCEDITOR;
+        alertView.tag = ALERT_TAG_TCEDITOR_BACK;
         [alertView show];
         return;
     }
@@ -85,6 +90,26 @@
 }
 
 - (void)confirmAction:(UIBarButtonItem *)sender {
+    if (self.type == TCEditorVCTypeAdd) {
+        [self addDairy];
+    } else if (self.type == TCEditorVCTypeEdit) {
+        if (![self isNotEmpty:self.textView.text]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"确定删除记录吗？"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"确认", nil];
+            alertView.tag = ALERT_TAG_TCEDITOR_REMOVE;
+            [alertView show];
+        } else {
+            [self replaceDairy];
+        }
+    }
+}
+
+#pragma mark - Dairy Actions
+
+- (void)addDairy {
     TCDairy *dairy = [TCDairy new];
     dairy.timeZoneInterval = [[NSTimeZone localTimeZone] secondsFromGMT];
     dairy.type = self.dairyType;
@@ -109,6 +134,30 @@
     }
 }
 
+- (void)removeDairy {
+    [TCDatabaseManager removeDairy:self.editDairy];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REMOVE_DAIRY_SUCCESS object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)replaceDairy {
+    TCDairy *dairy = self.editDairy;
+    dairy.content = [self stringDeleteSideWhite:self.textView.text];
+
+    if (dairy.content.length > 1000) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"字数不能超过1000个字。"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确认"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        [TCDatabaseManager replaceDairy:dairy];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark - UI
 
 - (void)setUpUI {
@@ -125,7 +174,11 @@
 #pragma mark - UITextView Delegate
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.navigationItem.rightBarButtonItem.enabled = [self isNotEmpty:textView.text];
+    if (self.type == TCEditorVCTypeAdd) {
+        self.navigationItem.rightBarButtonItem.enabled = [self isNotEmpty:textView.text];
+    } else if (self.type == TCEditorVCTypeEdit) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
 }
 
 #pragma mark - NSString method
@@ -147,9 +200,15 @@
 #pragma mark - UIAlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == ALERT_TAG_TCEDITOR) {
+    if (alertView.tag == ALERT_TAG_TCEDITOR_BACK) {
         if (buttonIndex == 1) {
             [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            return;
+        }
+    } else if (alertView.tag == ALERT_TAG_TCEDITOR_REMOVE) {
+        if (buttonIndex == 1) {
+            [self removeDairy];
         } else {
             return;
         }

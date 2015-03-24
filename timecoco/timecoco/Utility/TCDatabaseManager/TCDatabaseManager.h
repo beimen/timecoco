@@ -16,6 +16,8 @@
 
 + (BOOL)addDairy:(TCDairy *)dairy;
 
++ (BOOL)replaceDairy:(TCDairy *)dairy;
+
 + (BOOL)removeDairy:(TCDairy *)dairy;
 
 @end

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) UILabel *hourLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UIButton *contentButton;
 
 @end
 
@@ -48,13 +49,18 @@
     self.frameBorder.lineColor = _dashLine.lineColor;
 
     self.contentLabel.height = self.contentView.height - 10;
-    
+    self.contentButton.height = self.contentLabel.height - 2;
+
     self.hourLabel.y = self.contentView.height / 2 - 10;
     self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
 }
 
 //- (void)setCellType:(TCHomepageCellType)cellType {
@@ -114,6 +120,23 @@
     return _hourLabel;
 }
 
+- (UIButton *)contentButton {
+    if (_contentButton == nil) {
+        self.contentButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 54, self.contentView.height - 12)];
+
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
+        longPress.cancelsTouchesInView = NO;
+        longPress.minimumPressDuration = 2.0f;
+        [_contentButton addGestureRecognizer:longPress];
+
+        _contentButton.alpha = 0.15f;
+        [_contentButton setBackgroundImage:[UIImage imageFromColor:TC_GRAY_COLOR] forState:UIControlStateHighlighted];
+
+        [self.frameBorder addSubview:_contentButton];
+    }
+    return _contentButton;
+}
+
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
 
@@ -125,6 +148,12 @@
     }
 
     self.cellType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
+}
+
+- (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.longPressBlock(self.dairy);
+    }
 }
 
 @end

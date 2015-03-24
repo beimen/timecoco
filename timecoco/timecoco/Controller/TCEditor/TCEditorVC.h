@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    TCEditorVCAdd = 0,
+    TCEditorVCEdit
+    
+} TCEditorVCType;
+
 @interface TCEditorVC : UIViewController
+
+@property (nonatomic, copy) TCDairy *editDairy;
 
 @end

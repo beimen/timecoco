@@ -13,12 +13,15 @@ typedef enum {
     TCHomepageCellTypeWorkday = 1,
     TCHomepageCellTypeWeekend,
     TCHomepageCellTypeHoliday,
-    
+
     TCHomepageCellTypeDefault = TCHomepageCellTypeWorkday
 } TCHomepageCellType;
 
+typedef void (^LongPressDairyBlock)(TCDairy *dairy);
+
 @interface TCHomepageCell : UITableViewCell
 
-@property (nonatomic, weak) TCDairy *dairy;
+@property (nonatomic, copy) TCDairy *dairy;
+@property (nonatomic, copy) LongPressDairyBlock longPressBlock;
 
 @end

@@ -38,11 +38,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = TC_RED_COLOR;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"] Target:self Selector:@selector(addAction:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
+                                                                                    Target:self
+                                                                                  Selector:@selector(addAction:)];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollsToTop = NO;
+    //    self.tableView.delaysContentTouches = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView registerClass:[TCHomepageHeader class] forHeaderFooterViewReuseIdentifier:CellHeaderIdentifier];
@@ -51,16 +54,16 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     [self getDairyListData];
-    
+
     if (self.dairyListDateIndex && ![self.dairyListDateIndex isEqualToArray:[self generateDateIndex]]) {
         self.firstAppear = YES;
     }
     self.dairyListDateIndex = [self generateDateIndex];
 
     [self refreshTodayDate];
-    
+
     if (self.firstAppear && self.dairyList.count) {
         self.firstAppear = NO;
         [self scrollToLastDairy];
@@ -75,6 +78,7 @@
 
 - (void)addAction:(UIBarButtonItem *)sender {
     TCEditorVC *vc = [[TCEditorVC alloc] init];
+    vc.type = TCEditorVCTypeAdd;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -141,6 +145,14 @@
 
     cell.dairy = [self.dairyList objectAtIndex:([self getDairyCountBeforeSection:indexPath.section] + indexPath.row)];
 
+    __weak TCHomepageVC *weakSelf = self;
+    [cell setLongPressBlock:^(TCDairy *dairy) {
+        TCEditorVC *vc = [[TCEditorVC alloc] init];
+        vc.type = TCEditorVCTypeEdit;
+        vc.editDairy = dairy;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+
     return cell;
 }
 
@@ -165,6 +177,10 @@
     footer.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
 
     return footer;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)cellHeightWithContent:(NSString *)string {
@@ -192,7 +208,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY"];
     self.yearNowValue = [formatter stringFromDate:[NSDate date]].integerValue;
-    
+
     [self.tableView reloadData];
 }
 

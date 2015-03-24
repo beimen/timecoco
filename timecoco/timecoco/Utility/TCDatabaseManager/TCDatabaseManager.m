@@ -73,4 +73,14 @@ dispatch_queue_t queue;
     return removeResult;
 }
 
++ (BOOL)replaceDairy:(TCDairy *)dairy {
+    __block BOOL replaceResult = NO;
+    [manager inDatabase:^(FMDatabase *db) {
+        replaceResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type,primaryId) values(%f, %ld, %@, %ld, %ld)",dairy.pointTime, (long)dairy.timeZoneInterval, dairy.content, (long)dairy.type, (long)dairy.primaryId];
+        
+        NSLog(@"%i,%@", replaceResult, db.lastErrorMessage);
+    }];
+    return replaceResult;
+}
+
 @end

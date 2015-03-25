@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = TC_BACK_COLOR;
+    self.tableView.backgroundColor = TC_CLEAR_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 

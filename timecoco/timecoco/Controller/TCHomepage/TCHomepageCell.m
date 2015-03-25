@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UILabel *hourLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIButton *contentButton;
+@property (nonatomic, strong) UILabel *minuteLabel;
 
 @end
 
@@ -51,7 +52,7 @@
     self.contentLabel.height = self.contentView.height - 10;
     self.contentButton.height = self.contentLabel.height - 2;
 
-    self.hourLabel.y = self.contentView.height / 2 - 10;
+    self.hourLabel.height = self.contentView.height;
     self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
 }
 
@@ -110,14 +111,30 @@
 
 - (UILabel *)hourLabel {
     if (_hourLabel == nil) {
-        self.hourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.height / 2 - 10, 20, 20)];
+        self.hourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, self.contentView.height)];
         _hourLabel.textColor = TC_TEXT_COLOR;
         _hourLabel.textAlignment = NSTextAlignmentRight;
         _hourLabel.font = [UIFont systemFontOfSize:10];
+        _hourLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMinuteLabel)];
+        [_hourLabel addGestureRecognizer:singleTap];
 
         [self.contentView addSubview:_hourLabel];
     }
     return _hourLabel;
+}
+
+- (UILabel *)minuteLabel {
+    if (_minuteLabel == nil) {
+        self.minuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 20, self.contentView.height)];
+        _minuteLabel.textColor = TC_TEXT_COLOR;
+        _minuteLabel.textAlignment = NSTextAlignmentLeft;
+        _minuteLabel.font = [UIFont systemFontOfSize:7];
+        _minuteLabel.alpha = 0.0f;
+
+        [self.contentView addSubview:_minuteLabel];
+    }
+    return _minuteLabel;
 }
 
 - (UIButton *)contentButton {
@@ -126,7 +143,7 @@
 
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
         longPress.cancelsTouchesInView = NO;
-        longPress.minimumPressDuration = 2.0f;
+        longPress.minimumPressDuration = 0.7f;
         [_contentButton addGestureRecognizer:longPress];
 
         _contentButton.alpha = 0.15f;
@@ -142,7 +159,7 @@
 
     self.contentLabel.text = dairy.content;
     if (dairy.type == TCDairyTypeNormal) {
-        self.hourLabel.text = [NSString stringWithFormat:@"%li", (long) [TCTimeManager getHourValue:dairy]];
+        self.hourLabel.text = [NSString stringWithFormat:@"%ld", (long) [TCTimeManager getHourValue:dairy]];
     } else {
         self.hourLabel.text = @"";
     }
@@ -153,6 +170,22 @@
 - (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.longPressBlock(self.dairy);
+    }
+}
+
+- (void)showMinuteLabel {
+    if (self.dairy.type == TCDairyTypeNormal) {
+        NSString *minuteLabelText = [NSString stringWithFormat:@"%ld", [TCTimeManager getMinuteValue:self.dairy]];
+        self.minuteLabel.text = (minuteLabelText.length == 1) ? [NSString stringWithFormat:@"0%@", minuteLabelText] : minuteLabelText;
+        self.minuteLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
+        [UIView animateWithDuration:1.0f animations:^{
+            self.minuteLabel.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+                self.minuteLabel.alpha = 0.0f;
+            } completion:^(BOOL finished) {
+            }];
+        }];
     }
 }
 

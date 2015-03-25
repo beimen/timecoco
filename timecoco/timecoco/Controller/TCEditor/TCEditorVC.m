@@ -10,6 +10,7 @@
 
 #define ALERT_TAG_TCEDITOR_BACK (12)
 #define ALERT_TAG_TCEDITOR_REMOVE (24)
+#define ALERT_TAG_TCEDITOR_REPLACE (36)
 
 @interface TCEditorVC () <UITextViewDelegate, UIAlertViewDelegate>
 
@@ -102,7 +103,13 @@
             alertView.tag = ALERT_TAG_TCEDITOR_REMOVE;
             [alertView show];
         } else {
-            [self replaceDairy];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"确定要这么编辑吗？"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"确认", nil];
+            alertView.tag = ALERT_TAG_TCEDITOR_REPLACE;
+            [alertView show];
         }
     }
 }
@@ -209,6 +216,12 @@
     } else if (alertView.tag == ALERT_TAG_TCEDITOR_REMOVE) {
         if (buttonIndex == 1) {
             [self removeDairy];
+        } else {
+            return;
+        }
+    } else if (alertView.tag == ALERT_TAG_TCEDITOR_REPLACE) {
+        if (buttonIndex == 1) {
+            [self replaceDairy];
         } else {
             return;
         }

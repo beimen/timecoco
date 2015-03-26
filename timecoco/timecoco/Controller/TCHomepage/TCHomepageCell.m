@@ -175,7 +175,7 @@
 
 - (void)showMinuteLabel {
     if (self.dairy.type == TCDairyTypeNormal) {
-        NSString *minuteLabelText = [NSString stringWithFormat:@"%ld", [TCTimeManager getMinuteValue:self.dairy]];
+        NSString *minuteLabelText = [NSString stringWithFormat:@"%ld", (long) [TCTimeManager getMinuteValue:self.dairy]];
         self.minuteLabel.text = (minuteLabelText.length == 1) ? [NSString stringWithFormat:@"0%@", minuteLabelText] : minuteLabelText;
         self.minuteLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
         [UIView animateWithDuration:1.0f animations:^{

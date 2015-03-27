@@ -28,6 +28,7 @@
 		FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883711AB71B16002C6817 /* TCHomepageHeader.m */; };
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
+		FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE4DB3331AC456FE0098156E /* InfoPlist.strings */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
@@ -90,6 +91,10 @@
 		FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageFooter.m; sourceTree = "<group>"; };
 		FE4572671AC1B14600CE4C7C /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
+		FE4DB3321AC456FE0098156E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FE4DB3341AC457210098156E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FE4DB3351AC4572D0098156E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FE4DB3361AC457370098156E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
 		FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatabaseManager.m; sourceTree = "<group>"; };
 		FE78B8391AB577FF0026241E /* TCDairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairy.h; sourceTree = "<group>"; };
@@ -178,6 +183,7 @@
 				F58219301AAD48A800357355 /* Info.plist */,
 				F58219311AAD48A800357355 /* main.m */,
 				FE1E78351AB538D1000157B6 /* timecoco-Prefix.pch */,
+				FE4DB3331AC456FE0098156E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -403,6 +409,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
 			);
 			mainGroup = F58219231AAD48A800357355;
 			productRefGroup = F582192D1AAD48A800357355 /* Products */;
@@ -421,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */,
+				FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */,
 				F582193D1AAD48A800357355 /* Images.xcassets in Resources */,
 				FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */,
 			);
@@ -535,6 +545,17 @@
 				F582193F1AAD48A800357355 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		FE4DB3331AC456FE0098156E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE4DB3321AC456FE0098156E /* Base */,
+				FE4DB3341AC457210098156E /* zh-Hans */,
+				FE4DB3351AC4572D0098156E /* zh-Hant */,
+				FE4DB3361AC457370098156E /* ja */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -18,10 +18,11 @@
 
 @interface TCHomepageVC ()
 
-@property (nonatomic, copy) NSArray *dairyList;
+@property (nonatomic, strong) NSArray *dairyList;
 @property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
 @property (nonatomic, assign) NSInteger yearNowValue;
+@property (nonatomic, assign) NSUInteger firstDiffIndex;
 
 @end
 
@@ -111,6 +112,8 @@
     [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
         if (idx < section) {
             count += [num integerValue];
+        } else {
+            *stop = YES;
         }
     }];
     return count;

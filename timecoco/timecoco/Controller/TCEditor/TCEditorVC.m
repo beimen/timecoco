@@ -87,7 +87,7 @@
         [alertView show];
         return;
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)confirmAction:(UIBarButtonItem *)sender {
@@ -137,14 +137,14 @@
     } else {
         [TCDatabaseManager addDairy:dairy];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
 - (void)removeDairy {
     [TCDatabaseManager removeDairy:self.editDairy];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REMOVE_DAIRY_SUCCESS object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)replaceDairy {
@@ -161,7 +161,7 @@
     } else {
         [TCDatabaseManager replaceDairy:dairy];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
@@ -209,7 +209,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == ALERT_TAG_TCEDITOR_BACK) {
         if (buttonIndex == 1) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         } else {
             return;
         }

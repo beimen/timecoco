@@ -14,6 +14,8 @@
 
 + (NSArray *)storedDairyList;
 
++ (NSArray *)storedDairyListFromTime:(NSTimeInterval)startTime toTime:(NSTimeInterval)endTime;
+
 + (BOOL)addDairy:(TCDairy *)dairy;
 
 + (BOOL)replaceDairy:(TCDairy *)dairy;

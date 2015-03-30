@@ -53,6 +53,24 @@ dispatch_queue_t queue;
     return items;
 }
 
++ (NSArray *)storedDairyListFromTime:(NSTimeInterval)startTime toTime:(NSTimeInterval)endTime {
+    __block NSMutableArray *items = [NSMutableArray new];
+    [manager inDatabase:^(FMDatabase *db) {
+        FMResultSet *set = [db executeQueryWithFormat:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy where pointTime > %f order by pointTime asc, type desc",startTime];
+        while (set.next) {
+            TCDairy *dairy = [TCDairy new];
+            dairy.pointTime = [set doubleForColumnIndex:0];
+            dairy.timeZoneInterval = [set intForColumnIndex:1];
+            dairy.content = [set stringForColumnIndex:2];
+            dairy.type = [set intForColumnIndex:3];
+            dairy.primaryId = [set intForColumnIndex:4];
+            
+            [items addObject:dairy];
+        }
+    }];
+    return items;
+}
+
 + (BOOL)addDairy:(TCDairy *)dairy {
     __block BOOL addResult = NO;
     [manager inDatabase:^(FMDatabase *db) {

@@ -18,10 +18,11 @@
 
 @interface TCHomepageVC ()
 
-@property (nonatomic, copy) NSArray *dairyList;
+@property (nonatomic, strong) NSArray *dairyList;
 @property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
 @property (nonatomic, assign) NSInteger yearNowValue;
+@property (nonatomic, assign) NSUInteger firstDiffIndex;
 
 @end
 
@@ -84,8 +85,9 @@
 
 #pragma mark - DairyList and DateIndex
 
-- (void)getDairyListData {
-    self.dairyList = [TCDatabaseManager storedDairyList];
+- (NSMutableArray *)getDairyListData {
+//    return [TCDatabaseManager storedDairyListFromTime:[[NSDate date] timeIntervalSince1970]-T_WEEK toTime:[[NSDate date] timeIntervalSince1970]];
+    return [NSMutableArray arrayWithArray:[TCDatabaseManager storedDairyList]];
 }
 
 - (NSMutableArray *)generateDateIndex {
@@ -111,6 +113,8 @@
     [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
         if (idx < section) {
             count += [num integerValue];
+        } else {
+            *stop = YES;
         }
     }];
     return count;
@@ -150,7 +154,9 @@
         TCEditorVC *vc = [[TCEditorVC alloc] init];
         vc.type = TCEditorVCTypeEdit;
         vc.editDairy = dairy;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        if ([weakSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
     }];
 
     return cell;

@@ -10,6 +10,6 @@
 
 @interface UIImage (Extensions)
 
-+(UIImage *)imageFromColor:(UIColor *)color;
++ (UIImage *)imageFromColor:(UIColor *)color;
 
 @end

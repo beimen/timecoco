@@ -14,6 +14,7 @@
 #import "UIBarButtonItem+TCButtonManager.h"
 #import "UIView+Frame.h"
 #import "UIImage+Extensions.h"
+#import "NSArray+DairyIndex.h"
 
 #import "TCColorManager.h"
 #import "TCDatabaseManager.h"

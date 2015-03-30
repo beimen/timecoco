@@ -32,6 +32,7 @@
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
+		FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,8 @@
 		FE78B83A1AB577FF0026241E /* TCDairy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDairy.m; sourceTree = "<group>"; };
 		FE78B83D1AB57C750026241E /* TCDashLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDashLineView.h; sourceTree = "<group>"; };
 		FE78B83E1AB57C750026241E /* TCDashLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDashLineView.m; sourceTree = "<group>"; };
+		FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DairyIndex.h"; sourceTree = "<group>"; };
+		FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DairyIndex.m"; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -230,6 +233,8 @@
 				FE0387C01ABEB73C007A3831 /* UIView+Frame.m */,
 				FE4572671AC1B14600CE4C7C /* UIImage+Extensions.h */,
 				FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */,
+				FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */,
+				FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */,
 			);
 			path = TCCategory;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 			files = (
 				FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */,
 				F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */,
+				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
 				F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */,
 				FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */,
 				FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */,

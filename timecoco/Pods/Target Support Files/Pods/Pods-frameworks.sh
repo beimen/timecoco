@@ -49,11 +49,9 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'CHCSVParser.framework'
-  install_framework 'FMDB.framework'
   install_framework 'REFrostedViewController.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'CHCSVParser.framework'
-  install_framework 'FMDB.framework'
   install_framework 'REFrostedViewController.framework'
 fi

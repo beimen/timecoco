@@ -1,4 +1,5 @@
 PODS:
+  - CHCSVParser (2.1.0)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -7,11 +8,13 @@ PODS:
   - REFrostedViewController (2.4.7)
 
 DEPENDENCIES:
+  - CHCSVParser
   - FMDB
   - REFrostedViewController (~> 2.4.7)
 
 SPEC CHECKSUMS:
-  FMDB: 0efa188cf0dd1ce82c27a478cd5f5fa245308677
-  REFrostedViewController: 08870a24788191339608b80b2bd4fce549858f0d
+  CHCSVParser: 3bcc7bdb72111a31222e95d57eacceefe4e537e8
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  REFrostedViewController: 0adda479a71c0e603faa801282994bee23362504
 
 COCOAPODS: 0.36.0

@@ -14,3 +14,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+
+#timecoco
+timecoco/Pods/Headers/

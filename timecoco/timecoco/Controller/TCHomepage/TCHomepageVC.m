@@ -18,7 +18,7 @@
 
 @interface TCHomepageVC ()
 
-@property (nonatomic, strong) NSArray *dairyList;
+@property (nonatomic, strong) NSMutableArray *dairyList;
 @property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
 @property (nonatomic, assign) NSInteger yearNowValue;
@@ -56,19 +56,50 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self getDairyListData];
+    [self refreshYearNowValue];
 
-    if (self.dairyListDateIndex && ![self.dairyListDateIndex isEqualToArray:[self generateDateIndex]]) {
-        self.firstAppear = YES;
-    }
+    NSArray *lastDairyList = [NSArray arrayWithArray:self.dairyList];
+
+    NSUInteger diffListIndex = [[self getDairyListData] findFirstDiffDairyIndex:lastDairyList];
+
+    self.dairyList = [self getDairyListData];
     self.dairyListDateIndex = [self generateDateIndex];
+    NSIndexPath *diffDairyIndexPath = [self getDiffDairyIndexPathWithListIndex:diffListIndex];
 
-    [self refreshTodayDate];
+    NSLog(@"action section is %ld, row is %ld", (long)diffDairyIndexPath.section, (long)diffDairyIndexPath.row);
+    if ([self.dairyList count] == [lastDairyList count]) {
+        //编辑
+        [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [self.tableView reloadData];
+    } else if ([self.dairyList count] > [lastDairyList count]) {
+        //添加
+        [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    } else if ([self.dairyList count] < [lastDairyList count]) {
+        //删除
+        [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [self.tableView reloadData];
+    }
 
     if (self.firstAppear && self.dairyList.count) {
         self.firstAppear = NO;
         [self scrollToLastDairy];
     }
+}
+
+- (NSIndexPath *)getDiffDairyIndexPathWithListIndex:(NSUInteger)listIndex {
+    __block NSIndexPath *indexPath;
+    __block NSUInteger sum = 0;
+    __block NSUInteger lastRowCount = 0;
+    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *rowCount, NSUInteger section, BOOL *stop) {
+        sum += rowCount.integerValue;
+        lastRowCount = rowCount.unsignedIntegerValue;
+        if ((listIndex + 1) <= sum) {
+            indexPath = [NSIndexPath indexPathForRow:(listIndex + lastRowCount - sum) inSection:section];
+            *stop = YES;
+        }
+    }];
+    return indexPath;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,7 +117,7 @@
 #pragma mark - DairyList and DateIndex
 
 - (NSMutableArray *)getDairyListData {
-//    return [TCDatabaseManager storedDairyListFromTime:[[NSDate date] timeIntervalSince1970]-T_WEEK toTime:[[NSDate date] timeIntervalSince1970]];
+    //    return [TCDatabaseManager storedDairyListFromTime:[[NSDate date] timeIntervalSince1970]-T_WEEK toTime:[[NSDate date] timeIntervalSince1970]];
     return [NSMutableArray arrayWithArray:[TCDatabaseManager storedDairyList]];
 }
 
@@ -210,12 +241,17 @@
                                   animated:NO];
 }
 
-- (void)refreshTodayDate {
+- (void)scrollToDairy:(NSUInteger)sectionIndex {
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.dairyListDateIndex objectAtIndex:sectionIndex] integerValue] - 1
+                                                              inSection:sectionIndex]
+                          atScrollPosition:UITableViewScrollPositionBottom
+                                  animated:NO];
+}
+
+- (void)refreshYearNowValue {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY"];
     self.yearNowValue = [formatter stringFromDate:[NSDate date]].integerValue;
-
-    [self.tableView reloadData];
 }
 
 @end

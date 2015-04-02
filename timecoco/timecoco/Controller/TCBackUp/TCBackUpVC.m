@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = TC_BACK_COLOR;
     // Do any additional setup after loading the view.
 }
 

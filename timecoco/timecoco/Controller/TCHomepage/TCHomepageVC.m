@@ -66,7 +66,7 @@
     self.dairyListDateIndex = [self generateDateIndex];
     NSIndexPath *diffDairyIndexPath = [self getDiffDairyIndexPathWithListIndex:diffListIndex];
 
-    NSLog(@"action section is %ld, row is %ld", (long)diffDairyIndexPath.section, (long)diffDairyIndexPath.row);
+    NSLog(@"action section is %ld, row is %ld", (long) diffDairyIndexPath.section, (long) diffDairyIndexPath.row);
     if ([self.dairyList count] == [lastDairyList count]) {
         //编辑
         [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
@@ -104,6 +104,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc {
+    NSLog(@"TCHomepageVC is deallocated");
 }
 
 #pragma mark - Navigationbar action

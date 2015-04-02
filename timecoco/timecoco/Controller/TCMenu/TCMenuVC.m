@@ -7,18 +7,26 @@
 //
 
 #import "TCMenuVC.h"
+#import "TCBackUpVC.h"
+#import "TCHomepageVC.h"
+#import "REFrostedViewController.h"
+#import "UIViewController+REFrostedViewController.h"
 
 @interface TCMenuVC ()
 
 @end
 
+#define CellIdentifier (@"reuseIdentifier")
+
 @implementation TCMenuVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.tableView.backgroundColor = TC_CLEAR_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 110, 0, 0, 0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,65 +37,52 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return 2;
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 45.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"主页";
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"备份数据";
+        }
+        cell.textLabel.textColor = TC_RED_COLOR;
+    }
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            TCHomepageVC *vc = [[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.frostedViewController.contentViewController = navigationController;
+        } else if (indexPath.row == 1) {
+            TCBackUpVC *vc = [[TCBackUpVC alloc] init];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.frostedViewController.contentViewController = navigationController;
+        }
+    }
+    [self.frostedViewController hideMenuViewController];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

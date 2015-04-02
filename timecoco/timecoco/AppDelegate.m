@@ -24,7 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped]];
-    TCMenuVC *menuController = [[TCMenuVC alloc] initWithStyle:UITableViewStylePlain];
+    TCMenuVC *menuController = [[TCMenuVC alloc] initWithStyle:UITableViewStyleGrouped];
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
     frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;

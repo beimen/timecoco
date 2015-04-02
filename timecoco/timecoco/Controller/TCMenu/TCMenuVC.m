@@ -12,7 +12,7 @@
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 
-@interface TCMenuVC () <UIGestureRecognizerDelegate>
+@interface TCMenuVC ()
 
 @end
 

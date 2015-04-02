@@ -12,7 +12,7 @@
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 
-@interface TCMenuVC ()
+@interface TCMenuVC () <UIGestureRecognizerDelegate>
 
 @end
 
@@ -26,7 +26,12 @@
     self.tableView.backgroundColor = TC_CLEAR_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 110, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 130, 0, 0, 0);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,14 +39,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    NSLog(@"TCMenuVC is dealocated");
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,12 +70,25 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"主页";
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"备份数据";
         }
-        cell.textLabel.textColor = TC_RED_COLOR;
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"备份";
+        }
     }
+    cell.textLabel.textColor = [self cellTextColorWithSection:indexPath.section];
     return cell;
+}
+
+- (UIColor *)cellTextColorWithSection:(NSInteger)index {
+    NSArray *array = @[ @"TCHomepageVC", @"TCBackUpVC" ];
+    UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
+    NSString *classString = [array objectAtIndex:index];
+    if ([topVC isKindOfClass:NSClassFromString(classString)]) {
+        return TC_RED_COLOR;
+    } else {
+        return TC_GRAY_COLOR;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,7 +98,9 @@
             TCHomepageVC *vc = [[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
-        } else if (indexPath.row == 1) {
+        }
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
             TCBackUpVC *vc = [[TCBackUpVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;

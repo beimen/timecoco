@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TCDatabaseManager.h"
 #import "TCHomepageVC.h"
+#import "TCBackUpVC.h"
 #import "TCMenuVC.h"
 #import "REFrostedViewController.h"
 
@@ -64,7 +65,8 @@
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
-    if ([[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCHomepageVC class]]) {
+    if ([[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCHomepageVC class]] ||
+        [[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCBackUpVC class]]) {
         [self.frostedViewController panGestureRecognized:recognizer];
     }
 }

@@ -88,7 +88,7 @@
         self.firstAppear = NO;
         [self scrollToLastDairy];
     }
-    
+
     self.didAppear = YES;
 }
 

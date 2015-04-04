@@ -23,6 +23,8 @@
 @property (nonatomic, assign) BOOL firstAppear;
 @property (nonatomic, assign) NSInteger yearNowValue;
 @property (nonatomic, assign) NSUInteger firstDiffIndex;
+@property (nonatomic, strong) UILabel *introLabel;
+@property (nonatomic, assign) BOOL didAppear;
 
 @end
 
@@ -32,6 +34,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.firstAppear = YES;
+        self.didAppear = NO;
     }
     return self;
 }
@@ -84,6 +87,19 @@
     if (self.firstAppear && self.dairyList.count) {
         self.firstAppear = NO;
         [self scrollToLastDairy];
+    }
+    
+    self.didAppear = YES;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (self.didAppear) {
+        if ([self.dairyList count] == 0) {
+            self.introLabel.hidden = NO;
+        } else {
+            self.introLabel.hidden = YES;
+        }
     }
 }
 
@@ -153,6 +169,21 @@
         }
     }];
     return count;
+}
+
+#pragma mark - Lazy Loading
+
+- (UILabel *)introLabel {
+    if (_introLabel == nil && ![self.dairyList count]) {
+        self.introLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+        _introLabel.textColor = TC_RED_COLOR;
+        _introLabel.font = [UIFont systemFontOfSize:15];
+        _introLabel.text = @"还没有内容哦，\n请点击右上角添加记录。";
+        _introLabel.textAlignment = NSTextAlignmentCenter;
+        _introLabel.numberOfLines = 0;
+        [self.tableView addSubview:_introLabel];
+    }
+    return _introLabel;
 }
 
 #pragma mark - Table view data source

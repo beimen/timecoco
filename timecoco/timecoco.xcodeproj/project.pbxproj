@@ -29,6 +29,7 @@
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
 		FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE4DB3331AC456FE0098156E /* InfoPlist.strings */; };
+		FE65184E1ACD936600CBB6C9 /* TCBackUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65184D1ACD936600CBB6C9 /* TCBackUpVC.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
@@ -96,6 +97,8 @@
 		FE4DB3341AC457210098156E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE4DB3351AC4572D0098156E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE4DB3361AC457370098156E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FE65184C1ACD936600CBB6C9 /* TCBackUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackUpVC.h; sourceTree = "<group>"; };
+		FE65184D1ACD936600CBB6C9 /* TCBackUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackUpVC.m; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
 		FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatabaseManager.m; sourceTree = "<group>"; };
 		FE78B8391AB577FF0026241E /* TCDairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairy.h; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 		FE1478491AB486A5007C8395 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FE65184B1ACD931100CBB6C9 /* TCBackUp */,
 				FE0387BA1ABE658A007A3831 /* TCMenu */,
 				FE1E783A1AB53FA5000157B6 /* TCEditor */,
 				FE1478511AB487BC007C8395 /* TCHomepage */,
@@ -309,6 +313,15 @@
 				FE1E78441AB54814000157B6 /* TCColorManager.m */,
 			);
 			path = TCColorManager;
+			sourceTree = "<group>";
+		};
+		FE65184B1ACD931100CBB6C9 /* TCBackUp */ = {
+			isa = PBXGroup;
+			children = (
+				FE65184C1ACD936600CBB6C9 /* TCBackUpVC.h */,
+				FE65184D1ACD936600CBB6C9 /* TCBackUpVC.m */,
+			);
+			path = TCBackUp;
 			sourceTree = "<group>";
 		};
 		FE78B8321AB569FC0026241E /* TCDatabaseManager */ = {
@@ -515,6 +528,7 @@
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
+				FE65184E1ACD936600CBB6C9 /* TCBackUpVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
 				FE0387C11ABEB73C007A3831 /* UIView+Frame.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,

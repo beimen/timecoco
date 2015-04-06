@@ -19,4 +19,21 @@ CGSize getScreenSize() {
     return screenSize;
 }
 
+UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fontSize) {
+    UIView *titleView = [[UIView alloc] init];
+
+    UILabel *titleText = [[UILabel alloc] init];
+    titleText.backgroundColor = [UIColor clearColor];
+    [titleText setText:title];
+    titleText.textAlignment = NSTextAlignmentCenter;
+    [titleText setTextColor:titleColor];
+    [titleText setFont:[UIFont systemFontOfSize:fontSize]];
+    [titleText sizeToFit];
+    [titleView addSubview:titleText];
+
+    titleView.size = titleText.size;
+
+    return titleView;
+}
+
 @end

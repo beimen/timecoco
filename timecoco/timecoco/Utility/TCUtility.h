@@ -15,4 +15,6 @@
 
 CGSize getScreenSize();
 
+UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fontSize);
+
 @end

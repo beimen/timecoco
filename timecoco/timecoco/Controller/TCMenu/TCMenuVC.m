@@ -73,7 +73,7 @@
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"备份";
+            cell.textLabel.text = @"设置";
         }
     }
     cell.textLabel.textColor = [self cellTextColorWithSection:indexPath.section];

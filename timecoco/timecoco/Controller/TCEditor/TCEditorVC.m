@@ -8,11 +8,7 @@
 
 #import "TCEditorVC.h"
 
-#define ALERT_TAG_TCEDITOR_BACK (12)
-#define ALERT_TAG_TCEDITOR_REMOVE (24)
-#define ALERT_TAG_TCEDITOR_REPLACE (36)
-
-@interface TCEditorVC () <UITextViewDelegate, UIAlertViewDelegate>
+@interface TCEditorVC () <UITextViewDelegate>
 
 @property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UITextView *textView;
@@ -78,38 +74,60 @@
 
 - (void)backAction:(UIBarButtonItem *)sender {
     if ([self isNotEmpty:self.textView.text] && self.type == TCEditorVCTypeAdd) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"当前有内容，是否确定退出？"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"取消"
-                                                  otherButtonTitles:@"确认", nil];
-        alertView.tag = ALERT_TAG_TCEDITOR_BACK;
-        [alertView show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                       message:@"当前有内容，是否确定退出？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) {}];
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [self.navigationController popToRootViewControllerAnimated:YES];
+                                                              }];
+
+        [alert addAction:cancelAction];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)confirmAction:(UIBarButtonItem *)sender {
+    [self.view endEditing:YES];
     if (self.type == TCEditorVCTypeAdd) {
         [self addDairy];
     } else if (self.type == TCEditorVCTypeEdit) {
         if (![self isNotEmpty:self.textView.text]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"当前没有任何有效内容，是要删除该记录吗？"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"取消"
-                                                      otherButtonTitles:@"确认", nil];
-            alertView.tag = ALERT_TAG_TCEDITOR_REMOVE;
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:@"当前没有任何有效内容，是要删除该记录吗？"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction *action) {}];
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      [self removeDairy];
+                                                                  }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"确定要这么编辑吗？"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"取消"
-                                                      otherButtonTitles:@"确认", nil];
-            alertView.tag = ALERT_TAG_TCEDITOR_REPLACE;
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:@"确定要这么编辑吗？"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction *action) {}];
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      [self replaceDairy];
+                                                                  }];
+            
+            [alert addAction:cancelAction];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }
 }
@@ -152,12 +170,15 @@
     dairy.content = [self stringDeleteSideWhite:self.textView.text];
 
     if (dairy.content.length > 1000) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"字数不能超过1000个字。"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"确认"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+                                                                       message:@"T`字数不能超过1000个字。"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
     } else {
         [TCDatabaseManager replaceDairy:dairy];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil];
@@ -202,30 +223,6 @@
     NSString *stringTrans = [self stringDeleteSideWhite:string];
     stringTrans = [stringTrans stringByReplacingOccurrencesOfString:@" " withString:@""];
     return stringTrans.length;
-}
-
-#pragma mark - UIAlertView Delegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == ALERT_TAG_TCEDITOR_BACK) {
-        if (buttonIndex == 1) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        } else {
-            return;
-        }
-    } else if (alertView.tag == ALERT_TAG_TCEDITOR_REMOVE) {
-        if (buttonIndex == 1) {
-            [self removeDairy];
-        } else {
-            return;
-        }
-    } else if (alertView.tag == ALERT_TAG_TCEDITOR_REPLACE) {
-        if (buttonIndex == 1) {
-            [self replaceDairy];
-        } else {
-            return;
-        }
-    }
 }
 
 @end

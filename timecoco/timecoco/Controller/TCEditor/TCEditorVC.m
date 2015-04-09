@@ -77,11 +77,12 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                        message:@"当前有内容，是否确定退出？"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        
+
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) {}];
+                                                             handler:^(UIAlertAction *action){
+                                                             }];
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {
+                                                              handler:^(UIAlertAction *action) {
                                                                   [self.navigationController popToRootViewControllerAnimated:YES];
                                                               }];
 
@@ -102,14 +103,15 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                            message:@"当前没有任何有效内容，是要删除该记录吗？"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
-            
+
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction *action) {}];
+                                                                 handler:^(UIAlertAction *action){
+                                                                 }];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
+                                                                  handler:^(UIAlertAction *action) {
                                                                       [self removeDairy];
                                                                   }];
-            
+
             [alert addAction:cancelAction];
             [alert addAction:defaultAction];
             [self presentViewController:alert animated:YES completion:nil];
@@ -117,14 +119,15 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                            message:@"确定要这么编辑吗？"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
-            
+
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction *action) {}];
+                                                                 handler:^(UIAlertAction *action){
+                                                                 }];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
+                                                                  handler:^(UIAlertAction *action) {
                                                                       [self replaceDairy];
                                                                   }];
-            
+
             [alert addAction:cancelAction];
             [alert addAction:defaultAction];
             [self presentViewController:alert animated:YES completion:nil];
@@ -170,13 +173,14 @@
     dairy.content = [self stringDeleteSideWhite:self.textView.text];
 
     if (dairy.content.length > 1000) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                        message:@"T`字数不能超过1000个字。"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
+
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action){
+                                                              }];
+
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     } else {

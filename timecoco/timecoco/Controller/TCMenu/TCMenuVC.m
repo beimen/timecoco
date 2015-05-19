@@ -46,7 +46,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -72,6 +72,10 @@
             cell.textLabel.text = @"主页";
         }
     } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"标签";
+        }
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"设置";
         }
@@ -99,7 +103,7 @@
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             TCBackUpVC *vc = [[TCBackUpVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];

@@ -25,6 +25,7 @@
 		FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */; };
 		FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */; };
 		FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78441AB54814000157B6 /* TCColorManager.m */; };
+		FE36DCBD1B0CDFAC00F65F2E /* TCTagpageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */; };
 		FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883711AB71B16002C6817 /* TCHomepageHeader.m */; };
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
@@ -88,6 +89,8 @@
 		FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+TCButtonManager.m"; sourceTree = "<group>"; };
 		FE1E78431AB54814000157B6 /* TCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColorManager.h; sourceTree = "<group>"; };
 		FE1E78441AB54814000157B6 /* TCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColorManager.m; sourceTree = "<group>"; };
+		FE36DCBB1B0CDFAC00F65F2E /* TCTagpageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagpageVC.h; sourceTree = "<group>"; };
+		FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagpageVC.m; sourceTree = "<group>"; };
 		FE3883701AB71B16002C6817 /* TCHomepageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageHeader.h; sourceTree = "<group>"; };
 		FE3883711AB71B16002C6817 /* TCHomepageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageHeader.m; sourceTree = "<group>"; };
 		FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageFooter.h; sourceTree = "<group>"; };
@@ -248,10 +251,11 @@
 		FE1478491AB486A5007C8395 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FE65CE541AD57D7F00C00637 /* TCSetting */,
 				FE0387BA1ABE658A007A3831 /* TCMenu */,
-				FE1E783A1AB53FA5000157B6 /* TCEditor */,
 				FE1478511AB487BC007C8395 /* TCHomepage */,
+				FE1E783A1AB53FA5000157B6 /* TCEditor */,
+				FE36DCBA1B0CDF8500F65F2E /* TCTagpage */,
+				FE65CE541AD57D7F00C00637 /* TCSetting */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -316,6 +320,15 @@
 				FE1E78441AB54814000157B6 /* TCColorManager.m */,
 			);
 			path = TCColorManager;
+			sourceTree = "<group>";
+		};
+		FE36DCBA1B0CDF8500F65F2E /* TCTagpage */ = {
+			isa = PBXGroup;
+			children = (
+				FE36DCBB1B0CDFAC00F65F2E /* TCTagpageVC.h */,
+				FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */,
+			);
+			path = TCTagpage;
 			sourceTree = "<group>";
 		};
 		FE65CE541AD57D7F00C00637 /* TCSetting */ = {
@@ -523,6 +536,7 @@
 			files = (
 				FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */,
 				F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */,
+				FE36DCBD1B0CDFAC00F65F2E /* TCTagpageVC.m in Sources */,
 				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
 				F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */,
 				FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */,

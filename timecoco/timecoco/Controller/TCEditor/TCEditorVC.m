@@ -199,6 +199,7 @@
     textView.font = [UIFont systemFontOfSize:16.0f];
     textView.layer.borderColor = TC_RED_COLOR.CGColor;
     textView.layer.borderWidth = 1.0f;
+    textView.layoutManager.allowsNonContiguousLayout = NO;
     [self.view addSubview:textView];
     self.textView = textView;
 }
@@ -211,6 +212,9 @@
     } else if (self.type == TCEditorVCTypeEdit) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
+    CGPoint cursorPosition = [textView caretRectForPosition:textView.selectedTextRange.start].origin;
+
+    [textView scrollRectToVisible:CGRectMake(cursorPosition.x, cursorPosition.y, 1, 16.0f + 10.0f) animated:YES];
 }
 
 #pragma mark - NSString method

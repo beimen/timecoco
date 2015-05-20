@@ -45,11 +45,11 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
                                                                                     Target:self
                                                                                   Selector:@selector(addAction:)];
+    self.navigationItem.titleView = createTitleViewForTitle(@"日常", TC_RED_COLOR, 17);
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollsToTop = NO;
-    //    self.tableView.delaysContentTouches = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView registerClass:[TCHomepageHeader class] forHeaderFooterViewReuseIdentifier:CellHeaderIdentifier];

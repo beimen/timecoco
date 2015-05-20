@@ -334,10 +334,10 @@
 		FE65CE541AD57D7F00C00637 /* TCSetting */ = {
 			isa = PBXGroup;
 			children = (
-				FE65CE551AD57D7F00C00637 /* TCBackUpVC.h */,
-				FE65CE561AD57D7F00C00637 /* TCBackUpVC.m */,
 				FE65CE581AD57DBB00C00637 /* TCSettingVC.h */,
 				FE65CE591AD57DBB00C00637 /* TCSettingVC.m */,
+				FE65CE551AD57D7F00C00637 /* TCBackUpVC.h */,
+				FE65CE561AD57D7F00C00637 /* TCBackUpVC.m */,
 			);
 			path = TCSetting;
 			sourceTree = "<group>";

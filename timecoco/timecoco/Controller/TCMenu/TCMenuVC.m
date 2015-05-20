@@ -7,8 +7,9 @@
 //
 
 #import "TCMenuVC.h"
-#import "TCBackUpVC.h"
 #import "TCHomepageVC.h"
+#import "TCTagpageVC.h"
+#import "TCBackUpVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 
@@ -69,7 +70,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"主页";
+            cell.textLabel.text = @"日常";
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -85,7 +86,7 @@
 }
 
 - (UIColor *)cellTextColorWithSection:(NSInteger)index {
-    NSArray *array = @[ @"TCHomepageVC", @"TCBackUpVC" ];
+    NSArray *array = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCBackUpVC" ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
     NSString *classString = [array objectAtIndex:index];
     if ([topVC isKindOfClass:NSClassFromString(classString)]) {

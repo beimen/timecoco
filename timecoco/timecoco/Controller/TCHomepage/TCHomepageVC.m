@@ -11,13 +11,15 @@
 #import "TCHomepageHeader.h"
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
+#import "NSDateFormatter+Custom.h"
 
 #define CellIdentifier (@"TCHomepgeCell")
 #define CellHeaderIdentifier (@"TCHomepageHeader")
 #define CellFooterIdentifier (@"TCHomepageFooter")
 
-@interface TCHomepageVC ()
+@interface TCHomepageVC () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dairyList;
 @property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
@@ -25,6 +27,8 @@
 @property (nonatomic, assign) NSUInteger firstDiffIndex;
 @property (nonatomic, strong) UILabel *introLabel;
 @property (nonatomic, assign) BOOL didAppear;
+@property (nonatomic, strong) NSString *navigationDateString;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @end
 
@@ -45,15 +49,18 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
                                                                                     Target:self
                                                                                   Selector:@selector(addAction:)];
-    self.navigationItem.titleView = createTitleViewForTitle(@"日常", TC_RED_COLOR, 17);
 
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollsToTop = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
     [self.tableView registerClass:[TCHomepageHeader class] forHeaderFooterViewReuseIdentifier:CellHeaderIdentifier];
     [self.tableView registerClass:[TCHomepageFooter class] forHeaderFooterViewReuseIdentifier:CellFooterIdentifier];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -90,6 +97,12 @@
     }
 
     self.didAppear = YES;
+    [self.dateLabel setHidden:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.dateLabel setHidden:YES];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -103,21 +116,6 @@
     }
 }
 
-- (NSIndexPath *)getDiffDairyIndexPathWithListIndex:(NSUInteger)listIndex {
-    __block NSIndexPath *indexPath;
-    __block NSUInteger sum = 0;
-    __block NSUInteger lastRowCount = 0;
-    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *rowCount, NSUInteger section, BOOL *stop) {
-        sum += rowCount.integerValue;
-        lastRowCount = rowCount.unsignedIntegerValue;
-        if ((listIndex + 1) <= sum) {
-            indexPath = [NSIndexPath indexPathForRow:(listIndex + lastRowCount - sum) inSection:section];
-            *stop = YES;
-        }
-    }];
-    return indexPath;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -126,12 +124,29 @@
     NSLog(@"TCHomepageVC is deallocated");
 }
 
-#pragma mark - Navigationbar action
+#pragma mark - NavigationBar
 
 - (void)addAction:(UIBarButtonItem *)sender {
     TCEditorVC *vc = [[TCEditorVC alloc] init];
     vc.type = TCEditorVCTypeAdd;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)updateNavigationBarDateLabel:(NSString *)detectionDateString {
+    NSDate *currentDate = [NSDate date];
+    NSString *currentDateString = [[NSDateFormatter customNormalFormatter] stringFromDate:currentDate];
+    NSArray *detectionDateComponets = [detectionDateString componentsSeparatedByString:@"-"];
+    NSArray *currentDateComponets = [currentDateString componentsSeparatedByString:@"-"];
+
+    if ([detectionDateComponets[0] isEqualToString:currentDateComponets[0]]) {
+        if ([detectionDateComponets[1] isEqualToString:currentDateComponets[1]]) {
+            self.dateLabel.text = @"";
+        } else {
+            self.dateLabel.text = [NSString stringWithFormat:@"%@月",detectionDateComponets[1]];
+        }
+    } else {
+        self.dateLabel.text = [NSString stringWithFormat:@"%@\n%@月",detectionDateComponets[0],detectionDateComponets[1]];
+    }
 }
 
 #pragma mark - DairyList and DateIndex
@@ -186,7 +201,29 @@
     return _introLabel;
 }
 
-#pragma mark - Table view data source
+- (UILabel *)dateLabel {
+    if (_dateLabel == nil) {
+        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.height, self.navigationController.navigationBar.height)];
+        _dateLabel.textAlignment = NSTextAlignmentCenter;
+        _dateLabel.font = [UIFont systemFontOfSize:12];
+        _dateLabel.textColor = TC_GRAY_COLOR;
+        _dateLabel.backgroundColor = TC_CLEAR_COLOR;
+        _dateLabel.numberOfLines = 0;
+        [self.navigationController.navigationBar addSubview:_dateLabel];
+    }
+    return _dateLabel;
+}
+
+#pragma mark - Setter
+
+- (void)setNavigationDateString:(NSString *)navigationDateString {
+    if (![_navigationDateString isEqualToString:navigationDateString]) {
+        _navigationDateString = navigationDateString;
+        [self updateNavigationBarDateLabel:navigationDateString];
+    }
+}
+
+#pragma mark - TableView Delegate & Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dairyListDateIndex.count;
@@ -255,6 +292,8 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - Cell Height
+
 - (CGFloat)cellHeightWithContent:(NSString *)string {
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
@@ -268,6 +307,23 @@
                                        context:nil];
     return ((rect.size.height > 65.0f) ? (int) rect.size.height / 5 * 5 + 15 : 65) + 10;
 }
+
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGRect rectInScreen = CGRectMake(0, self.navigationController.navigationBar.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - self.navigationController.navigationBar.bottom);
+    CGRect rectInTableView = [self.view convertRect:rectInScreen toView:self.tableView];
+    NSArray *dairyIndexPaths = [self.tableView indexPathsForRowsInRect:rectInTableView];
+    NSInteger count = [dairyIndexPaths count];
+    if (count) {
+        NSIndexPath *dairyIndexPath = dairyIndexPaths[0];
+        TCHomepageCell *cell = (TCHomepageCell *)[self.tableView cellForRowAtIndexPath:dairyIndexPath];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:(cell.dairy.timeZoneInterval + cell.dairy.pointTime)];
+        self.navigationDateString = [[NSDateFormatter customFormatter] stringFromDate:date];
+    }
+}
+
+#pragma mark - Other Method
 
 - (void)scrollToLastDairy {
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.dairyListDateIndex lastObject] integerValue] - 1
@@ -287,6 +343,21 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY"];
     self.yearNowValue = [formatter stringFromDate:[NSDate date]].integerValue;
+}
+
+- (NSIndexPath *)getDiffDairyIndexPathWithListIndex:(NSUInteger)listIndex {
+    __block NSIndexPath *indexPath;
+    __block NSUInteger sum = 0;
+    __block NSUInteger lastRowCount = 0;
+    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *rowCount, NSUInteger section, BOOL *stop) {
+        sum += rowCount.integerValue;
+        lastRowCount = rowCount.unsignedIntegerValue;
+        if ((listIndex + 1) <= sum) {
+            indexPath = [NSIndexPath indexPathForRow:(listIndex + lastRowCount - sum) inSection:section];
+            *stop = YES;
+        }
+    }];
+    return indexPath;
 }
 
 @end

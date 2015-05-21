@@ -86,8 +86,8 @@
 
     [formatter setDateFormat:@"YYYY"];
     BOOL showYear = (self.yearNowValue != [formatter stringFromDate:[NSDate date]].integerValue);
+    BOOL showMonth;
     
-    BOOL showMonth = 0;
     if (self.lastDairy) {
         showMonth = ([TCTimeManager weekOrderSince1970:self.lastDairy] != [TCTimeManager weekOrderSince1970:dairy]);
     } else {

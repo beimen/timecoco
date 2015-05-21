@@ -26,6 +26,7 @@
 
     self.tableView.backgroundColor = TC_CLEAR_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 130, 0, 0, 0);
 }
@@ -100,7 +101,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            TCHomepageVC *vc = [[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped];
+            TCHomepageVC *vc = [[TCHomepageVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }

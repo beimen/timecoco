@@ -174,7 +174,7 @@
 
     if (dairy.content.length > 1000) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                       message:@"T`字数不能超过1000个字。"
+                                                                       message:@"字数不能超过1000个字。"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
 
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault

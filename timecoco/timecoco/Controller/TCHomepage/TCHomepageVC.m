@@ -17,6 +17,9 @@
 #define CellHeaderIdentifier (@"TCHomepageHeader")
 #define CellFooterIdentifier (@"TCHomepageFooter")
 
+static CGFloat cellHeaderHeight = 30.0f;
+static CGFloat cellFooterHeight = 10.0f;
+
 @interface TCHomepageVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -97,12 +100,14 @@
     }
 
     self.didAppear = YES;
-    [self.dateLabel setHidden:NO];
+    if (self.dateLabel.alpha != 1.0f) {
+        [self labelFadeIn];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.dateLabel setHidden:YES];
+    [self.dateLabel setAlpha:0.0f];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -140,12 +145,37 @@
 
     if ([detectionDateComponets[0] isEqualToString:currentDateComponets[0]]) {
         if ([detectionDateComponets[1] isEqualToString:currentDateComponets[1]]) {
-            self.dateLabel.text = @"";
+            self.dateLabel.text = @"本月";
+            [self labelFadeOut];
         } else {
             self.dateLabel.text = [NSString stringWithFormat:@"%@月",detectionDateComponets[1]];
+            if (self.dateLabel.alpha == 0) {
+                [self labelFadeIn];
+            } else {
+                [self.dateLabel setAlpha:1.0f];
+            }
         }
     } else {
         self.dateLabel.text = [NSString stringWithFormat:@"%@\n%@月",detectionDateComponets[0],detectionDateComponets[1]];
+    }
+}
+
+- (void)labelFadeIn {
+    [self.dateLabel setAlpha:0.0f];
+    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
+        self.dateLabel.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [self labelFadeOut];
+    }];
+}
+
+- (void)labelFadeOut {
+    if ([self.dateLabel.text isEqualToString:@"本月"]) {
+        [self.dateLabel setAlpha:1.0f];
+        [UIView animateWithDuration:0.5f delay:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
+            self.dateLabel.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+        }];
     }
 }
 
@@ -206,7 +236,7 @@
         self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.height, self.navigationController.navigationBar.height)];
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         _dateLabel.font = [UIFont systemFontOfSize:12];
-        _dateLabel.textColor = TC_GRAY_COLOR;
+        _dateLabel.textColor = TC_DARK_GRAY_COLOR;
         _dateLabel.backgroundColor = TC_CLEAR_COLOR;
         _dateLabel.numberOfLines = 0;
         [self.navigationController.navigationBar addSubview:_dateLabel];
@@ -240,11 +270,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30.0f;
+    return cellHeaderHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10.0f;
+    return cellFooterHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -311,7 +341,7 @@
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGRect rectInScreen = CGRectMake(0, self.navigationController.navigationBar.bottom, SCREEN_WIDTH, SCREEN_HEIGHT - self.navigationController.navigationBar.bottom);
+    CGRect rectInScreen = CGRectMake(0, self.navigationController.navigationBar.bottom - cellFooterHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.navigationController.navigationBar.bottom);
     CGRect rectInTableView = [self.view convertRect:rectInScreen toView:self.tableView];
     NSArray *dairyIndexPaths = [self.tableView indexPathsForRowsInRect:rectInTableView];
     NSInteger count = [dairyIndexPaths count];

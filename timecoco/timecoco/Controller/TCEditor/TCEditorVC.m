@@ -30,23 +30,23 @@
                                                                                          Target:self
                                                                                        Selector:@selector(confirmAction:)] ];
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    [self setUpUI];
+    [self setupUI];
     self.textView.delegate = self;
     self.dairyType = TCDairyTypeNormal;
     if (self.type == TCEditorVCTypeEdit) {
         self.textView.text = self.editDairy.content;
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
-    [self.textView becomeFirstResponder];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.textView becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -192,8 +192,8 @@
 
 #pragma mark - UI
 
-- (void)setUpUI {
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10 + self.navigationController.navigationBar.bottom, self.view.width - 20, 100)];
+- (void)setupUI {
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10 + self.navigationController.navigationBar.bottom, self.view.width - 20, self.view.height - 20 - self.navigationController.navigationBar.bottom)];
     textView.backgroundColor = TC_WHITE_COLOR;
     textView.textColor = TC_DARK_GRAY_COLOR;
     textView.font = [UIFont systemFontOfSize:16.0f];

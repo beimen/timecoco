@@ -157,14 +157,12 @@
         [alertView show];
     } else {
         [TCDatabaseManager addDairy:dairy];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
 - (void)removeDairy {
     [TCDatabaseManager removeDairy:self.editDairy];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REMOVE_DAIRY_SUCCESS object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -185,7 +183,6 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
         [TCDatabaseManager replaceDairy:dairy];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

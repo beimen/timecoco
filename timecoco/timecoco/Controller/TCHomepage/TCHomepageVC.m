@@ -64,49 +64,30 @@ static CGFloat cellFooterHeight = 10.0f;
     [self.tableView registerClass:[TCHomepageHeader class] forHeaderFooterViewReuseIdentifier:CellHeaderIdentifier];
     [self.tableView registerClass:[TCHomepageFooter class] forHeaderFooterViewReuseIdentifier:CellFooterIdentifier];
     [self.view addSubview:self.tableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDairyListWithNotification:) name:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDairyListWithNotification:) name:NOTIFICATION_REMOVE_DAIRY_SUCCESS object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDairyListWithNotification:) name:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self refreshYearNowValue];
-
-    NSArray *lastDairyList = [NSArray arrayWithArray:self.dairyList];
-
-    NSUInteger diffListIndex = [[self getDairyListData] findFirstDiffDairyIndex:lastDairyList];
-
-    self.dairyList = [self getDairyListData];
-    self.dairyListDateIndex = [self generateDateIndex];
-    NSIndexPath *diffDairyIndexPath = [self getDiffDairyIndexPathWithListIndex:diffListIndex];
-
-    NSLog(@"action section is %ld, row is %ld", (long) diffDairyIndexPath.section, (long) diffDairyIndexPath.row);
-    if ([self.dairyList count] == [lastDairyList count]) {
-        //编辑
-        [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-        [self.tableView reloadData];
-    } else if ([self.dairyList count] > [lastDairyList count]) {
-        //添加
-        [self.tableView reloadData];
-        [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-    } else if ([self.dairyList count] < [lastDairyList count]) {
-        //删除
-        [self.tableView scrollToRowAtIndexPath:diffDairyIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-        [self.tableView reloadData];
-    }
-
-    if (self.firstAppear && self.dairyList.count) {
+    if (self.firstAppear) {
+        [self initDairyList];
         self.firstAppear = NO;
-        [self scrollToLastDairy];
     }
-
-    self.didAppear = YES;
+    
+    [self.dateLabel setHidden:NO];
     if (self.dateLabel.alpha != 1.0f) {
         [self labelFadeIn];
     }
+    self.didAppear = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.dateLabel setHidden:YES];
     [self.dateLabel setAlpha:0.0f];
 }
 
@@ -126,6 +107,7 @@ static CGFloat cellFooterHeight = 10.0f;
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"TCHomepageVC is deallocated");
 }
 
@@ -182,7 +164,6 @@ static CGFloat cellFooterHeight = 10.0f;
 #pragma mark - DairyList and DateIndex
 
 - (NSMutableArray *)getDairyListData {
-    //    return [TCDatabaseManager storedDairyListFromTime:[[NSDate date] timeIntervalSince1970]-T_WEEK toTime:[[NSDate date] timeIntervalSince1970]];
     return [NSMutableArray arrayWithArray:[TCDatabaseManager storedDairyList]];
 }
 
@@ -204,7 +185,7 @@ static CGFloat cellFooterHeight = 10.0f;
     return dateIndex;
 }
 
-- (NSInteger)getDairyCountBeforeSection:(NSUInteger)section {
+- (NSInteger)getDairySumBeforeSection:(NSUInteger)section {
     __block NSInteger count = 0;
     [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
         if (idx < section) {
@@ -244,6 +225,12 @@ static CGFloat cellFooterHeight = 10.0f;
     return _dateLabel;
 }
 
+#pragma mark - Getter
+
+-  (NSInteger)yearNowValue {
+    return [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
+}
+
 #pragma mark - Setter
 
 - (void)setNavigationDateString:(NSString *)navigationDateString {
@@ -264,7 +251,7 @@ static CGFloat cellFooterHeight = 10.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairyCountBeforeSection:indexPath.section] + indexPath.row)];
+    TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
     return [self cellHeightWithContent:dairy.content];
 }
@@ -280,7 +267,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCHomepageCell *cell = (TCHomepageCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    cell.dairy = [self.dairyList objectAtIndex:([self getDairyCountBeforeSection:indexPath.section] + indexPath.row)];
+    cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
     __weak TCHomepageVC *weakSelf = self;
     [cell setLongPressBlock:^(TCDairy *dairy) {
@@ -299,13 +286,13 @@ static CGFloat cellFooterHeight = 10.0f;
     TCHomepageHeader *header = (TCHomepageHeader *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellHeaderIdentifier];
 
     if (section) {
-        header.lastDairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section] - 1];
+        header.lastDairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section] - 1];
     } else {
         header.lastDairy = nil;
     }
 
     header.yearNowValue = self.yearNowValue;
-    header.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
+    header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
 
     return header;
 }
@@ -313,7 +300,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     TCHomepageFooter *footer = (TCHomepageFooter *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellFooterIdentifier];
 
-    footer.dairy = [self.dairyList objectAtIndex:[self getDairyCountBeforeSection:section]];
+    footer.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
 
     return footer;
 }
@@ -347,19 +334,19 @@ static CGFloat cellFooterHeight = 10.0f;
     NSInteger count = [dairyIndexPaths count];
     if (count) {
         NSIndexPath *dairyIndexPath = dairyIndexPaths[0];
-        TCHomepageCell *cell = (TCHomepageCell *)[self.tableView cellForRowAtIndexPath:dairyIndexPath];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:(cell.dairy.timeZoneInterval + cell.dairy.pointTime)];
+        TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:dairyIndexPath.section] + dairyIndexPath.row)];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:(dairy.timeZoneInterval + dairy.pointTime)];
         self.navigationDateString = [[NSDateFormatter customFormatter] stringFromDate:date];
     }
 }
 
 #pragma mark - Other Method
 
-- (void)scrollToLastDairy {
+- (void)scrollToLastDairyWithAnimated:(BOOL)animated {
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.dairyListDateIndex lastObject] integerValue] - 1
                                                               inSection:self.dairyListDateIndex.count - 1]
                           atScrollPosition:UITableViewScrollPositionBottom
-                                  animated:NO];
+                                  animated:animated];
 }
 
 - (void)scrollToDairy:(NSUInteger)sectionIndex {
@@ -369,25 +356,37 @@ static CGFloat cellFooterHeight = 10.0f;
                                   animated:NO];
 }
 
-- (void)refreshYearNowValue {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY"];
-    self.yearNowValue = [formatter stringFromDate:[NSDate date]].integerValue;
+- (void)updateDairyListDataAndIndex {
+    self.dairyList = [self getDairyListData];
+    self.dairyListDateIndex = [self generateDateIndex];
 }
 
-- (NSIndexPath *)getDiffDairyIndexPathWithListIndex:(NSUInteger)listIndex {
-    __block NSIndexPath *indexPath;
-    __block NSUInteger sum = 0;
-    __block NSUInteger lastRowCount = 0;
-    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *rowCount, NSUInteger section, BOOL *stop) {
-        sum += rowCount.integerValue;
-        lastRowCount = rowCount.unsignedIntegerValue;
-        if ((listIndex + 1) <= sum) {
-            indexPath = [NSIndexPath indexPathForRow:(listIndex + lastRowCount - sum) inSection:section];
-            *stop = YES;
+- (void)initDairyList {
+    NSDictionary *dic = @{@"animated":@(NO),@"scrollEnabled":@(YES)};
+    [self updateDairyListWithDictionary:dic];
+}
+
+- (void)updateDairyListWithDictionary:(NSDictionary *)dictionary {
+    __weak TCHomepageVC *weakSelf = self;
+    __block BOOL animated = [[dictionary objectForKey:@"animated"] boolValue];
+    __block BOOL scrollEnabled = [[dictionary objectForKey:@"scrollEnabled"] boolValue];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf updateDairyListDataAndIndex];
+        if ([weakSelf.dairyList count]) {
+            [weakSelf.tableView reloadData];
+            if (scrollEnabled) {
+                [weakSelf scrollToLastDairyWithAnimated:animated];
+            }
         }
-    }];
-    return indexPath;
+    });
+}
+
+- (void)updateDairyListWithNotification:(NSNotification *)notification {
+    if (notification == nil) {
+        assert(0);
+    } else {
+        [self updateDairyListWithDictionary:notification.userInfo];
+    }
 }
 
 @end

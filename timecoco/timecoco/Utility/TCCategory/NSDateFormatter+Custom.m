@@ -32,4 +32,14 @@
     return customNormalFormatter;
 }
 
++ (NSDateFormatter *)customYearFormatter {
+    static NSDateFormatter *customYearFormatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        customYearFormatter = [[NSDateFormatter alloc] init];
+        customYearFormatter.dateFormat = @"yyyy";
+    });
+    return customYearFormatter;
+}
+
 @end

@@ -12,5 +12,6 @@
 
 + (NSDateFormatter *)customFormatter;
 + (NSDateFormatter *)customNormalFormatter;
++ (NSDateFormatter *)customYearFormatter;
 
 @end

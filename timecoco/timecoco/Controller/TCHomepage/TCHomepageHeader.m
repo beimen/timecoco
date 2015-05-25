@@ -67,7 +67,7 @@
 
     self.headerType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageHeaderTypeWeekend : TCHomepageHeaderTypeWorkday;
 
-    [self setUpTimeText:dairy];
+    [self setupTimeText:dairy];
 }
 
 - (UILabel *)timeLabel {
@@ -80,7 +80,7 @@
     return _timeLabel;
 }
 
-- (void)setUpTimeText:(TCDairy *)dairy {
+- (void)setupTimeText:(TCDairy *)dairy {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dairy.pointTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 

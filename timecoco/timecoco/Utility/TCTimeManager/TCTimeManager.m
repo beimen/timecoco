@@ -10,35 +10,31 @@
 
 @implementation TCTimeManager
 
-+ (NSInteger)getIntervalFrom:(TCDairy *)dairy {
-    return dairy.timeZoneInterval + (NSInteger) dairy.pointTime;
-}
-
 + (NSInteger)getSecondValue:(TCDairy *)dairy {
     NSInteger secondValue = 0;
-    secondValue = [self getIntervalFrom:dairy] % T_MINUTE;
+    secondValue = (NSInteger)dairy.pointTime % T_MINUTE;
     return secondValue;
 }
 
 + (NSInteger)getMinuteValue:(TCDairy *)dairy {
     NSInteger minuteValue = 0;
-    minuteValue = ([self getIntervalFrom:dairy] % T_HOUR) / T_MINUTE;
+    minuteValue = ((NSInteger)dairy.pointTime % T_HOUR) / T_MINUTE;
     return minuteValue;
 }
 
 + (NSInteger)getHourValue:(TCDairy *)dairy {
     NSInteger hourValue = 0;
-    hourValue = ([self getIntervalFrom:dairy] % T_DAY) / T_HOUR;
+    hourValue = (dairy.timeZoneOffsetInterval % T_DAY) / T_HOUR;
     return hourValue;
 }
 
 + (NSInteger)yearOrderSince1970:(TCDairy *)dairy {
-    NSInteger order = ([self getIntervalFrom:dairy] / T_DAY - 4) / 7;
+    NSInteger order = (dairy.timeZoneOffsetInterval / T_DAY - 4) / 7;
     return order;
 }
 
 + (NSInteger)weekOrderSince1970:(TCDairy *)dairy {
-    NSInteger order = ([self getIntervalFrom:dairy] / T_DAY + 3) / 7;
+    NSInteger order = (dairy.timeZoneOffsetInterval / T_DAY + 3) / 7;
     return order;
 }
 
@@ -48,7 +44,7 @@
 }
 
 + (NSInteger)dayOrderInWeek:(TCDairy *)dairy {
-    NSInteger order = ([self getIntervalFrom:dairy] / T_DAY + 3) % 7;
+    NSInteger order = (dairy.timeZoneOffsetInterval / T_DAY + 3) % 7;
     return order;
 }
 

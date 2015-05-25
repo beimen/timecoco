@@ -11,7 +11,7 @@
 typedef enum {
     TCDairyTypeNormal = 0,
     TCDairyTypeAllDay,
-    
+
     TCDairyTypeDefault = TCDairyTypeNormal
 } TCDairyType;
 
@@ -22,5 +22,6 @@ typedef enum {
 @property (nonatomic, assign) TCDairyType type;
 @property (nonatomic, assign) CGFloat pointTime;
 @property (nonatomic, copy) NSString *content;
+@property (nonatomic, readonly) NSInteger timeZoneOffsetInterval;
 
 @end

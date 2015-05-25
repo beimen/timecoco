@@ -15,10 +15,10 @@
 #import "UIView+Frame.h"
 #import "UIImage+Extensions.h"
 #import "NSArray+DairyIndex.h"
+#import "TCDairy+Manager.h"
 
 #import "TCColorManager.h"
 #import "TCDatabaseManager.h"
-#import "TCTimeManager.h"
 #import "TCUtility.h"
 #import "TCConstant.h"
 #import "TCNotification.h"

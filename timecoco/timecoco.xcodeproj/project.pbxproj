@@ -15,26 +15,29 @@
 		F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F582193E1AAD48A800357355 /* LaunchScreen.xib */; };
 		F582194C1AAD48A800357355 /* timecocoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F582194B1AAD48A800357355 /* timecocoTests.m */; };
 		F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC9B1ABBBFBE0062167C /* TCEditorOptionView.m */; };
-		F5CDC8C31ABA70A000EB9396 /* TCTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CDC8C21ABA70A000EB9396 /* TCTimeManager.m */; };
+		F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */; };
+		F5D78D021B132B240006BA8A /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D78D011B132B240006BA8A /* UIView+Frame.m */; };
 		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
 		FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */; };
-		FE0387C11ABEB73C007A3831 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387C01ABEB73C007A3831 /* UIView+Frame.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
 		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
 		FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */; };
-		FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */; };
 		FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78441AB54814000157B6 /* TCColorManager.m */; };
+		FE2EEA891B0E12660037C924 /* UIBarButtonItem+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2EEA881B0E12660037C924 /* UIBarButtonItem+Custom.m */; };
+		FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2EEA8B1B0E2B000037C924 /* NSDateFormatter+Custom.m */; };
+		FE36DCBD1B0CDFAC00F65F2E /* TCTagpageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */; };
 		FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883711AB71B16002C6817 /* TCHomepageHeader.m */; };
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
 		FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE4DB3331AC456FE0098156E /* InfoPlist.strings */; };
-		FE65184E1ACD936600CBB6C9 /* TCBackUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65184D1ACD936600CBB6C9 /* TCBackUpVC.m */; };
+		FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65CE591AD57DBB00C00637 /* TCSettingVC.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
 		FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
+		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,14 +68,14 @@
 		F582194B1AAD48A800357355 /* timecocoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timecocoTests.m; sourceTree = "<group>"; };
 		F5BAEC9A1ABBBFBE0062167C /* TCEditorOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditorOptionView.h; sourceTree = "<group>"; };
 		F5BAEC9B1ABBBFBE0062167C /* TCEditorOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorOptionView.m; sourceTree = "<group>"; };
-		F5CDC8C11ABA70A000EB9396 /* TCTimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTimeManager.h; sourceTree = "<group>"; };
-		F5CDC8C21ABA70A000EB9396 /* TCTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTimeManager.m; sourceTree = "<group>"; };
+		F5D78CFC1B1328BD0006BA8A /* TCDairy+Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCDairy+Manager.h"; sourceTree = "<group>"; };
+		F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCDairy+Manager.m"; sourceTree = "<group>"; };
+		F5D78D001B132B240006BA8A /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		F5D78D011B132B240006BA8A /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
 		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
 		FE0387BB1ABE65F1007A3831 /* TCMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMenuVC.h; sourceTree = "<group>"; };
 		FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMenuVC.m; sourceTree = "<group>"; };
-		FE0387BF1ABEB73C007A3831 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		FE0387C01ABEB73C007A3831 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		FE03F6071AB9CC8800597FAA /* TCNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNotification.h; sourceTree = "<group>"; };
 		FE03F6081AB9CCB800597FAA /* TCConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstant.h; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
@@ -83,10 +86,14 @@
 		FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageVC.m; sourceTree = "<group>"; };
 		FE1E783B1AB53FA5000157B6 /* TCEditorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditorVC.h; sourceTree = "<group>"; };
 		FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorVC.m; sourceTree = "<group>"; };
-		FE1E78401AB54814000157B6 /* UIBarButtonItem+TCButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+TCButtonManager.h"; sourceTree = "<group>"; };
-		FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+TCButtonManager.m"; sourceTree = "<group>"; };
 		FE1E78431AB54814000157B6 /* TCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColorManager.h; sourceTree = "<group>"; };
 		FE1E78441AB54814000157B6 /* TCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColorManager.m; sourceTree = "<group>"; };
+		FE2EEA871B0E12660037C924 /* UIBarButtonItem+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Custom.h"; sourceTree = "<group>"; };
+		FE2EEA881B0E12660037C924 /* UIBarButtonItem+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Custom.m"; sourceTree = "<group>"; };
+		FE2EEA8A1B0E2B000037C924 /* NSDateFormatter+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Custom.h"; sourceTree = "<group>"; };
+		FE2EEA8B1B0E2B000037C924 /* NSDateFormatter+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Custom.m"; sourceTree = "<group>"; };
+		FE36DCBB1B0CDFAC00F65F2E /* TCTagpageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagpageVC.h; sourceTree = "<group>"; };
+		FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagpageVC.m; sourceTree = "<group>"; };
 		FE3883701AB71B16002C6817 /* TCHomepageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageHeader.h; sourceTree = "<group>"; };
 		FE3883711AB71B16002C6817 /* TCHomepageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageHeader.m; sourceTree = "<group>"; };
 		FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageFooter.h; sourceTree = "<group>"; };
@@ -97,8 +104,8 @@
 		FE4DB3341AC457210098156E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE4DB3351AC4572D0098156E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE4DB3361AC457370098156E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FE65184C1ACD936600CBB6C9 /* TCBackUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackUpVC.h; sourceTree = "<group>"; };
-		FE65184D1ACD936600CBB6C9 /* TCBackUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackUpVC.m; sourceTree = "<group>"; };
+		FE65CE581AD57DBB00C00637 /* TCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSettingVC.h; sourceTree = "<group>"; };
+		FE65CE591AD57DBB00C00637 /* TCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSettingVC.m; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
 		FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatabaseManager.m; sourceTree = "<group>"; };
 		FE78B8391AB577FF0026241E /* TCDairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairy.h; sourceTree = "<group>"; };
@@ -108,6 +115,8 @@
 		FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DairyIndex.h"; sourceTree = "<group>"; };
 		FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DairyIndex.m"; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
+		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,13 +220,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F5CDC8C01ABA709000EB9396 /* TCTimeManager */ = {
+		F5D78CFF1B132AAC0006BA8A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				F5CDC8C11ABA70A000EB9396 /* TCTimeManager.h */,
-				F5CDC8C21ABA70A000EB9396 /* TCTimeManager.m */,
+				F5D78D001B132B240006BA8A /* UIView+Frame.h */,
+				F5D78D011B132B240006BA8A /* UIView+Frame.m */,
 			);
-			path = TCTimeManager;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		FE0387BA1ABE658A007A3831 /* TCMenu */ = {
@@ -232,12 +241,17 @@
 		FE0387BE1ABEB71E007A3831 /* TCCategory */ = {
 			isa = PBXGroup;
 			children = (
-				FE0387BF1ABEB73C007A3831 /* UIView+Frame.h */,
-				FE0387C01ABEB73C007A3831 /* UIView+Frame.m */,
+				F5D78CFF1B132AAC0006BA8A /* Common */,
 				FE4572671AC1B14600CE4C7C /* UIImage+Extensions.h */,
 				FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */,
 				FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */,
 				FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */,
+				FE2EEA871B0E12660037C924 /* UIBarButtonItem+Custom.h */,
+				FE2EEA881B0E12660037C924 /* UIBarButtonItem+Custom.m */,
+				FE2EEA8A1B0E2B000037C924 /* NSDateFormatter+Custom.h */,
+				FE2EEA8B1B0E2B000037C924 /* NSDateFormatter+Custom.m */,
+				F5D78CFC1B1328BD0006BA8A /* TCDairy+Manager.h */,
+				F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */,
 			);
 			path = TCCategory;
 			sourceTree = "<group>";
@@ -245,10 +259,11 @@
 		FE1478491AB486A5007C8395 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FE65184B1ACD931100CBB6C9 /* TCBackUp */,
 				FE0387BA1ABE658A007A3831 /* TCMenu */,
-				FE1E783A1AB53FA5000157B6 /* TCEditor */,
 				FE1478511AB487BC007C8395 /* TCHomepage */,
+				FE1E783A1AB53FA5000157B6 /* TCEditor */,
+				FE36DCBA1B0CDF8500F65F2E /* TCTagpage */,
+				FE65CE541AD57D7F00C00637 /* TCSetting */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,22 +303,11 @@
 				FE03F6071AB9CC8800597FAA /* TCNotification.h */,
 				FE03F6081AB9CCB800597FAA /* TCConstant.h */,
 				FE0387BE1ABEB71E007A3831 /* TCCategory */,
-				FE1E783F1AB54814000157B6 /* TCButtonManager */,
 				FE1E78421AB54814000157B6 /* TCColorManager */,
 				FE78B8321AB569FC0026241E /* TCDatabaseManager */,
-				F5CDC8C01ABA709000EB9396 /* TCTimeManager */,
 				FE78B83C1AB57C520026241E /* TCUtilityView */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		FE1E783F1AB54814000157B6 /* TCButtonManager */ = {
-			isa = PBXGroup;
-			children = (
-				FE1E78401AB54814000157B6 /* UIBarButtonItem+TCButtonManager.h */,
-				FE1E78411AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m */,
-			);
-			path = TCButtonManager;
 			sourceTree = "<group>";
 		};
 		FE1E78421AB54814000157B6 /* TCColorManager */ = {
@@ -315,13 +319,24 @@
 			path = TCColorManager;
 			sourceTree = "<group>";
 		};
-		FE65184B1ACD931100CBB6C9 /* TCBackUp */ = {
+		FE36DCBA1B0CDF8500F65F2E /* TCTagpage */ = {
 			isa = PBXGroup;
 			children = (
-				FE65184C1ACD936600CBB6C9 /* TCBackUpVC.h */,
-				FE65184D1ACD936600CBB6C9 /* TCBackUpVC.m */,
+				FE36DCBB1B0CDFAC00F65F2E /* TCTagpageVC.h */,
+				FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */,
 			);
-			path = TCBackUp;
+			path = TCTagpage;
+			sourceTree = "<group>";
+		};
+		FE65CE541AD57D7F00C00637 /* TCSetting */ = {
+			isa = PBXGroup;
+			children = (
+				FEF785061B14BAD600DB4859 /* TCBackupVC.h */,
+				FEF785071B14BAD600DB4859 /* TCBackupVC.m */,
+				FE65CE581AD57DBB00C00637 /* TCSettingVC.h */,
+				FE65CE591AD57DBB00C00637 /* TCSettingVC.m */,
+			);
+			path = TCSetting;
 			sourceTree = "<group>";
 		};
 		FE78B8321AB569FC0026241E /* TCDatabaseManager */ = {
@@ -516,27 +531,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5D78D021B132B240006BA8A /* UIView+Frame.m in Sources */,
 				FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */,
+				FE2EEA891B0E12660037C924 /* UIBarButtonItem+Custom.m in Sources */,
 				F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */,
+				FE36DCBD1B0CDFAC00F65F2E /* TCTagpageVC.m in Sources */,
+				FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */,
 				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
 				F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */,
+				FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */,
 				FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */,
 				FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */,
 				F58219351AAD48A800357355 /* AppDelegate.m in Sources */,
 				F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */,
 				FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */,
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
-				FE1E78461AB54814000157B6 /* UIBarButtonItem+TCButtonManager.m in Sources */,
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
-				FE65184E1ACD936600CBB6C9 /* TCBackUpVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
-				FE0387C11ABEB73C007A3831 /* UIView+Frame.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
 				FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
+				FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */,
+				F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */,
 				FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */,
-				F5CDC8C31ABA70A000EB9396 /* TCTimeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

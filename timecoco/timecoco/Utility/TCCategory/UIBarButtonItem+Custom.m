@@ -1,14 +1,14 @@
 //
-//  UIBarButtonItem+TCButtonManager.m
+//  UIBarButtonItem+Custom.m
 //  timecoco
 //
 //  Created by Xie Hong on 3/15/15.
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "UIBarButtonItem+TCButtonManager.h"
+#import "UIBarButtonItem+Custom.h"
 
-@implementation UIBarButtonItem (TCButtonManager)
+@implementation UIBarButtonItem (Custom)
 
 + (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image
                                            Target:(id)target

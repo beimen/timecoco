@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "TCDatabaseManager.h"
 #import "TCHomepageVC.h"
-#import "TCBackUpVC.h"
+#import "TCSettingVC.h"
 #import "TCMenuVC.h"
 #import "REFrostedViewController.h"
 
@@ -24,7 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] init]];
     TCMenuVC *menuController = [[TCMenuVC alloc] initWithStyle:UITableViewStyleGrouped];
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
@@ -66,7 +66,7 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
     if ([[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCHomepageVC class]] ||
-        [[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCBackUpVC class]]) {
+        [[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCSettingVC class]]) {
         [self.frostedViewController panGestureRecognized:recognizer];
     }
 }

@@ -48,7 +48,7 @@
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
     
-    self.footerType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageFooterTypeWeekend : TCHomepageFooterTypeWorkday;
+    self.footerType = [dairy estimateWeekend] ? TCHomepageFooterTypeWeekend : TCHomepageFooterTypeWorkday;
 }
 
 @end

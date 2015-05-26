@@ -159,12 +159,12 @@
 
     self.contentLabel.text = dairy.content;
     if (dairy.type == TCDairyTypeNormal) {
-        self.hourLabel.text = [NSString stringWithFormat:@"%ld", (long) [TCTimeManager getHourValue:dairy]];
+        self.hourLabel.text = [NSString stringWithFormat:@"%ld", (long) [dairy getHourValue]];
     } else {
         self.hourLabel.text = @"";
     }
 
-    self.cellType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
+    self.cellType = [dairy estimateWeekend] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
 }
 
 - (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
@@ -175,7 +175,7 @@
 
 - (void)showMinuteLabel {
     if (self.dairy.type == TCDairyTypeNormal) {
-        NSString *minuteLabelText = [NSString stringWithFormat:@"%ld", (long) [TCTimeManager getMinuteValue:self.dairy]];
+        NSString *minuteLabelText = [NSString stringWithFormat:@"%ld", (long) [self.dairy getMinuteValue]];
         self.minuteLabel.text = (minuteLabelText.length == 1) ? [NSString stringWithFormat:@"0%@", minuteLabelText] : minuteLabelText;
         self.minuteLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
         [UIView animateWithDuration:1.0f animations:^{

@@ -65,9 +65,9 @@
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
 
-    self.headerType = [TCTimeManager estimateWeekend:dairy] ? TCHomepageHeaderTypeWeekend : TCHomepageHeaderTypeWorkday;
+    self.headerType = [dairy estimateWeekend] ? TCHomepageHeaderTypeWeekend : TCHomepageHeaderTypeWorkday;
 
-    [self setUpTimeText:dairy];
+    [self setupTimeText:dairy];
 }
 
 - (UILabel *)timeLabel {
@@ -80,16 +80,16 @@
     return _timeLabel;
 }
 
-- (void)setUpTimeText:(TCDairy *)dairy {
+- (void)setupTimeText:(TCDairy *)dairy {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dairy.pointTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 
     [formatter setDateFormat:@"YYYY"];
     BOOL showYear = (self.yearNowValue != [formatter stringFromDate:[NSDate date]].integerValue);
+    BOOL showMonth;
     
-    BOOL showMonth = 0;
     if (self.lastDairy) {
-        showMonth = ([TCTimeManager weekOrderSince1970:self.lastDairy] != [TCTimeManager weekOrderSince1970:dairy]);
+        showMonth = ([self.lastDairy weekOrderSince1970] != [dairy weekOrderSince1970]);
     } else {
         showMonth = YES;
     }
@@ -104,7 +104,7 @@
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval]];
     
     NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];
-    NSInteger order = [TCTimeManager dayOrderInWeek:dairy];
+    NSInteger order = [dairy dayOrderInWeek];
     self.timeLabel.text = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
     
     BOOL showTimeZone = ([[NSTimeZone localTimeZone] secondsFromGMT] != dairy.timeZoneInterval);

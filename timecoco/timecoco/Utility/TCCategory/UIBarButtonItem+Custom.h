@@ -1,5 +1,5 @@
 //
-//  UIBarButtonItem+TCButtonManager.h
+//  UIBarButtonItem+Custom.h
 //  timecoco
 //
 //  Created by Xie Hong on 3/15/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIBarButtonItem (TCButtonManager)
+@interface UIBarButtonItem (Custom)
 
 + (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image Target:(id)target Selector:(SEL)selector;
 

@@ -75,7 +75,8 @@ dispatch_queue_t queue;
     __block BOOL addResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         addResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type) values(%f, %ld, %@, %ld)",dairy.pointTime, (long)dairy.timeZoneInterval, dairy.content, (long)dairy.type];
-        
+        NSDictionary *userInfo = @{@"animated":@(YES),@"scrollEnabled":@(YES)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil userInfo:userInfo];
         NSLog(@"%i,%@", addResult, db.lastErrorMessage);
     }];
     return addResult;
@@ -85,7 +86,8 @@ dispatch_queue_t queue;
     __block BOOL removeResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         removeResult = [db executeUpdateWithFormat:@"delete from timecoco_dairy where primaryId = %ld", (long)dairy.primaryId];
-        
+        NSDictionary *userInfo = @{@"animated":@(YES),@"scrollEnabled":@(YES)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REMOVE_DAIRY_SUCCESS object:nil userInfo:userInfo];
         NSLog(@"%@", db.lastErrorMessage);
     }];
     return removeResult;
@@ -95,7 +97,8 @@ dispatch_queue_t queue;
     __block BOOL replaceResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         replaceResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type,primaryId) values(%f, %ld, %@, %ld, %ld)",dairy.pointTime, (long)dairy.timeZoneInterval, dairy.content, (long)dairy.type, (long)dairy.primaryId];
-        
+        NSDictionary *userInfo = @{@"animated":@(YES),@"scrollEnabled":@(NO)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil userInfo:userInfo];
         NSLog(@"%i,%@", replaceResult, db.lastErrorMessage);
     }];
     return replaceResult;

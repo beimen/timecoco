@@ -7,8 +7,9 @@
 //
 
 #import "TCMenuVC.h"
-#import "TCBackUpVC.h"
 #import "TCHomepageVC.h"
+#import "TCTagpageVC.h"
+#import "TCSettingVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 
@@ -25,6 +26,7 @@
 
     self.tableView.backgroundColor = TC_CLEAR_COLOR;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 130, 0, 0, 0);
 }
@@ -46,7 +48,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,11 +71,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"主页";
+            cell.textLabel.text = @"日常";
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"备份";
+            cell.textLabel.text = @"标签";
+        }
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"设置";
         }
     }
     cell.textLabel.textColor = [self cellTextColorWithSection:indexPath.section];
@@ -81,7 +87,7 @@
 }
 
 - (UIColor *)cellTextColorWithSection:(NSInteger)index {
-    NSArray *array = @[ @"TCHomepageVC", @"TCBackUpVC" ];
+    NSArray *array = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCSettingVC" ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
     NSString *classString = [array objectAtIndex:index];
     if ([topVC isKindOfClass:NSClassFromString(classString)]) {
@@ -95,13 +101,13 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            TCHomepageVC *vc = [[TCHomepageVC alloc] initWithStyle:UITableViewStyleGrouped];
+            TCHomepageVC *vc = [[TCHomepageVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            TCBackUpVC *vc = [[TCBackUpVC alloc] init];
+            TCSettingVC *vc = [[TCSettingVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }

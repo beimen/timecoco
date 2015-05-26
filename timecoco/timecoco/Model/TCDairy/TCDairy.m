@@ -10,4 +10,8 @@
 
 @implementation TCDairy
 
+- (NSInteger)timeZoneOffsetInterval {
+    return self.pointTime + (NSInteger) self.timeZoneInterval;
+}
+
 @end

@@ -1,18 +1,18 @@
 //
-//  TCBackUpVC.m
+//  TCBackupVC.m
 //  timecoco
 //
 //  Created by Xie Hong on 4/2/15.
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCBackUpVC.h"
+#import "TCBackupVC.h"
 
-@interface TCBackUpVC ()
+@interface TCBackupVC ()
 
 @end
 
-@implementation TCBackUpVC
+@implementation TCBackupVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

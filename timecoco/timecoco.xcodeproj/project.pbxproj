@@ -31,13 +31,13 @@
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
 		FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE4DB3331AC456FE0098156E /* InfoPlist.strings */; };
-		FE65CE571AD57D7F00C00637 /* TCBackUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65CE561AD57D7F00C00637 /* TCBackUpVC.m */; };
 		FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65CE591AD57DBB00C00637 /* TCSettingVC.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
 		FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
+		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,8 +104,6 @@
 		FE4DB3341AC457210098156E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE4DB3351AC4572D0098156E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE4DB3361AC457370098156E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FE65CE551AD57D7F00C00637 /* TCBackUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackUpVC.h; sourceTree = "<group>"; };
-		FE65CE561AD57D7F00C00637 /* TCBackUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackUpVC.m; sourceTree = "<group>"; };
 		FE65CE581AD57DBB00C00637 /* TCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSettingVC.h; sourceTree = "<group>"; };
 		FE65CE591AD57DBB00C00637 /* TCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSettingVC.m; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
@@ -117,6 +115,8 @@
 		FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DairyIndex.h"; sourceTree = "<group>"; };
 		FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DairyIndex.m"; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
+		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,10 +331,10 @@
 		FE65CE541AD57D7F00C00637 /* TCSetting */ = {
 			isa = PBXGroup;
 			children = (
+				FEF785061B14BAD600DB4859 /* TCBackupVC.h */,
+				FEF785071B14BAD600DB4859 /* TCBackupVC.m */,
 				FE65CE581AD57DBB00C00637 /* TCSettingVC.h */,
 				FE65CE591AD57DBB00C00637 /* TCSettingVC.m */,
-				FE65CE551AD57D7F00C00637 /* TCBackUpVC.h */,
-				FE65CE561AD57D7F00C00637 /* TCBackUpVC.m */,
 			);
 			path = TCSetting;
 			sourceTree = "<group>";
@@ -547,12 +547,12 @@
 				FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */,
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
-				FE65CE571AD57D7F00C00637 /* TCBackUpVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
 				FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
+				FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */,
 				F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */,
 				FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */,
 			);

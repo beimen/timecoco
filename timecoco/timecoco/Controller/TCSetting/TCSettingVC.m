@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.titleView = createTitleViewForTitle(@"设置", TC_RED_COLOR, 17);
     
 }
 

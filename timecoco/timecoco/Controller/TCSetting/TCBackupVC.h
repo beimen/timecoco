@@ -1,5 +1,5 @@
 //
-//  TCBackUpVC.h
+//  TCBackupVC.h
 //  timecoco
 //
 //  Created by Xie Hong on 4/2/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCBackUpVC : UIViewController
+@interface TCBackupVC : UIViewController
 
 @end

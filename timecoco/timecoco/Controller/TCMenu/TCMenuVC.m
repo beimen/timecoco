@@ -9,7 +9,7 @@
 #import "TCMenuVC.h"
 #import "TCHomepageVC.h"
 #import "TCTagpageVC.h"
-#import "TCBackUpVC.h"
+#import "TCSettingVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 
@@ -87,7 +87,7 @@
 }
 
 - (UIColor *)cellTextColorWithSection:(NSInteger)index {
-    NSArray *array = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCBackUpVC" ];
+    NSArray *array = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCSettingVC" ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
     NSString *classString = [array objectAtIndex:index];
     if ([topVC isKindOfClass:NSClassFromString(classString)]) {
@@ -107,7 +107,7 @@
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            TCBackUpVC *vc = [[TCBackUpVC alloc] init];
+            TCSettingVC *vc = [[TCSettingVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }

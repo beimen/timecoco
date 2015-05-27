@@ -229,8 +229,9 @@ static CGFloat cellFooterHeight = 10.0f;
         _dateLabel.textColor = TC_DARK_GRAY_COLOR;
         _dateLabel.backgroundColor = TC_CLEAR_COLOR;
         _dateLabel.numberOfLines = 0;
-        [self.navigationController.navigationBar addSubview:_dateLabel];
     }
+    //这里可能需要修改，可能目前这种处理不是太好
+    [self.navigationController.navigationBar addSubview:_dateLabel];
     return _dateLabel;
 }
 
@@ -280,10 +281,10 @@ static CGFloat cellFooterHeight = 10.0f;
 
     __weak TCHomepageVC *weakSelf = self;
     [cell setLongPressBlock:^(TCDairy *dairy) {
-        TCEditorVC *vc = [[TCEditorVC alloc] init];
-        vc.type = TCEditorVCTypeEdit;
-        vc.editDairy = dairy;
         if ([weakSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+            TCEditorVC *vc = [[TCEditorVC alloc] init];
+            vc.type = TCEditorVCTypeEdit;
+            vc.editDairy = dairy;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
     }];

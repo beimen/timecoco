@@ -370,14 +370,16 @@ static CGFloat cellFooterHeight = 10.0f;
     __weak TCHomepageVC *weakSelf = self;
     __block BOOL animated = [[dictionary objectForKey:@"animated"] boolValue];
     __block BOOL scrollEnabled = [[dictionary objectForKey:@"scrollEnabled"] boolValue];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [weakSelf updateDairyListDataAndIndex];
-        if ([weakSelf.dairyList count]) {
-            [weakSelf.tableView reloadData];
-            if (scrollEnabled) {
-                [weakSelf scrollToLastDairyWithAnimated:animated];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([weakSelf.dairyList count]) {
+                [weakSelf.tableView reloadData];
+                if (scrollEnabled) {
+                    [weakSelf scrollToLastDairyWithAnimated:animated];
+                }
             }
-        }
+        });
     });
 }
 

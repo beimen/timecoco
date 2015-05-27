@@ -10,4 +10,6 @@
 
 @interface TCHomepageVC : UIViewController
 
++ (instancetype)sharedVC;
+
 @end

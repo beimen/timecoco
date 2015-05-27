@@ -15,5 +15,6 @@
 #define T_WEEK          604800
 #define DB_FULL_NAME    @"timecoco.db"
 #define DB_VERSION      1
+#define HOMEPAGE_SINGLETON
 
 #endif

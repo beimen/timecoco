@@ -37,6 +37,15 @@ static CGFloat cellFooterHeight = 10.0f;
 
 @implementation TCHomepageVC
 
++ (instancetype)sharedVC {
+    static TCHomepageVC *shareVC;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shareVC = [[TCHomepageVC alloc] init];
+    });
+    return shareVC;
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {

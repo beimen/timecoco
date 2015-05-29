@@ -37,6 +37,15 @@ static CGFloat cellFooterHeight = 10.0f;
 
 @implementation TCHomepageVC
 
++ (instancetype)sharedVC {
+    static TCHomepageVC *shareVC;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shareVC = [[TCHomepageVC alloc] init];
+    });
+    return shareVC;
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -220,8 +229,9 @@ static CGFloat cellFooterHeight = 10.0f;
         _dateLabel.textColor = TC_DARK_GRAY_COLOR;
         _dateLabel.backgroundColor = TC_CLEAR_COLOR;
         _dateLabel.numberOfLines = 0;
-        [self.navigationController.navigationBar addSubview:_dateLabel];
     }
+    //这里可能需要修改，可能目前这种处理不是太好
+    [self.navigationController.navigationBar addSubview:_dateLabel];
     return _dateLabel;
 }
 
@@ -271,10 +281,10 @@ static CGFloat cellFooterHeight = 10.0f;
 
     __weak TCHomepageVC *weakSelf = self;
     [cell setLongPressBlock:^(TCDairy *dairy) {
-        TCEditorVC *vc = [[TCEditorVC alloc] init];
-        vc.type = TCEditorVCTypeEdit;
-        vc.editDairy = dairy;
         if ([weakSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+            TCEditorVC *vc = [[TCEditorVC alloc] init];
+            vc.type = TCEditorVCTypeEdit;
+            vc.editDairy = dairy;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
     }];
@@ -370,14 +380,16 @@ static CGFloat cellFooterHeight = 10.0f;
     __weak TCHomepageVC *weakSelf = self;
     __block BOOL animated = [[dictionary objectForKey:@"animated"] boolValue];
     __block BOOL scrollEnabled = [[dictionary objectForKey:@"scrollEnabled"] boolValue];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [weakSelf updateDairyListDataAndIndex];
-        if ([weakSelf.dairyList count]) {
-            [weakSelf.tableView reloadData];
-            if (scrollEnabled) {
-                [weakSelf scrollToLastDairyWithAnimated:animated];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([weakSelf.dairyList count]) {
+                [weakSelf.tableView reloadData];
+                if (scrollEnabled) {
+                    [weakSelf scrollToLastDairyWithAnimated:animated];
+                }
             }
-        }
+        });
     });
 }
 

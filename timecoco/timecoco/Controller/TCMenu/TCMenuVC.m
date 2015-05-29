@@ -101,7 +101,11 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+#ifdef HOMEPAGE_SINGLETON
+            TCHomepageVC *vc = [TCHomepageVC sharedVC];
+#else
             TCHomepageVC *vc = [[TCHomepageVC alloc] init];
+#endif
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }

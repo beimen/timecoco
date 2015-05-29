@@ -23,8 +23,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[TCHomepageVC alloc] init]];
+#ifdef HOMEPAGE_SINGLETON
+    TCHomepageVC *homepageVC = [TCHomepageVC sharedVC];
+#else
+    TCHomepageVC *homepageVC = [[TCHomepageVC alloc] init];
+#endif
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homepageVC];
     TCMenuVC *menuController = [[TCMenuVC alloc] initWithStyle:UITableViewStyleGrouped];
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;

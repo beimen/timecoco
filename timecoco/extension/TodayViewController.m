@@ -17,12 +17,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)updateUI {
+    self.preferredContentSize = CGSizeMake(self.view.frame.size.width, 80);
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
@@ -33,6 +37,10 @@
     // If there's an update, use NCUpdateResultNewData
 
     completionHandler(NCUpdateResultNewData);
+}
+
+- (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
+    return UIEdgeInsetsZero;
 }
 
 @end

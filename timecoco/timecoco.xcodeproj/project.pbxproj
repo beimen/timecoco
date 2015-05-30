@@ -36,6 +36,11 @@
 		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
 		FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */; };
+		FE8406DF1B19F26B009A9500 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8406DE1B19F26B009A9500 /* NotificationCenter.framework */; };
+		FE8406E51B19F26B009A9500 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8406E41B19F26B009A9500 /* TodayViewController.m */; };
+		FE8406E71B19F26B009A9500 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8406E61B19F26B009A9500 /* MainInterface.storyboard */; };
+		FE8406EA1B19F26B009A9500 /* extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE8406DD1B19F26B009A9500 /* extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FE8406F11B19F4A1009A9500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE8406F31B19F4A1009A9500 /* InfoPlist.strings */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
 		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
@@ -48,7 +53,28 @@
 			remoteGlobalIDString = F582192B1AAD48A800357355;
 			remoteInfo = timecoco;
 		};
+		FE8406E81B19F26B009A9500 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F58219241AAD48A800357355 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE8406DC1B19F26B009A9500;
+			remoteInfo = extension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FE8406EE1B19F26B009A9500 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FE8406EA1B19F26B009A9500 /* extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3610A7DA4701EFA8DA5BC08D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +140,16 @@
 		FE78B83E1AB57C750026241E /* TCDashLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDashLineView.m; sourceTree = "<group>"; };
 		FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DairyIndex.h"; sourceTree = "<group>"; };
 		FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DairyIndex.m"; sourceTree = "<group>"; };
+		FE8406DD1B19F26B009A9500 /* extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE8406DE1B19F26B009A9500 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		FE8406E21B19F26B009A9500 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE8406E31B19F26B009A9500 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		FE8406E41B19F26B009A9500 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		FE8406E61B19F26B009A9500 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		FE8406F21B19F4A1009A9500 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FE8406F51B19F4A9009A9500 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FE8406F61B19F4AA009A9500 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FE8406F71B19F4AB009A9500 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
 		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
@@ -136,6 +172,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE8406DA1B19F26B009A9500 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE8406DF1B19F26B009A9500 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -144,6 +188,7 @@
 			children = (
 				FEE35D221ABD004600317341 /* Accelerate.framework */,
 				3610A7DA4701EFA8DA5BC08D /* Pods.framework */,
+				FE8406DE1B19F26B009A9500 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,6 +207,7 @@
 			children = (
 				F582192E1AAD48A800357355 /* timecoco */,
 				F58219481AAD48A800357355 /* timecocoTests */,
+				FE8406E01B19F26B009A9500 /* extension */,
 				F582192D1AAD48A800357355 /* Products */,
 				58DC5CEC0E436CDE4FF6C657 /* Pods */,
 				3FC787C593D738AFCE54C5D9 /* Frameworks */,
@@ -173,6 +219,7 @@
 			children = (
 				F582192C1AAD48A800357355 /* timecoco.app */,
 				F58219451AAD48A800357355 /* timecocoTests.xctest */,
+				FE8406DD1B19F26B009A9500 /* extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -376,6 +423,26 @@
 			path = TCUtilityView;
 			sourceTree = "<group>";
 		};
+		FE8406E01B19F26B009A9500 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				FE8406E31B19F26B009A9500 /* TodayViewController.h */,
+				FE8406E41B19F26B009A9500 /* TodayViewController.m */,
+				FE8406E61B19F26B009A9500 /* MainInterface.storyboard */,
+				FE8406E11B19F26B009A9500 /* Supporting Files */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		FE8406E11B19F26B009A9500 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE8406E21B19F26B009A9500 /* Info.plist */,
+				FE8406F31B19F4A1009A9500 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -389,10 +456,12 @@
 				F582192A1AAD48A800357355 /* Resources */,
 				BA6BD14627D09E634A0D0589 /* Copy Pods Resources */,
 				328E54E9D3141BBB80D1634A /* Embed Pods Frameworks */,
+				FE8406EE1B19F26B009A9500 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FE8406E91B19F26B009A9500 /* PBXTargetDependency */,
 			);
 			name = timecoco;
 			productName = timecoco;
@@ -417,6 +486,23 @@
 			productReference = F58219451AAD48A800357355 /* timecocoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FE8406DC1B19F26B009A9500 /* extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE8406ED1B19F26B009A9500 /* Build configuration list for PBXNativeTarget "extension" */;
+			buildPhases = (
+				FE8406D91B19F26B009A9500 /* Sources */,
+				FE8406DA1B19F26B009A9500 /* Frameworks */,
+				FE8406DB1B19F26B009A9500 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = extension;
+			productName = extension;
+			productReference = FE8406DD1B19F26B009A9500 /* extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -428,10 +514,15 @@
 				TargetAttributes = {
 					F582192B1AAD48A800357355 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 5MZAKU9ACJ;
 					};
 					F58219441AAD48A800357355 = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = F582192B1AAD48A800357355;
+					};
+					FE8406DC1B19F26B009A9500 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 5MZAKU9ACJ;
 					};
 				};
 			};
@@ -453,6 +544,7 @@
 			targets = (
 				F582192B1AAD48A800357355 /* timecoco */,
 				F58219441AAD48A800357355 /* timecocoTests */,
+				FE8406DC1B19F26B009A9500 /* extension */,
 			);
 		};
 /* End PBXProject section */
@@ -473,6 +565,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE8406DB1B19F26B009A9500 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE8406E71B19F26B009A9500 /* MainInterface.storyboard in Resources */,
+				FE8406F11B19F4A1009A9500 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +667,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE8406D91B19F26B009A9500 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE8406E51B19F26B009A9500 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -573,6 +682,11 @@
 			isa = PBXTargetDependency;
 			target = F582192B1AAD48A800357355 /* timecoco */;
 			targetProxy = F58219461AAD48A800357355 /* PBXContainerItemProxy */;
+		};
+		FE8406E91B19F26B009A9500 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE8406DC1B19F26B009A9500 /* extension */;
+			targetProxy = FE8406E81B19F26B009A9500 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -592,6 +706,17 @@
 				FE4DB3341AC457210098156E /* zh-Hans */,
 				FE4DB3351AC4572D0098156E /* zh-Hant */,
 				FE4DB3361AC457370098156E /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FE8406F31B19F4A1009A9500 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE8406F21B19F4A1009A9500 /* Base */,
+				FE8406F51B19F4A9009A9500 /* zh-Hans */,
+				FE8406F61B19F4AA009A9500 /* zh-Hant */,
+				FE8406F71B19F4AB009A9500 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -636,6 +761,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "1ed58bbd-7a38-485b-b8b2-896cbe6bbc3e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -670,6 +796,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "1ed58bbd-7a38-485b-b8b2-896cbe6bbc3e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -681,11 +808,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "timecoco/timecoco-Prefix.pch";
 				INFOPLIST_FILE = timecoco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -695,11 +824,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "timecoco/timecoco-Prefix.pch";
 				INFOPLIST_FILE = timecoco/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -718,6 +849,7 @@
 				INFOPLIST_FILE = timecocoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/timecoco.app/timecoco";
 			};
 			name = Debug;
@@ -733,7 +865,45 @@
 				INFOPLIST_FILE = timecocoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/timecoco.app/timecoco";
+			};
+			name = Release;
+		};
+		FE8406EB1B19F26B009A9500 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = extension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FE8406EC1B19F26B009A9500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = extension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -766,6 +936,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FE8406ED1B19F26B009A9500 /* Build configuration list for PBXNativeTarget "extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE8406EB1B19F26B009A9500 /* Debug */,
+				FE8406EC1B19F26B009A9500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

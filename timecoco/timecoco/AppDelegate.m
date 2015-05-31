@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TCDatabaseManager.h"
 #import "TCHomepageVC.h"
+#import "TCEditorVC.h"
 #import "TCSettingVC.h"
 #import "TCMenuVC.h"
 #import "REFrostedViewController.h"
@@ -72,9 +73,21 @@
     if ([url.path isEqualToString:@"/add"]) {
         REFrostedViewController *frostedVC = (REFrostedViewController *)self.window.rootViewController;
         [frostedVC hideMenuViewController];
+        UIViewController *topVC = [(UINavigationController *)frostedVC.contentViewController topViewController];
 #ifdef HOMEPAGE_SINGLETON
-        [[TCHomepageVC sharedVC] addAction:nil];
+        TCHomepageVC *homepageVC = [TCHomepageVC sharedVC];
+#else
+        TCHomepageVC *homepageVC = [[TCHomepageVC alloc] init];
 #endif
+        if ([topVC isKindOfClass:[TCHomepageVC class]]) {
+            [(TCHomepageVC *)topVC addAction:nil];
+        } else if ([topVC isKindOfClass:[TCEditorVC class]]) {
+        } else {
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homepageVC];
+            frostedVC.contentViewController = navigationController;
+            [homepageVC performSelector:@selector(addAction:) withObject:nil afterDelay:0.5];
+        }
+
     }
     return YES;
 }

@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [_addButton setTitle:@"添加记录" forState:UIControlStateNormal];
+    [_addButton setTitle:@"+ 添加记录" forState:UIControlStateNormal];
     [_addButton setTitleColor:TC_RED_COLOR forState:UIControlStateNormal];
     [_addButton addTarget:self action:@selector(jumpToAdd:) forControlEvents:UIControlEventTouchUpInside];
     

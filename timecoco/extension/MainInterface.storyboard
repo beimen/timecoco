@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -17,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTB-bx-IRb">
-                                <rect key="frame" x="137" y="10" width="46" height="30"/>
+                                <rect key="frame" x="228" y="10" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="OTB-bx-IRb" secondAttribute="centerX" id="MDA-Np-kTs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OTB-bx-IRb" secondAttribute="trailing" constant="30" id="MwN-9r-Hxl"/>
                             <constraint firstAttribute="centerY" secondItem="OTB-bx-IRb" secondAttribute="centerY" id="rbA-Ax-hSq"/>
                         </constraints>
                     </view>
@@ -34,6 +35,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="50"/>
+                    <connections>
+                        <outlet property="addButton" destination="OTB-bx-IRb" id="xt7-OR-TFi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

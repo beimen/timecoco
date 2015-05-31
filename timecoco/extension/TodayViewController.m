@@ -7,16 +7,27 @@
 //
 
 #import "TodayViewController.h"
+#import "TCColorManager.h"
+#import "UIImage+Extensions.h"
 #import <NotificationCenter/NotificationCenter.h>
 
 @interface TodayViewController () <NCWidgetProviding>
+
+@property (nonatomic, weak) IBOutlet UIButton *addButton;
 
 @end
 
 @implementation TodayViewController
 
+#pragma mark - Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [_addButton setTitle:@"添加记录" forState:UIControlStateNormal];
+    [_addButton setTitleColor:TC_RED_COLOR forState:UIControlStateNormal];
+    [_addButton addTarget:self action:@selector(jumpToAdd:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self updateUI];
 }
 
@@ -26,7 +37,14 @@
 }
 
 - (void)updateUI {
-    self.preferredContentSize = CGSizeMake(self.view.frame.size.width, 80);
+    self.preferredContentSize = CGSizeMake(self.view.frame.size.width, 50);
+}
+
+#pragma mark - Button Action
+
+- (void)jumpToAdd:(UIButton *)sender {
+    NSURL *url = [NSURL URLWithString:@"timecoco://add"];
+    [self.extensionContext openURL:url completionHandler:nil];
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {

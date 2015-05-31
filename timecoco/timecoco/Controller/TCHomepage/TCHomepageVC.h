@@ -12,4 +12,6 @@
 
 + (instancetype)sharedVC;
 
+- (void)addAction:(UIBarButtonItem *)sender;
+
 @end

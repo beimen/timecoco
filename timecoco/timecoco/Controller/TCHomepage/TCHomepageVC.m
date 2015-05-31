@@ -29,7 +29,6 @@ static CGFloat cellFooterHeight = 10.0f;
 @property (nonatomic, assign) NSInteger yearNowValue;
 @property (nonatomic, assign) NSUInteger firstDiffIndex;
 @property (nonatomic, strong) UILabel *introLabel;
-@property (nonatomic, assign) BOOL didAppear;
 @property (nonatomic, strong) NSString *navigationDateString;
 @property (nonatomic, strong) UILabel *dateLabel;
 
@@ -50,7 +49,6 @@ static CGFloat cellFooterHeight = 10.0f;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.firstAppear = YES;
-        self.didAppear = NO;
     }
     return self;
 }
@@ -86,12 +84,15 @@ static CGFloat cellFooterHeight = 10.0f;
         [self initDairyList];
         self.firstAppear = NO;
     }
-    
-    [self.dateLabel setHidden:NO];
-    if (self.dateLabel.alpha != 1.0f) {
-        [self labelFadeIn];
+
+    if ([self.dairyList count]) {
+        [self.dateLabel setHidden:NO];
+        if (self.dateLabel.alpha != 1.0f) {
+            [self labelFadeIn];
+        }
     }
-    self.didAppear = YES;
+    
+    self.introLabel.hidden = [self.dairyList count];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -102,13 +103,6 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    if (self.didAppear) {
-        if ([self.dairyList count] == 0) {
-            self.introLabel.hidden = NO;
-        } else {
-            self.introLabel.hidden = YES;
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -380,16 +374,14 @@ static CGFloat cellFooterHeight = 10.0f;
     __weak TCHomepageVC *weakSelf = self;
     __block BOOL animated = [[dictionary objectForKey:@"animated"] boolValue];
     __block BOOL scrollEnabled = [[dictionary objectForKey:@"scrollEnabled"] boolValue];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf updateDairyListDataAndIndex];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ([weakSelf.dairyList count]) {
-                [weakSelf.tableView reloadData];
-                if (scrollEnabled) {
-                    [weakSelf scrollToLastDairyWithAnimated:animated];
-                }
+        [weakSelf.tableView reloadData];
+        if ([weakSelf.dairyList count]) {
+            if (scrollEnabled) {
+                [weakSelf scrollToLastDairyWithAnimated:animated];
             }
-        });
+        }
     });
 }
 

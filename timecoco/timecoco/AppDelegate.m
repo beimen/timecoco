@@ -68,6 +68,17 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([url.path isEqualToString:@"/add"]) {
+        REFrostedViewController *frostedVC = (REFrostedViewController *)self.window.rootViewController;
+        [frostedVC hideMenuViewController];
+#ifdef HOMEPAGE_SINGLETON
+        [[TCHomepageVC sharedVC] addAction:nil];
+#endif
+    }
+    return YES;
+}
+
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
     if ([[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCHomepageVC class]] ||
         [[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCSettingVC class]]) {

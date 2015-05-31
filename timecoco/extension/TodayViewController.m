@@ -43,7 +43,7 @@
 #pragma mark - Button Action
 
 - (void)jumpToAdd:(UIButton *)sender {
-    NSURL *url = [NSURL URLWithString:@"timecoco://add"];
+    NSURL *url = [NSURL URLWithString:@"timecoco://www.timecoco.com/add"];
     [self.extensionContext openURL:url completionHandler:nil];
 }
 

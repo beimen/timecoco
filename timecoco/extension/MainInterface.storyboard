@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQK-tV-y76">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTB-bx-IRb">
                                 <rect key="frame" x="228" y="10" width="46" height="30"/>
                                 <state key="normal" title="Button">
@@ -25,7 +29,11 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="OTB-bx-IRb" secondAttribute="trailing" constant="30" id="MwN-9r-Hxl"/>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="hQK-tV-y76" secondAttribute="bottom" id="0pl-w9-PMQ"/>
+                            <constraint firstItem="hQK-tV-y76" firstAttribute="trailing" secondItem="OTB-bx-IRb" secondAttribute="trailing" constant="46" id="6QP-ul-tRt"/>
+                            <constraint firstItem="hQK-tV-y76" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-16" id="XsX-CW-3b4"/>
+                            <constraint firstItem="hQK-tV-y76" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="ZJV-mc-mkX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hQK-tV-y76" secondAttribute="trailing" constant="-16" id="bSe-2B-nWW"/>
                             <constraint firstAttribute="centerY" secondItem="OTB-bx-IRb" secondAttribute="centerY" id="rbA-Ax-hSq"/>
                         </constraints>
                     </view>
@@ -41,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="284.5"/>
+            <point key="canvasLocation" x="516" y="284"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

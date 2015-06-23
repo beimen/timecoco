@@ -457,6 +457,7 @@
 				BA6BD14627D09E634A0D0589 /* Copy Pods Resources */,
 				328E54E9D3141BBB80D1634A /* Embed Pods Frameworks */,
 				FE8406EE1B19F26B009A9500 /* Embed App Extensions */,
+				FED6DA0C1B39B4D90015A5F4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -624,6 +625,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FED6DA0C1B39B4D90015A5F4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nshortVersion=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n\nbuildNumber=`date +\"%m%d\"`\nbuildNumber=\"$shortVersion.$buildNumber\"\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -944,6 +958,7 @@
 				FE8406EC1B19F26B009A9500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

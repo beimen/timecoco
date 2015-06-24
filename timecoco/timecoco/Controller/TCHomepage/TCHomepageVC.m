@@ -360,14 +360,19 @@ static CGFloat cellFooterHeight = 10.0f;
                                   animated:NO];
 }
 
+- (void)scrollToLastDairy {
+    [self scrollToLastDairyWithAnimated:YES];
+}
+
 - (void)updateDairyListDataAndIndex {
     self.dairyList = [self getDairyListData];
     self.dairyListDateIndex = [self generateDateIndex];
 }
 
 - (void)initDairyList {
-    NSDictionary *dic = @{@"animated":@(NO),@"scrollEnabled":@(YES)};
-    [self updateDairyListWithDictionary:dic];
+    [self updateDairyListDataAndIndex];
+    [self.tableView reloadData];
+    [self scrollToLastDairyWithAnimated:NO];
 }
 
 - (void)updateDairyListWithDictionary:(NSDictionary *)dictionary {
@@ -379,7 +384,11 @@ static CGFloat cellFooterHeight = 10.0f;
         [weakSelf.tableView reloadData];
         if ([weakSelf.dairyList count]) {
             if (scrollEnabled) {
-                [weakSelf scrollToLastDairyWithAnimated:animated];
+                if (animated) {
+                    [weakSelf performSelector:@selector(scrollToLastDairy) withObject:nil afterDelay:0.5f];
+                } else {
+                    [weakSelf scrollToLastDairyWithAnimated:NO];
+                }
             }
         }
     });

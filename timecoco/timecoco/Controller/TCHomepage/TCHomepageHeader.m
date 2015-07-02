@@ -74,8 +74,8 @@
     if (_timeLabel == nil) {
         self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 12, SCREEN_WIDTH - 50, 12)];
         _timeLabel.font = [UIFont boldSystemFontOfSize:12];
-
-        [self.contentView addSubview:_timeLabel];
+        _timeLabel.backgroundColor = TC_TABLE_BACK_COLOR;
+        _timeLabel.clipsToBounds = YES;
     }
     return _timeLabel;
 }
@@ -111,6 +111,8 @@
     if (showTimeZone) {
         self.timeLabel.text = [self.timeLabel.text stringByAppendingFormat:@"   %@",[NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval].name];
     }
+    [self.timeLabel sizeToFit];
+    [self.contentView addSubview:self.timeLabel];
 }
 
 @end

@@ -71,7 +71,7 @@ static CGFloat cellFooterHeight = 10.0f;
     [self.tableView registerClass:[TCHomepageHeader class] forHeaderFooterViewReuseIdentifier:CellHeaderIdentifier];
     [self.tableView registerClass:[TCHomepageFooter class] forHeaderFooterViewReuseIdentifier:CellFooterIdentifier];
     [self.view addSubview:self.tableView];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDairyListWithNotification:) name:NOTIFICATION_ADD_DAIRY_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDairyListWithNotification:) name:NOTIFICATION_REMOVE_DAIRY_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDairyListWithNotification:) name:NOTIFICATION_REPLACE_DAIRY_SUCCESS object:nil];
@@ -91,7 +91,7 @@ static CGFloat cellFooterHeight = 10.0f;
             [self labelFadeIn];
         }
     }
-    
+
     self.introLabel.hidden = [self.dairyList count];
 }
 
@@ -133,7 +133,7 @@ static CGFloat cellFooterHeight = 10.0f;
             self.dateLabel.text = @"本月";
             [self labelFadeOut];
         } else {
-            self.dateLabel.text = [NSString stringWithFormat:@"%@月",detectionDateComponets[1]];
+            self.dateLabel.text = [NSString stringWithFormat:@"%@月", detectionDateComponets[1]];
             if (self.dateLabel.alpha == 0) {
                 [self labelFadeIn];
             } else {
@@ -141,7 +141,7 @@ static CGFloat cellFooterHeight = 10.0f;
             }
         }
     } else {
-        self.dateLabel.text = [NSString stringWithFormat:@"%@\n%@月",detectionDateComponets[0],detectionDateComponets[1]];
+        self.dateLabel.text = [NSString stringWithFormat:@"%@\n%@月", detectionDateComponets[0], detectionDateComponets[1]];
     }
 }
 
@@ -231,7 +231,7 @@ static CGFloat cellFooterHeight = 10.0f;
 
 #pragma mark - Getter
 
--  (NSInteger)yearNowValue {
+- (NSInteger)yearNowValue {
     return [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
 }
 
@@ -326,7 +326,7 @@ static CGFloat cellFooterHeight = 10.0f;
                                        options:NSStringDrawingUsesLineFragmentOrigin
                                     attributes:attrs
                                        context:nil];
-    return ((rect.size.height > 65.0f) ? (int) rect.size.height / 5 * 5 + 15 : 65) + 10;
+    return ((rect.size.height > 63.0f) ? (int) rect.size.height / 5 * 5 + 13 : 63) + 12;
 }
 
 #pragma mark - UIScrollView Delegate
@@ -347,10 +347,12 @@ static CGFloat cellFooterHeight = 10.0f;
 #pragma mark - Other Method
 
 - (void)scrollToLastDairyWithAnimated:(BOOL)animated {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.dairyListDateIndex lastObject] integerValue] - 1
-                                                              inSection:self.dairyListDateIndex.count - 1]
-                          atScrollPosition:UITableViewScrollPositionBottom
-                                  animated:animated];
+    if ([self.dairyListDateIndex count]) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.dairyListDateIndex lastObject] integerValue] - 1
+                                                                  inSection:self.dairyListDateIndex.count - 1]
+                              atScrollPosition:UITableViewScrollPositionBottom
+                                      animated:animated];
+    }
 }
 
 - (void)scrollToDairy:(NSUInteger)sectionIndex {

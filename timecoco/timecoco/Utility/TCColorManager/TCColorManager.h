@@ -14,6 +14,7 @@
 #define TC_GRAY_COLOR       UIColorFromRGB(0x808080)
 #define TC_RED_COLOR        UIColorFromRGB(0xc13630)
 #define TC_BACK_COLOR       UIColorFromRGB(0xf9f6f3)
+#define TC_TABLE_BACK_COLOR TC_BACK_COLOR
 #define TC_WHITE_COLOR      UIColorFromRGB(0xffffff)
 #define TC_DARK_GRAY_COLOR  UIColorFromRGB(0x404040)
 #define TC_LIGHT_GRAY_COLOR UIColorFromRGB(0xc0c0c0)

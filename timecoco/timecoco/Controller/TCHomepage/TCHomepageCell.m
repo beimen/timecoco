@@ -27,8 +27,8 @@
 //@synthesize cellType = _cellType;
 
 - (void)awakeFromNib {
-    self.contentView.backgroundColor = TC_CLEAR_COLOR;
-    self.backgroundColor = TC_CLEAR_COLOR;
+    self.contentView.backgroundColor = TC_TABLE_BACK_COLOR;
+    self.backgroundColor = TC_TABLE_BACK_COLOR;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -49,8 +49,8 @@
     self.frameBorder.height = self.contentView.height;
     self.frameBorder.lineColor = _dashLine.lineColor;
 
-    self.contentLabel.height = self.contentView.height - 10;
-    self.contentButton.height = self.contentLabel.height - 2;
+    self.contentLabel.height = self.contentView.height - 12;
+    self.contentButton.height = self.contentLabel.height;
 
     self.hourLabel.height = self.contentView.height;
     self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
@@ -69,7 +69,7 @@
 //
 //    [self setNeedsLayout];
 //}
-
+//
 //- (TCHomepageCellType)cellType {
 //    if (_cellType == 0) {
 //        self.cellType = TCHomepageCellTypeDefault;
@@ -99,10 +99,11 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 65, self.contentView.height - 10)];
+        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
         _contentLabel.textColor = TC_TEXT_COLOR;
         _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.numberOfLines = 0;
+        _contentLabel.backgroundColor = TC_WHITE_COLOR;
 
         [self.frameBorder addSubview:_contentLabel];
     }
@@ -116,6 +117,7 @@
         _hourLabel.textAlignment = NSTextAlignmentRight;
         _hourLabel.font = [UIFont systemFontOfSize:10];
         _hourLabel.userInteractionEnabled = YES;
+        _hourLabel.backgroundColor = TC_TABLE_BACK_COLOR;
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMinuteLabel)];
         [_hourLabel addGestureRecognizer:singleTap];
 
@@ -131,6 +133,7 @@
         _minuteLabel.textAlignment = NSTextAlignmentLeft;
         _minuteLabel.font = [UIFont systemFontOfSize:7];
         _minuteLabel.alpha = 0.0f;
+        _minuteLabel.backgroundColor = TC_TABLE_BACK_COLOR;
 
         [self.contentView addSubview:_minuteLabel];
     }

@@ -13,7 +13,7 @@
 @synthesize lineColor = _lineColor;
 
 - (void)awakeFromNib {
-    self.backgroundColor = TC_CLEAR_COLOR;
+    self.backgroundColor = TC_TABLE_BACK_COLOR;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

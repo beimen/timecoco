@@ -104,6 +104,7 @@
         _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.numberOfLines = 0;
         _contentLabel.backgroundColor = TC_WHITE_COLOR;
+        _contentLabel.clipsToBounds = YES;
 
         [self.frameBorder addSubview:_contentLabel];
     }
@@ -128,7 +129,7 @@
 
 - (UILabel *)minuteLabel {
     if (_minuteLabel == nil) {
-        self.minuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 20, self.contentView.height)];
+        self.minuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 10, self.contentView.height)];
         _minuteLabel.textColor = TC_TEXT_COLOR;
         _minuteLabel.textAlignment = NSTextAlignmentLeft;
         _minuteLabel.font = [UIFont systemFontOfSize:7];

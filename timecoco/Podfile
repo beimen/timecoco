@@ -5,3 +5,4 @@ use_frameworks!
 pod 'FMDB'
 pod 'REFrostedViewController', '~> 2.4.7'
 pod 'CHCSVParser'
+pod 'TTTAttributedLabel'

@@ -318,6 +318,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (CGFloat)cellHeightWithContent:(NSString *)string {
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:18.0f];
     NSDictionary *attrs = @{
         NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
         NSParagraphStyleAttributeName : style

@@ -108,7 +108,9 @@
         _contentLabel.backgroundColor = TC_WHITE_COLOR;
         _contentLabel.clipsToBounds = YES;
         _contentLabel.extendsLinkTouchArea = NO;
-        _contentLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+//        _contentLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+        _contentLabel.maximumLineHeight = 18.0f;
+        _contentLabel.lineSpacing = 0.0f;
         _contentLabel.delegate = self;
         NSMutableDictionary* linkAttributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.linkAttributes];
         [linkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];

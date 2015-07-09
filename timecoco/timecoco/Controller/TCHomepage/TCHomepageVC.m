@@ -319,7 +319,7 @@ static CGFloat cellFooterHeight = 10.0f;
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     NSDictionary *attrs = @{
-        NSFontAttributeName : [UIFont systemFontOfSize:15],
+        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
         NSParagraphStyleAttributeName : style
     };
     CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)

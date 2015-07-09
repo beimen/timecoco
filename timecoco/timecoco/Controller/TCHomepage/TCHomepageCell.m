@@ -9,14 +9,15 @@
 #import "TCHomepageCell.h"
 #import "TCDashLineView.h"
 #import "TCFrameBorderView.h"
+#import "TTTAttributedLabel.h"
 
-@interface TCHomepageCell ()
+@interface TCHomepageCell () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, assign) TCHomepageCellType cellType;
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) UILabel *hourLabel;
-@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) TTTAttributedLabel *contentLabel;
 @property (nonatomic, strong) UIButton *contentButton;
 @property (nonatomic, strong) UILabel *minuteLabel;
 
@@ -51,6 +52,7 @@
 
     self.contentLabel.height = self.contentView.height - 12;
     self.contentButton.height = self.contentLabel.height;
+    [self.frameBorder bringSubviewToFront:self.contentLabel];
 
     self.hourLabel.height = self.contentView.height;
     self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
@@ -97,14 +99,25 @@
     return _frameBorder;
 }
 
-- (UILabel *)contentLabel {
+- (TTTAttributedLabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
+        self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
         _contentLabel.textColor = TC_TEXT_COLOR;
-        _contentLabel.font = [UIFont systemFontOfSize:15];
+        _contentLabel.font = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15];
         _contentLabel.numberOfLines = 0;
         _contentLabel.backgroundColor = TC_WHITE_COLOR;
         _contentLabel.clipsToBounds = YES;
+        _contentLabel.extendsLinkTouchArea = NO;
+        _contentLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+        _contentLabel.delegate = self;
+        NSMutableDictionary* linkAttributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.linkAttributes];
+        [linkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];
+        [linkAttributes setObject:(__bridge id)TC_RED_COLOR.CGColor forKey:(NSString *)kCTForegroundColorAttributeName];
+        _contentLabel.linkAttributes = linkAttributes;
+        NSMutableDictionary* attributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.activeLinkAttributes];
+        [attributes setObject:(__bridge id)[UIColor grayColor].CGColor forKey:(NSString *)kTTTBackgroundFillColorAttributeName];
+        [attributes setObject:(__bridge id)TC_RED_COLOR.CGColor forKey:(NSString *)kCTForegroundColorAttributeName];
+        _contentLabel.activeLinkAttributes = attributes;
 
         [self.frameBorder addSubview:_contentLabel];
     }
@@ -160,8 +173,30 @@
 
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
+    
+    [self.contentLabel setText:dairy.content afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+         //设置可点击文字的范围
+         NSRange range = [[mutableAttributedString string] rangeOfString:@"#猫咪计划#" options:NSCaseInsensitiveSearch];
+        
+         //设定可点击文字的的大小
+         UIFont *targetFont = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15];
+         
+         CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)targetFont.fontName, targetFont.pointSize, NULL);
+         
+         if (font) {
+             //设置可点击文本的大小
+             [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:range];
 
-    self.contentLabel.text = dairy.content;
+             //设置可点击文本的颜色
+             [mutableAttributedString addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor blueColor] CGColor] range:range];
+             
+             CFRelease(font);
+         }
+         return mutableAttributedString;}];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/"]];
+    NSRange range = [dairy.content rangeOfString:@"#猫咪计划#" options:NSCaseInsensitiveSearch];
+    [self.contentLabel addLinkToURL:url withRange:range];
+
     if (dairy.type == TCDairyTypeNormal) {
         self.hourLabel.text = [NSString stringWithFormat:@"%ld", (long) [dairy getHourValue]];
     } else {

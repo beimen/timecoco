@@ -17,6 +17,7 @@
 		F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC9B1ABBBFBE0062167C /* TCEditorOptionView.m */; };
 		F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */; };
 		F5D78D021B132B240006BA8A /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D78D011B132B240006BA8A /* UIView+Frame.m */; };
+		F5DA7F9A1B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */; };
 		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
 		FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
@@ -98,6 +99,7 @@
 		F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCDairy+Manager.m"; sourceTree = "<group>"; };
 		F5D78D001B132B240006BA8A /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		F5D78D011B132B240006BA8A /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKsc-DemiLight.otf"; sourceTree = "<group>"; };
 		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
 		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
 		FE0387BB1ABE65F1007A3831 /* TCMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMenuVC.h; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		F582192E1AAD48A800357355 /* timecoco */ = {
 			isa = PBXGroup;
 			children = (
+				F5DA7F981B4E61980052F724 /* Resource */,
 				FE78B8361AB577AE0026241E /* Model */,
 				FE1E783E1AB54814000157B6 /* Utility */,
 				FE1478491AB486A5007C8395 /* Controller */,
@@ -274,6 +277,14 @@
 				F5D78D011B132B240006BA8A /* UIView+Frame.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F5DA7F981B4E61980052F724 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		FE0387BA1ABE658A007A3831 /* TCMenu */ = {
@@ -555,6 +566,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5DA7F9A1B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf in Resources */,
 				F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */,
 				FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */,
 				F582193D1AAD48A800357355 /* Images.xcassets in Resources */,
@@ -775,7 +787,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1ed58bbd-7a38-485b-b8b2-896cbe6bbc3e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -810,7 +822,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1ed58bbd-7a38-485b-b8b2-896cbe6bbc3e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

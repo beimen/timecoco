@@ -284,6 +284,10 @@ static CGFloat cellFooterHeight = 10.0f;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
     }];
+    [cell setTapTagBlock:^(NSString *tag) {
+        assert(tag.length);
+        NSLog(@"%@",tag);
+    }];
 
     return cell;
 }
@@ -320,9 +324,9 @@ static CGFloat cellFooterHeight = 10.0f;
 - (CGFloat)cellHeightWithContent:(NSString *)string {
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
-    [style setMaximumLineHeight:18.0f];
+    [style setMaximumLineHeight:19.0f];
     NSDictionary *attrs = @{
-        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:14],
+        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
         NSParagraphStyleAttributeName : style
     };
     CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)

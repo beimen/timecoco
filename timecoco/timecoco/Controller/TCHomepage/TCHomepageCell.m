@@ -103,14 +103,14 @@
     if (_contentLabel == nil) {
         self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
         _contentLabel.textColor = TC_TEXT_COLOR;
-        _contentLabel.font = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:14];
+        _contentLabel.font = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15];
         _contentLabel.numberOfLines = 0;
         _contentLabel.backgroundColor = TC_WHITE_COLOR;
         _contentLabel.clipsToBounds = YES;
 
         _contentLabel.extendsLinkTouchArea = NO;
-        _contentLabel.maximumLineHeight = 18.0f;
-        _contentLabel.minimumLineHeight = 18.0f;
+        _contentLabel.maximumLineHeight = 19.0f;
+        _contentLabel.minimumLineHeight = 19.0f;
         _contentLabel.lineSpacing = 0.0f;
         _contentLabel.delegate = self;
 
@@ -121,6 +121,7 @@
         NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.activeLinkAttributes];
         [attributes setObject:(__bridge id) TC_LIGHT_GRAY_COLOR.CGColor forKey:(NSString *) kTTTBackgroundFillColorAttributeName];
         [attributes setObject:(__bridge id) TC_RED_COLOR.CGColor forKey:(NSString *) kCTForegroundColorAttributeName];
+        [attributes setObject:[NSNumber numberWithDouble:2.0f] forKey:(NSString *) kTTTBackgroundCornerRadiusAttributeName];
         _contentLabel.activeLinkAttributes = attributes;
 
         [self.frameBorder addSubview:_contentLabel];
@@ -197,7 +198,7 @@
             [self.contentLabel setText:text
                 afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
                     //设定可点击文字的的大小
-                    UIFont *targetFont = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:14];
+                    UIFont *targetFont = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15];
                     CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) targetFont.fontName, targetFont.pointSize, NULL);
                     if (font) {
                         //设置可点击文本的大小
@@ -247,8 +248,10 @@
 #pragma mark - TTTAttributedLabelDelegate Methods
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithTextCheckingResult:(NSTextCheckingResult *)result {
-    NSString *tag = [self.dairy.content substringWithRange:NSMakeRange(result.range.location + 1, result.range.length - 2)];
-    NSLog(@"%@",tag);
+    NSString *tag = [self.dairy.content substringWithRange:result.range];
+    if (self.tapTagBlock) {
+        self.tapTagBlock(tag);
+    }
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didLongPressLinkWithTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {

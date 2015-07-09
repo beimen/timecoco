@@ -65,6 +65,8 @@ static CGFloat cellFooterHeight = 10.0f;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollsToTop = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
+    self.tableView.delaysContentTouches = YES;
+    self.tableView.canCancelContentTouches = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
@@ -320,7 +322,7 @@ static CGFloat cellFooterHeight = 10.0f;
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:18.0f];
     NSDictionary *attrs = @{
-        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
+        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:14],
         NSParagraphStyleAttributeName : style
     };
     CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)

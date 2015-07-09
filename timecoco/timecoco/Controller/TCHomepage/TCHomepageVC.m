@@ -275,13 +275,14 @@ static CGFloat cellFooterHeight = 10.0f;
 
     cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
-    __weak TCHomepageVC *weakSelf = self;
+    __weak typeof(TCHomepageVC) *weakSelf = self;
     [cell setLongPressBlock:^(TCDairy *dairy) {
-        if ([weakSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+        __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
+        if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
             TCEditorVC *vc = [[TCEditorVC alloc] init];
             vc.type = TCEditorVCTypeEdit;
             vc.editDairy = dairy;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            [strongSelf.navigationController pushViewController:vc animated:YES];
         }
     }];
     [cell setTapTagBlock:^(NSString *tag) {

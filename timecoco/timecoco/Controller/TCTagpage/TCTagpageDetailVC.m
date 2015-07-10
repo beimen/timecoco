@@ -7,6 +7,9 @@
 //
 
 #import "TCTagpageDetailVC.h"
+#import "TCHomepageCell.h"
+#import "TCHomepageHeader.h"
+#import "TCHomepageFooter.h"
 #import "NSDateFormatter+Custom.h"
 
 #define CellIdentifier (@"TCTagpageDetailCell")
@@ -31,5 +34,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark 
 
 @end

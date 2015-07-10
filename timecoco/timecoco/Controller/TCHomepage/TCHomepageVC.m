@@ -288,6 +288,8 @@ static CGFloat cellFooterHeight = 10.0f;
     [cell setTapTagBlock:^(NSString *tag) {
         assert(tag.length);
         NSLog(@"%@",tag);
+        NSArray *array = [TCDatabaseManager dairyListWithTag:tag];
+        NSLog(@"%@",array);
     }];
 
     return cell;

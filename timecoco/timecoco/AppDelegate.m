@@ -71,30 +71,30 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     if ([url.path isEqualToString:@"/add"]) {
-        REFrostedViewController *frostedVC = (REFrostedViewController *)self.window.rootViewController;
+        REFrostedViewController *frostedVC = (REFrostedViewController *) self.window.rootViewController;
         [frostedVC hideMenuViewController];
-        UIViewController *topVC = [(UINavigationController *)frostedVC.contentViewController topViewController];
+        UIViewController *topVC = [(UINavigationController *) frostedVC.contentViewController topViewController];
 #ifdef HOMEPAGE_SINGLETON
         TCHomepageVC *homepageVC = [TCHomepageVC sharedVC];
 #else
         TCHomepageVC *homepageVC = [[TCHomepageVC alloc] init];
 #endif
         if ([topVC isKindOfClass:[TCHomepageVC class]]) {
-            [(TCHomepageVC *)topVC addAction:nil];
+            [(TCHomepageVC *) topVC addAction:nil];
         } else if ([topVC isKindOfClass:[TCEditorVC class]]) {
         } else {
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homepageVC];
             frostedVC.contentViewController = navigationController;
             [homepageVC performSelector:@selector(addAction:) withObject:nil afterDelay:0.5];
         }
-
     }
     return YES;
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
-    if ([[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCHomepageVC class]] ||
-        [[(UINavigationController *) self.frostedViewController.contentViewController topViewController] isKindOfClass:[TCSettingVC class]]) {
+    NSArray *targetClassArray = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCSettingVC" ];
+    UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
+    if ([targetClassArray containsObject:NSStringFromClass([topVC class])]) {
         [self.frostedViewController panGestureRecognized:recognizer];
     }
 }

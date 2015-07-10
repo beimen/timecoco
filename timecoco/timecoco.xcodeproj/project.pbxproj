@@ -17,6 +17,7 @@
 		F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAEC9B1ABBBFBE0062167C /* TCEditorOptionView.m */; };
 		F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */; };
 		F5D78D021B132B240006BA8A /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D78D011B132B240006BA8A /* UIView+Frame.m */; };
+		F5DA7F9A1B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */; };
 		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
 		FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
@@ -41,6 +42,7 @@
 		FE8406E71B19F26B009A9500 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8406E61B19F26B009A9500 /* MainInterface.storyboard */; };
 		FE8406EA1B19F26B009A9500 /* extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE8406DD1B19F26B009A9500 /* extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE8406F11B19F4A1009A9500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE8406F31B19F4A1009A9500 /* InfoPlist.strings */; };
+		FEB41DF91B5015A7000C30A5 /* TCTagpageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB41DF81B5015A7000C30A5 /* TCTagpageDetailVC.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
 		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,7 @@
 		F5D78CFD1B1328BD0006BA8A /* TCDairy+Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCDairy+Manager.m"; sourceTree = "<group>"; };
 		F5D78D001B132B240006BA8A /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		F5D78D011B132B240006BA8A /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKsc-DemiLight.otf"; sourceTree = "<group>"; };
 		F5E895BC1AB6C41000862723 /* TCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtility.h; sourceTree = "<group>"; };
 		F5E895BD1AB6C41000862723 /* TCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtility.m; sourceTree = "<group>"; };
 		FE0387BB1ABE65F1007A3831 /* TCMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMenuVC.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 		FE8406F51B19F4A9009A9500 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE8406F61B19F4AA009A9500 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE8406F71B19F4AB009A9500 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FEB41DF71B5015A7000C30A5 /* TCTagpageDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagpageDetailVC.h; sourceTree = "<group>"; };
+		FEB41DF81B5015A7000C30A5 /* TCTagpageDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagpageDetailVC.m; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
 		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
@@ -227,6 +232,7 @@
 		F582192E1AAD48A800357355 /* timecoco */ = {
 			isa = PBXGroup;
 			children = (
+				F5DA7F981B4E61980052F724 /* Resource */,
 				FE78B8361AB577AE0026241E /* Model */,
 				FE1E783E1AB54814000157B6 /* Utility */,
 				FE1478491AB486A5007C8395 /* Controller */,
@@ -274,6 +280,14 @@
 				F5D78D011B132B240006BA8A /* UIView+Frame.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F5DA7F981B4E61980052F724 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		FE0387BA1ABE658A007A3831 /* TCMenu */ = {
@@ -371,6 +385,8 @@
 			children = (
 				FE36DCBB1B0CDFAC00F65F2E /* TCTagpageVC.h */,
 				FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */,
+				FEB41DF71B5015A7000C30A5 /* TCTagpageDetailVC.h */,
+				FEB41DF81B5015A7000C30A5 /* TCTagpageDetailVC.m */,
 			);
 			path = TCTagpage;
 			sourceTree = "<group>";
@@ -555,6 +571,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5DA7F9A1B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf in Resources */,
 				F58219401AAD48A800357355 /* LaunchScreen.xib in Resources */,
 				FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */,
 				F582193D1AAD48A800357355 /* Images.xcassets in Resources */,
@@ -668,6 +685,7 @@
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
 				FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */,
+				FEB41DF91B5015A7000C30A5 /* TCTagpageDetailVC.m in Sources */,
 				F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */,
 				FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */,
 			);
@@ -775,7 +793,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1ed58bbd-7a38-485b-b8b2-896cbe6bbc3e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -810,7 +828,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1ed58bbd-7a38-485b-b8b2-896cbe6bbc3e";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

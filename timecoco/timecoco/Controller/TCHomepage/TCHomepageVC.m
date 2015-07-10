@@ -11,6 +11,7 @@
 #import "TCHomepageHeader.h"
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
+#import "TCTagpageDetailVC.h"
 #import "NSDateFormatter+Custom.h"
 
 #define CellIdentifier (@"TCHomepgeCell")
@@ -45,12 +46,24 @@ static CGFloat cellFooterHeight = 10.0f;
     return shareVC;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.firstAppear = YES;
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    self.firstAppear = YES;
 }
 
 - (void)viewDidLoad {
@@ -65,6 +78,8 @@ static CGFloat cellFooterHeight = 10.0f;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollsToTop = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
+    self.tableView.delaysContentTouches = YES;
+    self.tableView.canCancelContentTouches = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
@@ -273,14 +288,21 @@ static CGFloat cellFooterHeight = 10.0f;
 
     cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
-    __weak TCHomepageVC *weakSelf = self;
+    __weak typeof(TCHomepageVC) *weakSelf = self;
     [cell setLongPressBlock:^(TCDairy *dairy) {
-        if ([weakSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+        __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
+        if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
             TCEditorVC *vc = [[TCEditorVC alloc] init];
             vc.type = TCEditorVCTypeEdit;
             vc.editDairy = dairy;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            [strongSelf.navigationController pushViewController:vc animated:YES];
         }
+    }];
+    [cell setTapTagBlock:^(NSString *tag) {
+        assert(tag.length);
+        NSLog(@"%@",tag);
+        NSArray *array = [TCDatabaseManager dairyListWithTag:tag];
+        NSLog(@"%@",array);
     }];
 
     return cell;
@@ -318,8 +340,9 @@ static CGFloat cellFooterHeight = 10.0f;
 - (CGFloat)cellHeightWithContent:(NSString *)string {
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:19.0f];
     NSDictionary *attrs = @{
-        NSFontAttributeName : [UIFont systemFontOfSize:15],
+        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
         NSParagraphStyleAttributeName : style
     };
     CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)

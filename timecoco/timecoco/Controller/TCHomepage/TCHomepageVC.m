@@ -28,7 +28,6 @@ static CGFloat cellFooterHeight = 10.0f;
 @property (nonatomic, strong) NSMutableArray *dairyList;
 @property (nonatomic, strong) NSArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
-@property (nonatomic, assign) NSUInteger firstDiffIndex;
 @property (nonatomic, strong) UILabel *introLabel;
 @property (nonatomic, strong) NSString *navigationDateString;
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -38,12 +37,12 @@ static CGFloat cellFooterHeight = 10.0f;
 @implementation TCHomepageVC
 
 + (instancetype)sharedVC {
-    static TCHomepageVC *shareVC;
+    static TCHomepageVC *sharedVC;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shareVC = [[TCHomepageVC alloc] init];
+        sharedVC = [[TCHomepageVC alloc] init];
     });
-    return shareVC;
+    return sharedVC;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {

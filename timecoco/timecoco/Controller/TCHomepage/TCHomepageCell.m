@@ -258,4 +258,21 @@
 - (void)attributedLabel:(TTTAttributedLabel *)label didLongPressLinkWithTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
 }
 
+#pragma mark - Class Method
+
++ (CGFloat)cellHeightWithDairy:(TCDairy *)dairy {
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:19.0f];
+    NSDictionary *attrs = @{
+                            NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
+                            NSParagraphStyleAttributeName : style
+                            };
+    CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attrs
+                                              context:nil];
+    return ((rect.size.height > 63.0f) ? (int) rect.size.height / 5 * 5 + 13 : 63) + 12;
+}
+
 @end

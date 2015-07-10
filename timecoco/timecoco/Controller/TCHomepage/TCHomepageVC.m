@@ -12,6 +12,7 @@
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
 #import "TCTagpageDetailVC.h"
+#import "TCDairyManager.h"
 #import "NSDateFormatter+Custom.h"
 
 #define CellIdentifier (@"TCHomepgeCell")
@@ -25,9 +26,8 @@ static CGFloat cellFooterHeight = 10.0f;
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dairyList;
-@property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
+@property (nonatomic, strong) NSArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
-@property (nonatomic, assign) NSInteger yearNowValue;
 @property (nonatomic, assign) NSUInteger firstDiffIndex;
 @property (nonatomic, strong) UILabel *introLabel;
 @property (nonatomic, strong) NSString *navigationDateString;
@@ -185,34 +185,8 @@ static CGFloat cellFooterHeight = 10.0f;
     return [NSMutableArray arrayWithArray:[TCDatabaseManager storedDairyList]];
 }
 
-- (NSMutableArray *)generateDateIndex {
-    NSMutableArray *dateIndex = [NSMutableArray new];
-    __block NSInteger lastDate = 0;
-    __block NSInteger lastTimeZoneInterval = 0;
-    [self.dairyList enumerateObjectsUsingBlock:^(TCDairy *dairy, NSUInteger idx, BOOL *stop) {
-        NSInteger date = (NSInteger)(dairy.pointTime + dairy.timeZoneInterval) / T_DAY;
-        if ([dateIndex lastObject] && (date == lastDate) && (lastTimeZoneInterval == dairy.timeZoneInterval)) {
-            int lastDateCount = [[dateIndex lastObject] intValue];
-            [dateIndex replaceObjectAtIndex:(dateIndex.count - 1) withObject:[NSNumber numberWithInteger:(lastDateCount + 1)]];
-        } else {
-            [dateIndex addObject:[NSNumber numberWithInteger:1]];
-            lastDate = date;
-            lastTimeZoneInterval = dairy.timeZoneInterval;
-        }
-    }];
-    return dateIndex;
-}
-
 - (NSInteger)getDairySumBeforeSection:(NSUInteger)section {
-    __block NSInteger count = 0;
-    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
-        if (idx < section) {
-            count += [num integerValue];
-        } else {
-            *stop = YES;
-        }
-    }];
-    return count;
+    return [TCDairyManager getDairySumBeforeSection:section withDateIndex:self.dairyListDateIndex];
 }
 
 #pragma mark - Lazy Loading
@@ -244,13 +218,7 @@ static CGFloat cellFooterHeight = 10.0f;
     return _dateLabel;
 }
 
-#pragma mark - Getter
-
-- (NSInteger)yearNowValue {
-    return [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
-}
-
-#pragma mark - Setter
+#pragma mark - Setter & Getter
 
 - (void)setNavigationDateString:(NSString *)navigationDateString {
     if (![_navigationDateString isEqualToString:navigationDateString]) {
@@ -272,7 +240,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
-    return [self cellHeightWithContent:dairy.content];
+    return [TCHomepageCell cellHeightWithDairy:dairy];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -317,7 +285,7 @@ static CGFloat cellFooterHeight = 10.0f;
         header.lastDairy = nil;
     }
 
-    header.yearNowValue = self.yearNowValue;
+    header.yearNowValue = [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
 
     return header;
@@ -333,23 +301,6 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - Cell Height
-
-- (CGFloat)cellHeightWithContent:(NSString *)string {
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    [style setMaximumLineHeight:19.0f];
-    NSDictionary *attrs = @{
-        NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
-        NSParagraphStyleAttributeName : style
-    };
-    CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)
-                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                    attributes:attrs
-                                       context:nil];
-    return ((rect.size.height > 63.0f) ? (int) rect.size.height / 5 * 5 + 13 : 63) + 12;
 }
 
 #pragma mark - UIScrollView Delegate
@@ -391,7 +342,7 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)updateDairyListDataAndIndex {
     self.dairyList = [self getDairyListData];
-    self.dairyListDateIndex = [self generateDateIndex];
+    self.dairyListDateIndex = [TCDairyManager generateDateIndexFromDairyList:self.dairyList];
 }
 
 - (void)initDairyList {

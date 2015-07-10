@@ -23,4 +23,6 @@ typedef enum {
 @property (nonatomic, copy) void (^longPressBlock)(TCDairy *dairy);
 @property (nonatomic, copy) void (^tapTagBlock)(NSString *tag);
 
++ (CGFloat)cellHeightWithDairy:(TCDairy *)dairy;
+
 @end

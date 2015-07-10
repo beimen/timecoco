@@ -42,6 +42,7 @@
 		FE8406E71B19F26B009A9500 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE8406E61B19F26B009A9500 /* MainInterface.storyboard */; };
 		FE8406EA1B19F26B009A9500 /* extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE8406DD1B19F26B009A9500 /* extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE8406F11B19F4A1009A9500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE8406F31B19F4A1009A9500 /* InfoPlist.strings */; };
+		FEB41DF91B5015A7000C30A5 /* TCTagpageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB41DF81B5015A7000C30A5 /* TCTagpageDetailVC.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
 		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
@@ -152,6 +153,8 @@
 		FE8406F51B19F4A9009A9500 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE8406F61B19F4AA009A9500 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE8406F71B19F4AB009A9500 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FEB41DF71B5015A7000C30A5 /* TCTagpageDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagpageDetailVC.h; sourceTree = "<group>"; };
+		FEB41DF81B5015A7000C30A5 /* TCTagpageDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagpageDetailVC.m; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
 		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
@@ -382,6 +385,8 @@
 			children = (
 				FE36DCBB1B0CDFAC00F65F2E /* TCTagpageVC.h */,
 				FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */,
+				FEB41DF71B5015A7000C30A5 /* TCTagpageDetailVC.h */,
+				FEB41DF81B5015A7000C30A5 /* TCTagpageDetailVC.m */,
 			);
 			path = TCTagpage;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,
 				F58219321AAD48A800357355 /* main.m in Sources */,
 				FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */,
+				FEB41DF91B5015A7000C30A5 /* TCTagpageDetailVC.m in Sources */,
 				F5D78CFE1B1328BD0006BA8A /* TCDairy+Manager.m in Sources */,
 				FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */,
 			);

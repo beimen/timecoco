@@ -11,6 +11,7 @@
 #import "TCHomepageHeader.h"
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
+#import "TCTagpageDetailVC.h"
 #import "NSDateFormatter+Custom.h"
 
 #define CellIdentifier (@"TCHomepgeCell")

@@ -110,7 +110,7 @@ static CGFloat cellFooterHeight = 10.0f;
         header.lastDairy = nil;
     }
 
-    if (self.dateType == TCDairyTableDateTypeAtLeastShowMonth) {
+    if (self.tableOption | TCDairyTableOptionShowMonth) {
         header.showMonth = YES;
     }
 

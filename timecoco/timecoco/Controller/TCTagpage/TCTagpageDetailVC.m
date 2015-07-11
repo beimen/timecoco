@@ -25,7 +25,7 @@
                                                                                    Target:self
                                                                                  Selector:@selector(backAction:)];
     self.tableView = [[TCDairyTable alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.tableView.dateType = TCDairyTableDateTypeAtLeastShowMonth;
+    self.tableView.tableOption = TCDairyTableOptionShowMonth;
 
     __weak typeof(TCTagpageDetailVC) *weakSelf = self;
     [self.tableView setTapTagBlock:^(NSString *tag) {

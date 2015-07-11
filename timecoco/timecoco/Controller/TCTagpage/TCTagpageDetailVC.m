@@ -11,6 +11,7 @@
 #import "NSDateFormatter+Custom.h"
 #import "SVProgressHUD.h"
 #import "DHSmartScreenshot.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface TCTagpageDetailVC ()
 
@@ -53,8 +54,32 @@
 }
 
 - (void)screenShotAction:(UIBarButtonItem *)sender {
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+
+    if (author == ALAuthorizationStatusRestricted || author == ALAuthorizationStatusDenied) {
+        [self showNeedsAlbumAuthorizationAlert];
+    } else {
+        [self showSaveScreenShotAlert];
+    }
+}
+
+- (void)showNeedsAlbumAuthorizationAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"保存图片需要相册的授权"
+                                                                   message:@"请进入“设置”->“隐私”->“相册”中开启授权。"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action){
+                                                          }];
+
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showSaveScreenShotAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"这个步骤可能需要一些时间"
-                                                                   message:@"确定要生成图片并保存到相册吗？"
+                                                                   message:@"确定要生成图片，并保存到相册吗？"
                                                             preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"

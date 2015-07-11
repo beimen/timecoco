@@ -69,8 +69,8 @@ static CGFloat cellFooterHeight = 10.0f;
     [super viewDidLoad];
     self.view.backgroundColor = TC_RED_COLOR;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
-                                                                                    Target:self
-                                                                                  Selector:@selector(addAction:)];
+                                                                                    target:self
+                                                                                  selector:@selector(addAction:)];
 
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

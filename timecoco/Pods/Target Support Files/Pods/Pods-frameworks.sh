@@ -49,6 +49,7 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'CHCSVParser.framework'
+  install_framework 'DHSmartScreenshot.framework'
   install_framework 'FMDB.framework'
   install_framework 'REFrostedViewController.framework'
   install_framework 'SVProgressHUD.framework'
@@ -56,6 +57,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'CHCSVParser.framework'
+  install_framework 'DHSmartScreenshot.framework'
   install_framework 'FMDB.framework'
   install_framework 'REFrostedViewController.framework'
   install_framework 'SVProgressHUD.framework'

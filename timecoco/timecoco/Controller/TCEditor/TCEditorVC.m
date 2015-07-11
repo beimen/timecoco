@@ -23,12 +23,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = TC_BACK_COLOR;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_back"]
-                                                                                   Target:self
-                                                                                 Selector:@selector(backAction:)];
+                                                                                   target:self
+                                                                                 selector:@selector(backAction:)];
     self.navigationItem.rightBarButtonItems = @[ [UIBarButtonItem createBarButtonItemWithImages:@[ [UIImage imageNamed:@"button_confirm"],
                                                                                                    [UIImage imageNamed:@"button_confirm_disable"] ]
-                                                                                         Target:self
-                                                                                       Selector:@selector(confirmAction:)] ];
+                                                                                         target:self
+                                                                                       selector:@selector(confirmAction:)] ];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self setupUI];
     self.textView.delegate = self;
@@ -78,10 +78,12 @@
                                                                        message:@"当前有内容，是否确定退出？"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
 
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                               style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action){
                                                              }];
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认"
+                                                                style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction *action) {
                                                                   [self.navigationController popToRootViewControllerAnimated:YES];
                                                               }];
@@ -104,10 +106,12 @@
                                                                            message:@"当前没有任何有效内容，是要删除该记录吗？"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
 
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                   style:UIAlertActionStyleCancel
                                                                  handler:^(UIAlertAction *action){
                                                                  }];
-            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认"
+                                                                    style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction *action) {
                                                                       [self removeDairy];
                                                                   }];
@@ -120,10 +124,12 @@
                                                                            message:@"确定要这么编辑吗？"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
 
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                                   style:UIAlertActionStyleCancel
                                                                  handler:^(UIAlertAction *action){
                                                                  }];
-            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认"
+                                                                    style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction *action) {
                                                                       [self replaceDairy];
                                                                   }];
@@ -175,7 +181,8 @@
                                                                        message:@"字数不能超过1000个字。"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
 
-        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认"
+                                                                style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction *action){
                                                               }];
 

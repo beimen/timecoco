@@ -7,21 +7,13 @@
 //
 
 #import "TCTagpageDetailVC.h"
-#import "TCHomepageCell.h"
-#import "TCHomepageHeader.h"
-#import "TCHomepageFooter.h"
+#import "TCDairyTable.h"
 #import "NSDateFormatter+Custom.h"
 
-#define CellIdentifier (@"TCTagpageDetailCell")
-#define CellHeaderIdentifier (@"TCTagpageDetailHeader")
-#define CellFooterIdentifier (@"TCTagpageDetailFooter")
+@interface TCTagpageDetailVC ()
 
-static CGFloat cellHeaderHeight = 30.0f;
-static CGFloat cellFooterHeight = 10.0f;
-
-@interface TCTagpageDetailVC () <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) TCDairyTable *tableView;
+@property (nonatomic, strong) NSMutableArray *dairyList;
 
 @end
 
@@ -29,12 +21,37 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_back"]
+                                                                                   Target:self
+                                                                                 Selector:@selector(backAction:)];
+    self.tableView = [[TCDairyTable alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [self.tableView setDairyList:self.dairyList];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark 
+- (void)dealloc {
+    NSLog(@"TCTagpageDetailVC deallocated.");
+}
+
+- (void)backAction:(UIBarButtonItem *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+#pragma mark - Setter & Getter
+
+- (void)setDairyList:(NSMutableArray *)dairyList {
+    _dairyList = dairyList;
+}
+
+- (void)setSearchedTag:(NSString *)searchedTag {
+    _searchedTag = searchedTag;
+    self.navigationItem.titleView = createTitleViewForTitle(searchedTag, TC_RED_COLOR, 17);
+    NSArray *array = [TCDatabaseManager dairyListWithTag:searchedTag];
+    [self setDairyList:[array mutableCopy]];
+}
 
 @end

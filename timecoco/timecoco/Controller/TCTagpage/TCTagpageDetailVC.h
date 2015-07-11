@@ -11,6 +11,5 @@
 @interface TCTagpageDetailVC : UIViewController
 
 @property (nonatomic, strong) NSString *searchedTag;
-@property (nonatomic, strong) NSMutableArray *dairyList;
 
 @end

@@ -25,6 +25,7 @@
 		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
 		FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */; };
 		FE1E78471AB54814000157B6 /* TCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78441AB54814000157B6 /* TCColorManager.m */; };
+		FE1F48DC1B50BD6C002F7CE4 /* TCDairyTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1F48DB1B50BD6C002F7CE4 /* TCDairyTable.m */; };
 		FE2EEA891B0E12660037C924 /* UIBarButtonItem+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2EEA881B0E12660037C924 /* UIBarButtonItem+Custom.m */; };
 		FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2EEA8B1B0E2B000037C924 /* NSDateFormatter+Custom.m */; };
 		FE36DCBD1B0CDFAC00F65F2E /* TCTagpageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */; };
@@ -118,6 +119,8 @@
 		FE1E783C1AB53FA5000157B6 /* TCEditorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditorVC.m; sourceTree = "<group>"; };
 		FE1E78431AB54814000157B6 /* TCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColorManager.h; sourceTree = "<group>"; };
 		FE1E78441AB54814000157B6 /* TCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColorManager.m; sourceTree = "<group>"; };
+		FE1F48DA1B50BD6C002F7CE4 /* TCDairyTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairyTable.h; sourceTree = "<group>"; };
+		FE1F48DB1B50BD6C002F7CE4 /* TCDairyTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDairyTable.m; sourceTree = "<group>"; };
 		FE2EEA871B0E12660037C924 /* UIBarButtonItem+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Custom.h"; sourceTree = "<group>"; };
 		FE2EEA881B0E12660037C924 /* UIBarButtonItem+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Custom.m"; sourceTree = "<group>"; };
 		FE2EEA8A1B0E2B000037C924 /* NSDateFormatter+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Custom.h"; sourceTree = "<group>"; };
@@ -366,6 +369,7 @@
 				F5E895BD1AB6C41000862723 /* TCUtility.m */,
 				FE03F6071AB9CC8800597FAA /* TCNotification.h */,
 				FE03F6081AB9CCB800597FAA /* TCConstant.h */,
+				FE1F48D91B50BD3C002F7CE4 /* TCDairyTable */,
 				FE0387BE1ABEB71E007A3831 /* TCCategory */,
 				FE1E78421AB54814000157B6 /* TCColorManager */,
 				FE62CDCD1B50275100099CD3 /* TCDairyManager */,
@@ -382,6 +386,15 @@
 				FE1E78441AB54814000157B6 /* TCColorManager.m */,
 			);
 			path = TCColorManager;
+			sourceTree = "<group>";
+		};
+		FE1F48D91B50BD3C002F7CE4 /* TCDairyTable */ = {
+			isa = PBXGroup;
+			children = (
+				FE1F48DA1B50BD6C002F7CE4 /* TCDairyTable.h */,
+				FE1F48DB1B50BD6C002F7CE4 /* TCDairyTable.m */,
+			);
+			path = TCDairyTable;
 			sourceTree = "<group>";
 		};
 		FE36DCBA1B0CDF8500F65F2E /* TCTagpage */ = {
@@ -684,6 +697,7 @@
 				FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */,
 				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
 				F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */,
+				FE1F48DC1B50BD6C002F7CE4 /* TCDairyTable.m in Sources */,
 				FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */,
 				FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */,
 				FE62CDD01B50276A00099CD3 /* TCDairyManager.m in Sources */,

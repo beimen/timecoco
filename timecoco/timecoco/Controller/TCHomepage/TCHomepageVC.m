@@ -267,9 +267,9 @@ static CGFloat cellFooterHeight = 10.0f;
     }];
     [cell setTapTagBlock:^(NSString *tag) {
         assert(tag.length);
-        NSLog(@"%@",tag);
-        NSArray *array = [TCDatabaseManager dairyListWithTag:tag];
-        NSLog(@"%@",array);
+        TCTagpageDetailVC *vc = [[TCTagpageDetailVC alloc] init];
+        vc.searchedTag = tag;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
 
     return cell;
@@ -299,7 +299,6 @@ static CGFloat cellFooterHeight = 10.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - UIScrollView Delegate

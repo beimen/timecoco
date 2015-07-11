@@ -63,7 +63,7 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@"TCEditor dealloated.");
+    NSLog(@"TCEditorVC deallocated.");
 }
 
 - (void)didReceiveMemoryWarning {

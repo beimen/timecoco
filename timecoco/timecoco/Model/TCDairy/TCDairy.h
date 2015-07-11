@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, TCDairyType) {
     TCDairyTypeNormal = 0,
     TCDairyTypeAllDay,
 
-    TCDairyTypeDefault = TCDairyTypeNormal
-} TCDairyType;
+    TCDairyTypeDefault = TCDairyTypeNormal,
+};
 
 @interface TCDairy : NSObject
 

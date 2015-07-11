@@ -9,14 +9,15 @@
 #import "TCHomepageCell.h"
 #import "TCDashLineView.h"
 #import "TCFrameBorderView.h"
+#import "TTTAttributedLabel.h"
 
-@interface TCHomepageCell ()
+@interface TCHomepageCell () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, assign) TCHomepageCellType cellType;
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) UILabel *hourLabel;
-@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) TTTAttributedLabel *contentLabel;
 @property (nonatomic, strong) UIButton *contentButton;
 @property (nonatomic, strong) UILabel *minuteLabel;
 
@@ -51,6 +52,7 @@
 
     self.contentLabel.height = self.contentView.height - 12;
     self.contentButton.height = self.contentLabel.height;
+    [self.frameBorder bringSubviewToFront:self.contentLabel];
 
     self.hourLabel.height = self.contentView.height;
     self.hourLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
@@ -97,14 +99,30 @@
     return _frameBorder;
 }
 
-- (UILabel *)contentLabel {
+- (TTTAttributedLabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
+        self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
         _contentLabel.textColor = TC_TEXT_COLOR;
-        _contentLabel.font = [UIFont systemFontOfSize:15];
+        _contentLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
         _contentLabel.numberOfLines = 0;
         _contentLabel.backgroundColor = TC_WHITE_COLOR;
         _contentLabel.clipsToBounds = YES;
+
+        _contentLabel.extendsLinkTouchArea = NO;
+        _contentLabel.maximumLineHeight = 19.0f;
+        _contentLabel.minimumLineHeight = 19.0f;
+        _contentLabel.lineSpacing = 0.0f;
+        _contentLabel.delegate = self;
+
+        NSMutableDictionary *linkAttributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.linkAttributes];
+        [linkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *) kCTUnderlineStyleAttributeName];
+        [linkAttributes setObject:(__bridge id) TC_RED_COLOR.CGColor forKey:(NSString *) kCTForegroundColorAttributeName];
+        _contentLabel.linkAttributes = linkAttributes;
+        NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.activeLinkAttributes];
+        [attributes setObject:(__bridge id) TC_LIGHT_GRAY_COLOR.CGColor forKey:(NSString *) kTTTBackgroundFillColorAttributeName];
+        [attributes setObject:(__bridge id) TC_RED_COLOR.CGColor forKey:(NSString *) kCTForegroundColorAttributeName];
+        [attributes setObject:[NSNumber numberWithDouble:2.0f] forKey:(NSString *) kTTTBackgroundCornerRadiusAttributeName];
+        _contentLabel.activeLinkAttributes = attributes;
 
         [self.frameBorder addSubview:_contentLabel];
     }
@@ -161,7 +179,8 @@
 - (void)setDairy:(TCDairy *)dairy {
     _dairy = dairy;
 
-    self.contentLabel.text = dairy.content;
+    [self setupContentText:dairy.content];
+
     if (dairy.type == TCDairyTypeNormal) {
         self.hourLabel.text = [NSString stringWithFormat:@"%ld", (long) [dairy getHourValue]];
     } else {
@@ -169,6 +188,34 @@
     }
 
     self.cellType = [dairy estimateWeekend] ? TCHomepageCellTypeWeekend : TCHomepageCellTypeWorkday;
+}
+
+- (void)setupContentText:(NSString *)text {
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(#\\w+#)" options:0 error:nil];
+    NSArray *matches = [regex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
+    if ([matches count]) {
+        [self.contentLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+            [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
+                //设定可点击文字的的大小
+                UIFont *targetFont = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
+                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) targetFont.fontName, targetFont.pointSize, NULL);
+                if (font) {
+                    //设置可点击文本的大小
+                    [mutableAttributedString addAttribute:(NSString *) kCTFontAttributeName value:(__bridge id) font range:match.range];
+                    //设置可点击文本的颜色
+                    [mutableAttributedString addAttribute:(NSString *) kCTForegroundColorAttributeName value:(id)[[UIColor blueColor] CGColor] range:match.range];
+                    
+                    CFRelease(font);
+                }
+            }];
+            return mutableAttributedString;
+        }];
+        [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
+            [self.contentLabel addLinkWithTextCheckingResult:match];
+        }];
+    } else {
+        [self.contentLabel setText:text];
+    }
 }
 
 - (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
@@ -182,15 +229,50 @@
         NSString *minuteLabelText = [NSString stringWithFormat:@"%ld", (long) [self.dairy getMinuteValue]];
         self.minuteLabel.text = (minuteLabelText.length == 1) ? [NSString stringWithFormat:@"0%@", minuteLabelText] : minuteLabelText;
         self.minuteLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
-        [UIView animateWithDuration:1.0f animations:^{
-            self.minuteLabel.alpha = 1.0f;
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1.0f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-                self.minuteLabel.alpha = 0.0f;
-            } completion:^(BOOL finished) {
-            }];
-        }];
+        [UIView animateWithDuration:1.0f
+                         animations:^{
+                             self.minuteLabel.alpha = 1.0f;
+                         }
+                         completion:^(BOOL finished) {
+                             [UIView animateWithDuration:1.0f
+                                                   delay:0.0f
+                                                 options:UIViewAnimationOptionCurveLinear
+                                              animations:^{
+                                                  self.minuteLabel.alpha = 0.0f;
+                                              }
+                                              completion:^(BOOL finished){
+                                              }];
+                         }];
     }
+}
+
+#pragma mark - TTTAttributedLabelDelegate Methods
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithTextCheckingResult:(NSTextCheckingResult *)result {
+    NSString *tag = [self.dairy.content substringWithRange:result.range];
+    if (self.tapTagBlock) {
+        self.tapTagBlock(tag);
+    }
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didLongPressLinkWithTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
+}
+
+#pragma mark - Class Method
+
++ (CGFloat)cellHeightWithDairy:(TCDairy *)dairy {
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:19.0f];
+    NSDictionary *attrs = @{
+                            NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
+                            NSParagraphStyleAttributeName : style
+                            };
+    CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attrs
+                                              context:nil];
+    return ((rect.size.height > 63.0f) ? (int) rect.size.height / 5 * 5 + 13 : 63) + 12;
 }
 
 @end

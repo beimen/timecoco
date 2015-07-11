@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, TCHomepageFooterType) {
     TCHomepageFooterTypeWorkday = 1,
     TCHomepageFooterTypeWeekend,
     TCHomepageFooterTypeHoliday,
 
-    TCHomepageFooterTypeDefault = TCHomepageFooterTypeWorkday
-} TCHomepageFooterType;
+    TCHomepageFooterTypeDefault = TCHomepageFooterTypeWorkday,
+};
 
 @interface TCHomepageFooter : UITableViewHeaderFooterView
 

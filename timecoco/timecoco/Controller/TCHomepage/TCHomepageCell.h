@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "TCDairy.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, TCHomepageCellType) {
     TCHomepageCellTypeWorkday = 1,
     TCHomepageCellTypeWeekend,
     TCHomepageCellTypeHoliday,
 
-    TCHomepageCellTypeDefault = TCHomepageCellTypeWorkday
-} TCHomepageCellType;
+    TCHomepageCellTypeDefault = TCHomepageCellTypeWorkday,
+};
 
 @interface TCHomepageCell : UITableViewCell
 
 @property (nonatomic, copy) TCDairy *dairy;
 @property (nonatomic, copy) void (^longPressBlock)(TCDairy *dairy);
+@property (nonatomic, copy) void (^tapTagBlock)(NSString *tag);
+
++ (CGFloat)cellHeightWithDairy:(TCDairy *)dairy;
 
 @end

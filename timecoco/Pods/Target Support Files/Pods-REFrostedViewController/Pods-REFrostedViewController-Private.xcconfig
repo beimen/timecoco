@@ -2,7 +2,7 @@
 CONFIGURATION_BUILD_DIR = $PODS_FRAMEWORK_BUILD_PATH
 FRAMEWORK_SEARCH_PATHS = "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/REFrostedViewController" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CHCSVParser" "${PODS_ROOT}/Headers/Public/FMDB" "${PODS_ROOT}/Headers/Public/REFrostedViewController"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/REFrostedViewController" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CHCSVParser" "${PODS_ROOT}/Headers/Public/DHSmartScreenshot" "${PODS_ROOT}/Headers/Public/FMDB" "${PODS_ROOT}/Headers/Public/REFrostedViewController" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/TTTAttributedLabel"
 OTHER_LDFLAGS = ${PODS_REFROSTEDVIEWCONTROLLER_OTHER_LDFLAGS} -ObjC
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
 PODS_ROOT = ${SRCROOT}

@@ -11,6 +11,8 @@
 #import "TCHomepageHeader.h"
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
+#import "TCSpecifiedDataVC.h"
+#import "TCDairyManager.h"
 #import "NSDateFormatter+Custom.h"
 
 #define CellIdentifier (@"TCHomepgeCell")
@@ -24,10 +26,8 @@ static CGFloat cellFooterHeight = 10.0f;
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dairyList;
-@property (nonatomic, copy) NSMutableArray *dairyListDateIndex;
+@property (nonatomic, strong) NSArray *dairyListDateIndex;
 @property (nonatomic, assign) BOOL firstAppear;
-@property (nonatomic, assign) NSInteger yearNowValue;
-@property (nonatomic, assign) NSUInteger firstDiffIndex;
 @property (nonatomic, strong) UILabel *introLabel;
 @property (nonatomic, strong) NSString *navigationDateString;
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -37,34 +37,48 @@ static CGFloat cellFooterHeight = 10.0f;
 @implementation TCHomepageVC
 
 + (instancetype)sharedVC {
-    static TCHomepageVC *shareVC;
+    static TCHomepageVC *sharedVC;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shareVC = [[TCHomepageVC alloc] init];
+        sharedVC = [[TCHomepageVC alloc] init];
     });
-    return shareVC;
+    return sharedVC;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.firstAppear = YES;
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    self.firstAppear = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = TC_RED_COLOR;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
-                                                                                    Target:self
-                                                                                  Selector:@selector(addAction:)];
+                                                                                    target:self
+                                                                                  selector:@selector(addAction:)];
 
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.scrollsToTop = NO;
     self.tableView.backgroundColor = TC_BACK_COLOR;
+    self.tableView.delaysContentTouches = YES;
+    self.tableView.canCancelContentTouches = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[TCHomepageCell class] forCellReuseIdentifier:CellIdentifier];
@@ -147,20 +161,28 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)labelFadeIn {
     [self.dateLabel setAlpha:0.0f];
-    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        self.dateLabel.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        [self labelFadeOut];
-    }];
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.dateLabel.alpha = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         [self labelFadeOut];
+                     }];
 }
 
 - (void)labelFadeOut {
     if ([self.dateLabel.text isEqualToString:@"本月"]) {
         [self.dateLabel setAlpha:1.0f];
-        [UIView animateWithDuration:0.5f delay:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
-            self.dateLabel.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-        }];
+        [UIView animateWithDuration:0.5f
+                              delay:1.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.dateLabel.alpha = 0.0f;
+                         }
+                         completion:^(BOOL finished){
+                         }];
     }
 }
 
@@ -170,34 +192,8 @@ static CGFloat cellFooterHeight = 10.0f;
     return [NSMutableArray arrayWithArray:[TCDatabaseManager storedDairyList]];
 }
 
-- (NSMutableArray *)generateDateIndex {
-    NSMutableArray *dateIndex = [NSMutableArray new];
-    __block NSInteger lastDate = 0;
-    __block NSInteger lastTimeZoneInterval = 0;
-    [self.dairyList enumerateObjectsUsingBlock:^(TCDairy *dairy, NSUInteger idx, BOOL *stop) {
-        NSInteger date = (NSInteger)(dairy.pointTime + dairy.timeZoneInterval) / T_DAY;
-        if ([dateIndex lastObject] && (date == lastDate) && (lastTimeZoneInterval == dairy.timeZoneInterval)) {
-            int lastDateCount = [[dateIndex lastObject] intValue];
-            [dateIndex replaceObjectAtIndex:(dateIndex.count - 1) withObject:[NSNumber numberWithInteger:(lastDateCount + 1)]];
-        } else {
-            [dateIndex addObject:[NSNumber numberWithInteger:1]];
-            lastDate = date;
-            lastTimeZoneInterval = dairy.timeZoneInterval;
-        }
-    }];
-    return dateIndex;
-}
-
 - (NSInteger)getDairySumBeforeSection:(NSUInteger)section {
-    __block NSInteger count = 0;
-    [self.dairyListDateIndex enumerateObjectsUsingBlock:^(NSNumber *num, NSUInteger idx, BOOL *stop) {
-        if (idx < section) {
-            count += [num integerValue];
-        } else {
-            *stop = YES;
-        }
-    }];
-    return count;
+    return [TCDairyManager getDairySumBeforeSection:section withDateIndex:self.dairyListDateIndex];
 }
 
 #pragma mark - Lazy Loading
@@ -229,13 +225,7 @@ static CGFloat cellFooterHeight = 10.0f;
     return _dateLabel;
 }
 
-#pragma mark - Getter
-
-- (NSInteger)yearNowValue {
-    return [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
-}
-
-#pragma mark - Setter
+#pragma mark - Setter & Getter
 
 - (void)setNavigationDateString:(NSString *)navigationDateString {
     if (![_navigationDateString isEqualToString:navigationDateString]) {
@@ -257,7 +247,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
-    return [self cellHeightWithContent:dairy.content];
+    return [TCHomepageCell cellHeightWithDairy:dairy];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -273,14 +263,21 @@ static CGFloat cellFooterHeight = 10.0f;
 
     cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
-    __weak TCHomepageVC *weakSelf = self;
+    __weak typeof(TCHomepageVC) *weakSelf = self;
     [cell setLongPressBlock:^(TCDairy *dairy) {
-        if ([weakSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+        __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
+        if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
             TCEditorVC *vc = [[TCEditorVC alloc] init];
             vc.type = TCEditorVCTypeEdit;
             vc.editDairy = dairy;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            [strongSelf.navigationController pushViewController:vc animated:YES];
         }
+    }];
+    [cell setTapTagBlock:^(NSString *tag) {
+        assert(tag.length);
+        TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
+        vc.searchedTag = tag;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
 
     return cell;
@@ -295,8 +292,17 @@ static CGFloat cellFooterHeight = 10.0f;
         header.lastDairy = nil;
     }
 
-    header.yearNowValue = self.yearNowValue;
+    header.yearNowValue = [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
+    __weak typeof(TCHomepageVC) *weakSelf = self;
+    [header setDoubleTapBlock:^(TCDairy *dairy) {
+        __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
+        if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+            TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
+            vc.searchDairy = dairy;
+            [strongSelf.navigationController pushViewController:vc animated:YES];
+        }
+    }];
 
     return header;
 }
@@ -310,23 +316,6 @@ static CGFloat cellFooterHeight = 10.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - Cell Height
-
-- (CGFloat)cellHeightWithContent:(NSString *)string {
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    NSDictionary *attrs = @{
-        NSFontAttributeName : [UIFont systemFontOfSize:15],
-        NSParagraphStyleAttributeName : style
-    };
-    CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)
-                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                    attributes:attrs
-                                       context:nil];
-    return ((rect.size.height > 63.0f) ? (int) rect.size.height / 5 * 5 + 13 : 63) + 12;
 }
 
 #pragma mark - UIScrollView Delegate
@@ -368,7 +357,7 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)updateDairyListDataAndIndex {
     self.dairyList = [self getDairyListData];
-    self.dairyListDateIndex = [self generateDateIndex];
+    self.dairyListDateIndex = [TCDairyManager generateDateIndexFromDairyList:self.dairyList];
 }
 
 - (void)initDairyList {

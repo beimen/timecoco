@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, TCEditorVCType) {
     TCEditorVCTypeAdd = 0,
-    TCEditorVCTypeEdit
+    TCEditorVCTypeEdit,
 
-} TCEditorVCType;
+};
 
 @interface TCEditorVC : UIViewController
 

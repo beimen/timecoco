@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_CHCSVParser 1
 #define COCOAPODS_VERSION_PATCH_CHCSVParser 0
 
+// DHSmartScreenshot
+#define COCOAPODS_POD_AVAILABLE_DHSmartScreenshot
+#define COCOAPODS_VERSION_MAJOR_DHSmartScreenshot 1
+#define COCOAPODS_VERSION_MINOR_DHSmartScreenshot 3
+#define COCOAPODS_VERSION_PATCH_DHSmartScreenshot 1
+
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
 #define COCOAPODS_VERSION_MAJOR_FMDB 2
@@ -35,4 +41,16 @@
 #define COCOAPODS_VERSION_MAJOR_REFrostedViewController 2
 #define COCOAPODS_VERSION_MINOR_REFrostedViewController 4
 #define COCOAPODS_VERSION_PATCH_REFrostedViewController 8
+
+// SVProgressHUD
+#define COCOAPODS_POD_AVAILABLE_SVProgressHUD
+#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_PATCH_SVProgressHUD 3
+
+// TTTAttributedLabel
+#define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
+#define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
+#define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 13
+#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 4
 

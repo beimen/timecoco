@@ -8,18 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, TCHomepageHeaderType) {
     TCHomepageHeaderTypeWorkday = 1,
     TCHomepageHeaderTypeWeekend,
     TCHomepageHeaderTypeHoliday,
-    
-    TCHomepageHeaderTypeDefault = TCHomepageHeaderTypeWorkday
-} TCHomepageHeaderType;
+
+    TCHomepageHeaderTypeDefault = TCHomepageHeaderTypeWorkday,
+};
 
 @interface TCHomepageHeader : UITableViewHeaderFooterView
 
 @property (nonatomic, weak) TCDairy *dairy;
 @property (nonatomic, weak) TCDairy *lastDairy;
 @property (nonatomic, assign) NSInteger yearNowValue;
+@property (nonatomic, assign) BOOL showMonth;
+@property (nonatomic, copy) void (^doubleTapBlock)(TCDairy *dairy);
 
 @end

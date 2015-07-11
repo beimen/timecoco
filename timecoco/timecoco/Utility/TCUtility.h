@@ -10,11 +10,14 @@
 
 #define SCREEN_WIDTH        (getScreenSize().width)
 #define SCREEN_HEIGHT       (getScreenSize().height)
+#define CUSTOM_FONT_NAME    (@"NotoSansCJKsc-DemiLight")
 
 @interface TCUtility : NSObject
 
 CGSize getScreenSize();
 
 UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fontSize);
+
+UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle, UIColor *titleColor, CGFloat fontSize, CGFloat maxWidth);
 
 @end

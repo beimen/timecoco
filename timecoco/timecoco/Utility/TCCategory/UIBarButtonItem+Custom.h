@@ -10,8 +10,10 @@
 
 @interface UIBarButtonItem (Custom)
 
-+ (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image Target:(id)target Selector:(SEL)selector;
++ (UIBarButtonItem *)createBarButtonItemWithTitle:(NSString *)title target:(id)target selector:(SEL)selector;
 
-+ (UIBarButtonItem *)createBarButtonItemWithImages:(NSArray *)images Target:(id)target Selector:(SEL)selector;
++ (UIBarButtonItem *)createBarButtonItemWithImage:(UIImage *)image target:(id)target selector:(SEL)selector;
+
++ (UIBarButtonItem *)createBarButtonItemWithImages:(NSArray *)images target:(id)target selector:(SEL)selector;
 
 @end

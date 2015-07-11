@@ -1,20 +1,29 @@
 PODS:
   - CHCSVParser (2.1.0)
+  - DHSmartScreenshot (1.3.1)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
   - REFrostedViewController (2.4.8)
+  - SVProgressHUD (1.1.3)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - CHCSVParser
+  - DHSmartScreenshot
   - FMDB
   - REFrostedViewController (~> 2.4.7)
+  - SVProgressHUD
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   CHCSVParser: 3bcc7bdb72111a31222e95d57eacceefe4e537e8
+  DHSmartScreenshot: ee749048bd7126c4826748f98df3a4adc6ad6c78
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.37.1

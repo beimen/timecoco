@@ -20,10 +20,10 @@ CGSize getScreenSize() {
 }
 
 UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fontSize) {
-    return createTitleViewForTitleWithMaxWidth(title, titleColor, fontSize, CGFLOAT_MAX);
+    return createTitleViewForTitleWithMaxWidth(title, nil, titleColor, fontSize, CGFLOAT_MAX);
 }
 
-UIView *createTitleViewForTitleWithMaxWidth(NSString *title, UIColor *titleColor, CGFloat fontSize, CGFloat maxWidth) {
+UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle, UIColor *titleColor, CGFloat fontSize, CGFloat maxWidth) {
     UIView *titleView = [[UIView alloc] init];
 
     UILabel *titleText = [[UILabel alloc] init];
@@ -35,10 +35,24 @@ UIView *createTitleViewForTitleWithMaxWidth(NSString *title, UIColor *titleColor
     [titleText setFont:[UIFont systemFontOfSize:fontSize]];
     [titleText sizeToFit];
     [titleView addSubview:titleText];
-
-    titleView.size = CGSizeMake(MIN(titleText.size.width, maxWidth), titleText.size.height);
     
-    titleText.width = titleView.width;
+    UILabel *subTitleText = [[UILabel alloc] init];
+
+    if (subtitle != nil) {
+        subTitleText.backgroundColor = [UIColor clearColor];
+        [subTitleText setText:subtitle];
+        subTitleText.textAlignment = NSTextAlignmentCenter;
+        [subTitleText setFont:[UIFont systemFontOfSize:11.0f]];
+        [subTitleText setTextColor:titleColor];
+        [subTitleText sizeToFit];
+        [titleView addSubview:subTitleText];
+        titleView.size = CGSizeMake(MIN(titleText.size.width, maxWidth), titleText.size.height + subTitleText.size.height);
+    } else {
+        titleView.size = CGSizeMake(MIN(titleText.size.width, maxWidth), titleText.size.height);
+    }
+    
+    titleText.width = subTitleText.width = titleView.width;
+    subTitleText.y = titleView.height - subTitleText.height;
 
     return titleView;
 }

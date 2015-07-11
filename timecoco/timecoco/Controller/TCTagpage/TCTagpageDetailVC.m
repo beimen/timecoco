@@ -68,9 +68,10 @@
 
 - (void)setSearchedTag:(NSString *)searchedTag {
     _searchedTag = searchedTag;
-    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(searchedTag, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
     NSArray *array = [TCDatabaseManager dairyListWithTag:searchedTag];
     [self setDairyList:[array mutableCopy]];
+    NSString *subtitle = [NSString stringWithFormat:@"共 %lu 项",(unsigned long)[self.dairyList count]];
+    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(searchedTag, subtitle, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
 }
 
 @end

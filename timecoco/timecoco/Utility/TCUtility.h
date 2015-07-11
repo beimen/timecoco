@@ -18,6 +18,6 @@ CGSize getScreenSize();
 
 UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fontSize);
 
-UIView *createTitleViewForTitleWithMaxWidth(NSString *title, UIColor *titleColor, CGFloat fontSize, CGFloat maxWidth);
+UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle, UIColor *titleColor, CGFloat fontSize, CGFloat maxWidth);
 
 @end

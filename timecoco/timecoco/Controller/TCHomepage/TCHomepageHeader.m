@@ -87,13 +87,13 @@
     [formatter setDateFormat:@"YYYY"];
     BOOL showYear = (self.yearNowValue != [formatter stringFromDate:[NSDate date]].integerValue);
     BOOL showMonth;
-    
+
     if (self.lastDairy) {
         showMonth = ([self.lastDairy weekOrderSince1970] != [dairy weekOrderSince1970]);
     } else {
         showMonth = YES;
     }
-    if (showMonth) {
+    if (showMonth || self.showMonth) {
         [formatter setDateFormat:@"MM月dd日"];
         if (showYear) {
             [formatter setDateFormat:@"YYYY年MM月dd日"];
@@ -102,14 +102,14 @@
         [formatter setDateFormat:@"dd日"];
     }
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval]];
-    
+
     NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];
     NSInteger order = [dairy dayOrderInWeek];
     self.timeLabel.text = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
-    
+
     BOOL showTimeZone = ([[NSTimeZone localTimeZone] secondsFromGMT] != dairy.timeZoneInterval);
     if (showTimeZone) {
-        self.timeLabel.text = [self.timeLabel.text stringByAppendingFormat:@"   %@",[NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval].name];
+        self.timeLabel.text = [self.timeLabel.text stringByAppendingFormat:@"   %@", [NSTimeZone timeZoneForSecondsFromGMT:dairy.timeZoneInterval].name];
     }
     [self.timeLabel sizeToFit];
     [self.contentView addSubview:self.timeLabel];

@@ -25,6 +25,18 @@
                                                                                    Target:self
                                                                                  Selector:@selector(backAction:)];
     self.tableView = [[TCDairyTable alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView.dateType = TCDairyTableDateTypeAtLeastShowMonth;
+
+    __weak typeof(TCTagpageDetailVC) *weakSelf = self;
+    [self.tableView setTapTagBlock:^(NSString *tag) {
+        assert(tag.length);
+        if (![weakSelf.searchedTag isEqualToString:tag]) {
+            TCTagpageDetailVC *vc = [[TCTagpageDetailVC alloc] init];
+            vc.searchedTag = tag;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+
     [self.tableView setDairyList:self.dairyList];
     [self.view addSubview:self.tableView];
 }
@@ -38,7 +50,7 @@
 }
 
 - (void)backAction:(UIBarButtonItem *)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Setter & Getter

@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, TCHomepageHeaderType) {
     TCHomepageHeaderTypeWorkday = 1,
     TCHomepageHeaderTypeWeekend,
     TCHomepageHeaderTypeHoliday,
-    
+
     TCHomepageHeaderTypeDefault = TCHomepageHeaderTypeWorkday,
 };
 
@@ -21,5 +21,6 @@ typedef NS_ENUM(NSUInteger, TCHomepageHeaderType) {
 @property (nonatomic, weak) TCDairy *dairy;
 @property (nonatomic, weak) TCDairy *lastDairy;
 @property (nonatomic, assign) NSInteger yearNowValue;
+@property (nonatomic, assign) BOOL showMonth;
 
 @end

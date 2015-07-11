@@ -78,7 +78,7 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
-    
+
     return [TCHomepageCell cellHeightWithDairy:dairy];
 }
 
@@ -92,32 +92,39 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCHomepageCell *cell = (TCHomepageCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
-    
+
+    __weak typeof(TCDairyTable) *weakSelf = self;
+    [cell setTapTagBlock:weakSelf.tapTagBlock];
+
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TCHomepageHeader *header = (TCHomepageHeader *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellHeaderIdentifier];
-    
+
     if (section) {
         header.lastDairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section] - 1];
     } else {
         header.lastDairy = nil;
     }
-    
+
+    if (self.dateType == TCDairyTableDateTypeAtLeastShowMonth) {
+        header.showMonth = YES;
+    }
+
     header.yearNowValue = [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
-    
+
     return header;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     TCHomepageFooter *footer = (TCHomepageFooter *) [tableView dequeueReusableHeaderFooterViewWithIdentifier:CellFooterIdentifier];
-    
+
     footer.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
-    
+
     return footer;
 }
 

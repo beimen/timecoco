@@ -72,10 +72,17 @@ dispatch_queue_t queue;
     return items;
 }
 
++ (NSArray *)sameDayDairyListWithDairy:(TCDairy *)dairy {
+    NSInteger date = (NSInteger)((dairy.pointTime + dairy.timeZoneInterval) / T_DAY);
+    NSTimeInterval startTime = date * T_DAY - dairy.timeZoneInterval;
+    NSTimeInterval endTime = (date + 1) * T_DAY - dairy.timeZoneInterval;
+    return [self storedDairyListFromTime:startTime toTime:endTime];
+}
+
 + (NSArray *)storedDairyListFromTime:(NSTimeInterval)startTime toTime:(NSTimeInterval)endTime {
     __block NSMutableArray *items = [NSMutableArray new];
     [manager inDatabase:^(FMDatabase *db) {
-        FMResultSet *set = [db executeQueryWithFormat:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy where pointTime > %f order by pointTime asc, type desc", startTime];
+        FMResultSet *set = [db executeQueryWithFormat:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy where pointTime between %f and %f order by pointTime asc, type desc", startTime, endTime];
         while (set.next) {
             TCDairy *dairy = [TCDairy new];
             dairy.pointTime = [set doubleForColumnIndex:0];

@@ -76,6 +76,10 @@
         _timeLabel.font = [UIFont boldSystemFontOfSize:12];
         _timeLabel.backgroundColor = TC_TABLE_BACK_COLOR;
         _timeLabel.clipsToBounds = YES;
+        _timeLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap)];
+        tapGesture.numberOfTapsRequired = 2;
+        [_timeLabel addGestureRecognizer:tapGesture];
     }
     return _timeLabel;
 }
@@ -113,6 +117,15 @@
     }
     [self.timeLabel sizeToFit];
     [self.contentView addSubview:self.timeLabel];
+}
+
+#pragma mark - Button Actions
+
+- (void)doubleTap {
+    if (self.doubleTapBlock) {
+        __weak typeof(TCHomepageHeader) *weakSelf = self;
+        self.doubleTapBlock(weakSelf.dairy);
+    }
 }
 
 @end

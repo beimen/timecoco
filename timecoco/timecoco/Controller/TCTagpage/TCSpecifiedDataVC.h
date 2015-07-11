@@ -1,5 +1,5 @@
 //
-//  TCTagpageDetailVC.h
+//  TCSpecifiedDataVC.h
 //  timecoco
 //
 //  Created by Xie Hong on 7/10/15.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCTagpageDetailVC : UIViewController
+@interface TCSpecifiedDataVC : UIViewController
 
 @property (nonatomic, strong) NSString *searchedTag;
+@property (nonatomic, strong) TCDairy *searchDairy;
 
 @end

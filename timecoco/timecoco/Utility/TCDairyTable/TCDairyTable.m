@@ -117,6 +117,9 @@ static CGFloat cellFooterHeight = 10.0f;
     header.yearNowValue = [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
 
+    __weak typeof(TCDairyTable) *weakSelf = self;
+    [header setDoubleTapBlock:weakSelf.headerDateBlock];
+
     return header;
 }
 

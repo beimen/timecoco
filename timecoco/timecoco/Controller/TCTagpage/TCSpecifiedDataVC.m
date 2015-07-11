@@ -1,26 +1,26 @@
 //
-//  TCTagpageDetailVC.m
+//  TCSpecifiedDataVC.m
 //  timecoco
 //
 //  Created by Xie Hong on 7/10/15.
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCTagpageDetailVC.h"
+#import "TCSpecifiedDataVC.h"
 #import "TCDairyTable.h"
 #import "NSDateFormatter+Custom.h"
 #import "SVProgressHUD.h"
 #import "DHSmartScreenshot.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface TCTagpageDetailVC ()
+@interface TCSpecifiedDataVC ()
 
 @property (nonatomic, strong) TCDairyTable *tableView;
 @property (nonatomic, strong) NSMutableArray *dairyList;
 
 @end
 
-@implementation TCTagpageDetailVC
+@implementation TCSpecifiedDataVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -136,16 +136,35 @@
     self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(searchedTag, subtitle, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
 }
 
+- (void)setSearchDairy:(TCDairy *)searchDairy {
+    _searchDairy = searchDairy;
+    NSArray *dairyList = [TCDatabaseManager sameDayDairyListWithDairy:searchDairy];
+    [self setDairyList:[dairyList mutableCopy]];
+
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:searchDairy.pointTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+    [formatter setDateFormat:@"YYYY年MM月dd日"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:searchDairy.timeZoneInterval]];
+
+    NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];
+    NSInteger order = [searchDairy dayOrderInWeek];
+    NSString *title = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
+
+    NSString *subtitle = [NSString stringWithFormat:@"共 %lu 项", (unsigned long) [self.dairyList count]];
+    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(title, subtitle, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
+}
+
 - (TCDairyTable *)tableView {
     if (_tableView == nil) {
         _tableView = [[TCDairyTable alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         _tableView.tableOption = TCDairyTableOptionShowMonth;
 
-        __weak typeof(TCTagpageDetailVC) *weakSelf = self;
+        __weak typeof(TCSpecifiedDataVC) *weakSelf = self;
         [_tableView setTapTagBlock:^(NSString *tag) {
             assert(tag.length);
             if (![weakSelf.searchedTag isEqualToString:tag]) {
-                TCTagpageDetailVC *vc = [[TCTagpageDetailVC alloc] init];
+                TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
                 vc.searchedTag = tag;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             } else {
@@ -154,6 +173,15 @@
                 [SVProgressHUD setForegroundColor:TC_RED_COLOR];
                 [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
                 [SVProgressHUD showInfoWithStatus:status maskType:SVProgressHUDMaskTypeNone];
+            }
+        }];
+
+        [_tableView setHeaderDateBlock:^(TCDairy *dairy) {
+            __strong typeof(TCSpecifiedDataVC) *strongSelf = weakSelf;
+            if ([strongSelf.searchedTag length]) {
+                TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
+                vc.searchDairy = dairy;
+                [strongSelf.navigationController pushViewController:vc animated:YES];
             }
         }];
     }

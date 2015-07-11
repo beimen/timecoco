@@ -11,7 +11,7 @@
 #import "TCHomepageHeader.h"
 #import "TCHomepageFooter.h"
 #import "TCEditorVC.h"
-#import "TCTagpageDetailVC.h"
+#import "TCSpecifiedDataVC.h"
 #import "TCDairyManager.h"
 #import "NSDateFormatter+Custom.h"
 
@@ -161,20 +161,28 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)labelFadeIn {
     [self.dateLabel setAlpha:0.0f];
-    [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
-        self.dateLabel.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        [self labelFadeOut];
-    }];
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         self.dateLabel.alpha = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         [self labelFadeOut];
+                     }];
 }
 
 - (void)labelFadeOut {
     if ([self.dateLabel.text isEqualToString:@"本月"]) {
         [self.dateLabel setAlpha:1.0f];
-        [UIView animateWithDuration:0.5f delay:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
-            self.dateLabel.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-        }];
+        [UIView animateWithDuration:0.5f
+                              delay:1.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.dateLabel.alpha = 0.0f;
+                         }
+                         completion:^(BOOL finished){
+                         }];
     }
 }
 
@@ -267,7 +275,7 @@ static CGFloat cellFooterHeight = 10.0f;
     }];
     [cell setTapTagBlock:^(NSString *tag) {
         assert(tag.length);
-        TCTagpageDetailVC *vc = [[TCTagpageDetailVC alloc] init];
+        TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
         vc.searchedTag = tag;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
@@ -286,6 +294,15 @@ static CGFloat cellFooterHeight = 10.0f;
 
     header.yearNowValue = [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
+    __weak typeof(TCHomepageVC) *weakSelf = self;
+    [header setDoubleTapBlock:^(TCDairy *dairy) {
+        __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
+        if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
+            TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
+            vc.searchDairy = dairy;
+            [strongSelf.navigationController pushViewController:vc animated:YES];
+        }
+    }];
 
     return header;
 }

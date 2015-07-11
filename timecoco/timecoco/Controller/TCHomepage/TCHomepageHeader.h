@@ -22,5 +22,6 @@ typedef NS_ENUM(NSUInteger, TCHomepageHeaderType) {
 @property (nonatomic, weak) TCDairy *lastDairy;
 @property (nonatomic, assign) NSInteger yearNowValue;
 @property (nonatomic, assign) BOOL showMonth;
+@property (nonatomic, copy) void (^doubleTapBlock)(TCDairy *dairy);
 
 @end

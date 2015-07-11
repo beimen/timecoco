@@ -103,7 +103,7 @@
     if (_contentLabel == nil) {
         self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
         _contentLabel.textColor = TC_TEXT_COLOR;
-        _contentLabel.font = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15];
+        _contentLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
         _contentLabel.numberOfLines = 0;
         _contentLabel.backgroundColor = TC_WHITE_COLOR;
         _contentLabel.clipsToBounds = YES;
@@ -197,7 +197,7 @@
         [self.contentLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
             [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
                 //设定可点击文字的的大小
-                UIFont *targetFont = [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15];
+                UIFont *targetFont = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
                 CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) targetFont.fontName, targetFont.pointSize, NULL);
                 if (font) {
                     //设置可点击文本的大小
@@ -265,7 +265,7 @@
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:19.0f];
     NSDictionary *attrs = @{
-                            NSFontAttributeName : [UIFont fontWithName:@"NotoSansCJKsc-DemiLight" size:15],
+                            NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
                             NSParagraphStyleAttributeName : style
                             };
     CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)

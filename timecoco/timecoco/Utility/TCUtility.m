@@ -20,10 +20,15 @@ CGSize getScreenSize() {
 }
 
 UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fontSize) {
+    return createTitleViewForTitleWithMaxWidth(title, titleColor, fontSize, CGFLOAT_MAX);
+}
+
+UIView *createTitleViewForTitleWithMaxWidth(NSString *title, UIColor *titleColor, CGFloat fontSize, CGFloat maxWidth) {
     UIView *titleView = [[UIView alloc] init];
 
     UILabel *titleText = [[UILabel alloc] init];
     titleText.backgroundColor = [UIColor clearColor];
+    titleText.adjustsFontSizeToFitWidth = YES;
     [titleText setText:title];
     titleText.textAlignment = NSTextAlignmentCenter;
     [titleText setTextColor:titleColor];
@@ -31,7 +36,9 @@ UIView *createTitleViewForTitle(NSString *title, UIColor *titleColor, CGFloat fo
     [titleText sizeToFit];
     [titleView addSubview:titleText];
 
-    titleView.size = titleText.size;
+    titleView.size = CGSizeMake(MIN(titleText.size.width, maxWidth), titleText.size.height);
+    
+    titleText.width = titleView.width;
 
     return titleView;
 }

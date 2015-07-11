@@ -9,6 +9,7 @@
 #import "TCTagpageDetailVC.h"
 #import "TCDairyTable.h"
 #import "NSDateFormatter+Custom.h"
+#import "SVProgressHUD.h"
 
 @interface TCTagpageDetailVC ()
 
@@ -34,6 +35,12 @@
             TCTagpageDetailVC *vc = [[TCTagpageDetailVC alloc] init];
             vc.searchedTag = tag;
             [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            NSString *status = [NSString stringWithFormat:@"你点击的是当前页的标签"];
+            [SVProgressHUD setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:13]];
+            [SVProgressHUD setForegroundColor:TC_RED_COLOR];
+            [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
+            [SVProgressHUD showInfoWithStatus:status maskType:SVProgressHUDMaskTypeNone];
         }
     }];
 
@@ -61,7 +68,7 @@
 
 - (void)setSearchedTag:(NSString *)searchedTag {
     _searchedTag = searchedTag;
-    self.navigationItem.titleView = createTitleViewForTitle(searchedTag, TC_RED_COLOR, 17);
+    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(searchedTag, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
     NSArray *array = [TCDatabaseManager dairyListWithTag:searchedTag];
     [self setDairyList:[array mutableCopy]];
 }

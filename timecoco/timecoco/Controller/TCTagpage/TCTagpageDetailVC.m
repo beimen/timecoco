@@ -53,16 +53,47 @@
 }
 
 - (void)screenShotAction:(UIBarButtonItem *)sender {
-    UIImage *screenShot = [self.tableView screenshot];
-    NSData *imageData = UIImagePNGRepresentation(screenShot);
-    UIImage *pngScreenShot = [UIImage imageWithData:imageData];
-    UIImageWriteToSavedPhotosAlbum(pngScreenShot, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"这个步骤可能需要一些时间"
+                                                                   message:@"确定要生成图片并保存到相册吗？"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action){
+                                                         }];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确认"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self saveScreenShot];
+                                                          }];
+
+    [alert addAction:cancelAction];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)saveScreenShot {
+    [SVProgressHUD setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:13]];
+    [SVProgressHUD setForegroundColor:TC_RED_COLOR];
+    [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
+    [SVProgressHUD showWithStatus:@"保存中" maskType:SVProgressHUDMaskTypeClear];
+    //保存图片需要大量的计算资源，会影响到SVProgressHUD的显示，因此将其放在后台线程中处理
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *screenShot = [self.tableView screenshot];
+        NSData *imageData = UIImagePNGRepresentation(screenShot);
+        UIImage *pngScreenShot = [UIImage imageWithData:imageData];
+        UIImageWriteToSavedPhotosAlbum(pngScreenShot, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if (error != NULL) {
+        [SVProgressHUD showErrorWithStatus:@"出错了！"];
     } else {
-        NSLog(@"成功");
+        [SVProgressHUD showSuccessWithStatus:@"保存成功！"];
     }
 }
 

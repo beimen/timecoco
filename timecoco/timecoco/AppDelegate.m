@@ -95,6 +95,7 @@
     NSArray *targetClassArray = @[ @"TCHomepageVC", @"TCTagSummaryVC", @"TCSearchVC", @"TCSettingVC" ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
     if ([targetClassArray containsObject:NSStringFromClass([topVC class])]) {
+        [topVC.view endEditing:YES];
         [self.frostedViewController panGestureRecognized:recognizer];
     }
 }

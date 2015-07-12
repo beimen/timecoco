@@ -35,7 +35,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"TCTagpageDetailVC deallocated.");
+    NSLog(@"TCSpecifiedDataVC is deallocated.");
 }
 
 #pragma mark - NavigationBar Buttons & Methods

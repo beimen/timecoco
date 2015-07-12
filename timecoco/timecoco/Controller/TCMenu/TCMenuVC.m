@@ -9,6 +9,7 @@
 #import "TCMenuVC.h"
 #import "TCHomepageVC.h"
 #import "TCTagSummaryVC.h"
+#import "TCSearchVC.h"
 #import "TCSettingVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
@@ -92,14 +93,14 @@
             cell.textLabel.text = @"设置";
         }
     }
-    cell.textLabel.textColor = [self cellTextColorWithSection:indexPath.section];
+    cell.textLabel.textColor = [self cellTextColorWithIndexPath:indexPath];
     return cell;
 }
 
-- (UIColor *)cellTextColorWithSection:(NSInteger)index {
-    NSArray *array = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCSettingVC" ];
+- (UIColor *)cellTextColorWithIndexPath:(NSIndexPath *)indexPatch {
+    NSArray *array = @[ @[@"TCHomepageVC"], @[@"TCTagSummaryVC", @"TCSearchVC"], @[@"TCSettingVC"] ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
-    NSString *classString = [array objectAtIndex:index];
+    NSString *classString = (NSString *)[(NSArray *)array[indexPatch.section] objectAtIndex:indexPatch.row];
     if ([topVC isKindOfClass:NSClassFromString(classString)]) {
         return TC_RED_COLOR;
     } else {

@@ -92,7 +92,7 @@
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
-    NSArray *targetClassArray = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCSettingVC" ];
+    NSArray *targetClassArray = @[ @"TCHomepageVC", @"TCTagSummaryVC", @"TCSearchVC", @"TCSettingVC" ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
     if ([targetClassArray containsObject:NSStringFromClass([topVC class])]) {
         [self.frostedViewController panGestureRecognized:recognizer];

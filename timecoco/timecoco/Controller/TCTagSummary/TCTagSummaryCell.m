@@ -1,5 +1,5 @@
 //
-//  TCTagpageCell.m
+//  TCTagSummaryCell.m
 //  timecoco
 //
 //  Created by Xie Hong on 7/12/15.

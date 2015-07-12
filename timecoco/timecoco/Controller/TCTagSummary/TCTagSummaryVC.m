@@ -1,5 +1,5 @@
 //
-//  TCTagpageVC.m
+//  TCTagSummaryVC.m
 //  timecoco
 //
 //  Created by Xie Hong on 5/20/15.
@@ -37,7 +37,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"TCTagpageVC is dealocated");
+    NSLog(@"TCTagSummaryVC is dealocated");
 }
 
 #pragma mark - Update TagCountedSet

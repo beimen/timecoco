@@ -62,7 +62,7 @@
     return _horizontalDashLine;
 }
 
-- (void)setDairy:(TCDairy *)dairy {
+- (void)setDairy:(TCDairyModel *)dairy {
     _dairy = dairy;
 
     self.headerType = [dairy estimateWeekend] ? TCHomepageHeaderTypeWeekend : TCHomepageHeaderTypeWorkday;
@@ -84,7 +84,7 @@
     return _timeLabel;
 }
 
-- (void)setupTimeText:(TCDairy *)dairy {
+- (void)setupTimeText:(TCDairyModel *)dairy {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dairy.pointTime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 

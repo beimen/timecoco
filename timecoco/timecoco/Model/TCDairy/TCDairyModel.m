@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCDairy.h"
+#import "TCDairyModel.h"
 
-@implementation TCDairy
+@implementation TCDairyModel
 
 - (NSInteger)timeZoneOffsetInterval {
     return self.pointTime + (NSInteger) self.timeZoneInterval;

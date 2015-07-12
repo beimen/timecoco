@@ -8,7 +8,7 @@
 
 #import "TCDairy+Manager.h"
 
-@implementation TCDairy (Manager)
+@implementation TCDairyModel (Manager)
 
 - (NSInteger)getSecondValue {
     NSInteger secondValue = 0;

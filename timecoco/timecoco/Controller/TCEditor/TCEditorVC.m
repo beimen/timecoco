@@ -144,7 +144,7 @@
 #pragma mark - Dairy Actions
 
 - (void)addDairy {
-    TCDairy *dairy = [TCDairy new];
+    TCDairyModel *dairy = [TCDairyModel new];
     dairy.timeZoneInterval = [[NSTimeZone localTimeZone] secondsFromGMT];
     dairy.type = self.dairyType;
     if (self.dairyType == TCDairyTypeNormal) {
@@ -173,7 +173,7 @@
 }
 
 - (void)replaceDairy {
-    TCDairy *dairy = self.editDairy;
+    TCDairyModel *dairy = self.editDairy;
     dairy.content = [self stringDeleteSideWhite:self.textView.text];
 
     if (dairy.content.length > 1000) {

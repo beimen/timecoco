@@ -36,7 +36,7 @@
 		FE62CDD01B50276A00099CD3 /* TCDairyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE62CDCF1B50276A00099CD3 /* TCDairyManager.m */; };
 		FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65CE591AD57DBB00C00637 /* TCSettingVC.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
-		FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairy.m */; };
+		FE78B83B1AB577FF0026241E /* TCDairyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83A1AB577FF0026241E /* TCDairyModel.m */; };
 		FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B83E1AB57C750026241E /* TCDashLineView.m */; };
 		FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = FE81CDA41AC63EC9001A033A /* NSArray+DairyIndex.m */; };
 		FE8406DF1B19F26B009A9500 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8406DE1B19F26B009A9500 /* NotificationCenter.framework */; };
@@ -46,6 +46,8 @@
 		FE8406F11B19F4A1009A9500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE8406F31B19F4A1009A9500 /* InfoPlist.strings */; };
 		FEA116971B510325008ACC10 /* TCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA116961B510325008ACC10 /* TCProgressHUD.m */; };
 		FEB41DF91B5015A7000C30A5 /* TCSpecifiedDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB41DF81B5015A7000C30A5 /* TCSpecifiedDataVC.m */; };
+		FEC6CB371B524B4000F3BEC7 /* TCTagpageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB361B524B4000F3BEC7 /* TCTagpageCell.m */; };
+		FEC6CB3F1B52520500F3BEC7 /* TCTagItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB3E1B52520500F3BEC7 /* TCTagItemModel.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
 		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
@@ -144,8 +146,8 @@
 		FE65CE591AD57DBB00C00637 /* TCSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSettingVC.m; sourceTree = "<group>"; };
 		FE78B8331AB56A5E0026241E /* TCDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDatabaseManager.h; sourceTree = "<group>"; };
 		FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDatabaseManager.m; sourceTree = "<group>"; };
-		FE78B8391AB577FF0026241E /* TCDairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairy.h; sourceTree = "<group>"; };
-		FE78B83A1AB577FF0026241E /* TCDairy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDairy.m; sourceTree = "<group>"; };
+		FE78B8391AB577FF0026241E /* TCDairyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairyModel.h; sourceTree = "<group>"; };
+		FE78B83A1AB577FF0026241E /* TCDairyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDairyModel.m; sourceTree = "<group>"; };
 		FE78B83D1AB57C750026241E /* TCDashLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDashLineView.h; sourceTree = "<group>"; };
 		FE78B83E1AB57C750026241E /* TCDashLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDashLineView.m; sourceTree = "<group>"; };
 		FE81CDA31AC63EC9001A033A /* NSArray+DairyIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DairyIndex.h"; sourceTree = "<group>"; };
@@ -164,6 +166,10 @@
 		FEA116961B510325008ACC10 /* TCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProgressHUD.m; sourceTree = "<group>"; };
 		FEB41DF71B5015A7000C30A5 /* TCSpecifiedDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSpecifiedDataVC.h; sourceTree = "<group>"; };
 		FEB41DF81B5015A7000C30A5 /* TCSpecifiedDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSpecifiedDataVC.m; sourceTree = "<group>"; };
+		FEC6CB351B524B4000F3BEC7 /* TCTagpageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagpageCell.h; sourceTree = "<group>"; };
+		FEC6CB361B524B4000F3BEC7 /* TCTagpageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagpageCell.m; sourceTree = "<group>"; };
+		FEC6CB3D1B52520500F3BEC7 /* TCTagItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagItemModel.h; sourceTree = "<group>"; };
+		FEC6CB3E1B52520500F3BEC7 /* TCTagItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagItemModel.m; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
 		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
@@ -408,6 +414,8 @@
 				FE36DCBC1B0CDFAC00F65F2E /* TCTagpageVC.m */,
 				FEB41DF71B5015A7000C30A5 /* TCSpecifiedDataVC.h */,
 				FEB41DF81B5015A7000C30A5 /* TCSpecifiedDataVC.m */,
+				FEC6CB351B524B4000F3BEC7 /* TCTagpageCell.h */,
+				FEC6CB361B524B4000F3BEC7 /* TCTagpageCell.m */,
 			);
 			path = TCTagpage;
 			sourceTree = "<group>";
@@ -444,6 +452,7 @@
 		FE78B8361AB577AE0026241E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FEC6CB3C1B52520500F3BEC7 /* TCTagItem */,
 				FE78B8381AB577F00026241E /* TCDairy */,
 			);
 			path = Model;
@@ -452,8 +461,8 @@
 		FE78B8381AB577F00026241E /* TCDairy */ = {
 			isa = PBXGroup;
 			children = (
-				FE78B8391AB577FF0026241E /* TCDairy.h */,
-				FE78B83A1AB577FF0026241E /* TCDairy.m */,
+				FE78B8391AB577FF0026241E /* TCDairyModel.h */,
+				FE78B83A1AB577FF0026241E /* TCDairyModel.m */,
 			);
 			path = TCDairy;
 			sourceTree = "<group>";
@@ -496,6 +505,15 @@
 				FEA116961B510325008ACC10 /* TCProgressHUD.m */,
 			);
 			path = TCProgressHUD;
+			sourceTree = "<group>";
+		};
+		FEC6CB3C1B52520500F3BEC7 /* TCTagItem */ = {
+			isa = PBXGroup;
+			children = (
+				FEC6CB3D1B52520500F3BEC7 /* TCTagItemModel.h */,
+				FEC6CB3E1B52520500F3BEC7 /* TCTagItemModel.m */,
+			);
+			path = TCTagItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -718,7 +736,9 @@
 				FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */,
 				F58219351AAD48A800357355 /* AppDelegate.m in Sources */,
 				F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */,
-				FE78B83B1AB577FF0026241E /* TCDairy.m in Sources */,
+				FEC6CB371B524B4000F3BEC7 /* TCTagpageCell.m in Sources */,
+				FE78B83B1AB577FF0026241E /* TCDairyModel.m in Sources */,
+				FEC6CB3F1B52520500F3BEC7 /* TCTagItemModel.m in Sources */,
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,

@@ -16,8 +16,8 @@
     } else {
         __block NSUInteger result;
         result = [self count] - 1;
-        [self enumerateObjectsUsingBlock:^(TCDairy *obj, NSUInteger idx, BOOL *stop) {
-            TCDairy *dairy = [array objectAtIndex:idx];
+        [self enumerateObjectsUsingBlock:^(TCDairyModel *obj, NSUInteger idx, BOOL *stop) {
+            TCDairyModel *dairy = [array objectAtIndex:idx];
             if ([obj.content isEqualToString:dairy.content]
                 && (obj.timeZoneInterval == dairy.timeZoneInterval)
                 && (obj.pointTime == dairy.pointTime)

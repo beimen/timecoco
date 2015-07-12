@@ -32,7 +32,7 @@ UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle,
     [titleText setText:title];
     titleText.textAlignment = NSTextAlignmentCenter;
     [titleText setTextColor:titleColor];
-    [titleText setFont:[UIFont systemFontOfSize:fontSize]];
+    [titleText setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:fontSize]];
     [titleText sizeToFit];
     [titleView addSubview:titleText];
     
@@ -42,7 +42,7 @@ UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle,
         subTitleText.backgroundColor = [UIColor clearColor];
         [subTitleText setText:subtitle];
         subTitleText.textAlignment = NSTextAlignmentCenter;
-        [subTitleText setFont:[UIFont systemFontOfSize:11.0f]];
+        [subTitleText setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:11.0f]];
         [subTitleText setTextColor:titleColor];
         [subTitleText sizeToFit];
         [titleView addSubview:subTitleText];

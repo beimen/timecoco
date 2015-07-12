@@ -11,6 +11,6 @@
 @interface TCSpecifiedDataVC : UIViewController
 
 @property (nonatomic, strong) NSString *searchedTag;
-@property (nonatomic, strong) TCDairy *searchDairy;
+@property (nonatomic, strong) TCDairyModel *searchDairy;
 
 @end

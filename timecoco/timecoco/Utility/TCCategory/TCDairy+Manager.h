@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCDairy.h"
+#import "TCDairyModel.h"
 
-@interface TCDairy (Manager)
+@interface TCDairyModel (Manager)
 
 - (NSInteger)getSecondValue;
 

@@ -7,7 +7,7 @@
 //
 
 #import "TCDatabaseManager.h"
-#import "TCDairy.h"
+#import "TCDairyModel.h"
 #import "FMDatabase.h"
 
 @implementation TCDatabaseManager
@@ -35,12 +35,25 @@ dispatch_queue_t queue;
     }];
 }
 
++ (NSArray *)containHashKeyList {
+    __block NSMutableArray *items = [NSMutableArray new];
+    [manager inDatabase:^(FMDatabase *db) {
+        NSString *searchString = @"%%#%%";
+        FMResultSet *set = [db executeQuery:@"select content from timecoco_dairy where content like ?", searchString];
+        while (set.next) {
+            NSString *content = [set stringForColumnIndex:0];
+            [items addObject:content];
+        }
+    }];
+    return items;
+}
+
 + (NSArray *)storedDairyList {
     __block NSMutableArray *items = [NSMutableArray new];
     [manager inDatabase:^(FMDatabase *db) {
         FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy order by pointTime asc, type desc"];
         while (set.next) {
-            TCDairy *dairy = [TCDairy new];
+            TCDairyModel *dairy = [TCDairyModel new];
             dairy.pointTime = [set doubleForColumnIndex:0];
             dairy.timeZoneInterval = [set intForColumnIndex:1];
             dairy.content = [set stringForColumnIndex:2];
@@ -59,7 +72,7 @@ dispatch_queue_t queue;
         NSString *searchString = [NSString stringWithFormat:@"%%%@%%", tag];
         FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy where content like ? order by pointTime asc, type desc", searchString];
         while (set.next) {
-            TCDairy *dairy = [TCDairy new];
+            TCDairyModel *dairy = [TCDairyModel new];
             dairy.pointTime = [set doubleForColumnIndex:0];
             dairy.timeZoneInterval = [set intForColumnIndex:1];
             dairy.content = [set stringForColumnIndex:2];
@@ -72,7 +85,7 @@ dispatch_queue_t queue;
     return items;
 }
 
-+ (NSArray *)sameDayDairyListWithDairy:(TCDairy *)dairy {
++ (NSArray *)sameDayDairyListWithDairy:(TCDairyModel *)dairy {
     NSInteger date = (NSInteger)((dairy.pointTime + dairy.timeZoneInterval) / T_DAY);
     NSTimeInterval startTime = date * T_DAY - dairy.timeZoneInterval;
     NSTimeInterval endTime = (date + 1) * T_DAY - dairy.timeZoneInterval;
@@ -84,7 +97,7 @@ dispatch_queue_t queue;
     [manager inDatabase:^(FMDatabase *db) {
         FMResultSet *set = [db executeQueryWithFormat:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy where pointTime between %f and %f order by pointTime asc, type desc", startTime, endTime];
         while (set.next) {
-            TCDairy *dairy = [TCDairy new];
+            TCDairyModel *dairy = [TCDairyModel new];
             dairy.pointTime = [set doubleForColumnIndex:0];
             dairy.timeZoneInterval = [set intForColumnIndex:1];
             dairy.content = [set stringForColumnIndex:2];
@@ -97,7 +110,7 @@ dispatch_queue_t queue;
     return items;
 }
 
-+ (BOOL)addDairy:(TCDairy *)dairy {
++ (BOOL)addDairy:(TCDairyModel *)dairy {
     __block BOOL addResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         addResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type) values(%f, %ld, %@, %ld)", dairy.pointTime, (long) dairy.timeZoneInterval, dairy.content, (long) dairy.type];
@@ -109,7 +122,7 @@ dispatch_queue_t queue;
     return addResult;
 }
 
-+ (BOOL)removeDairy:(TCDairy *)dairy {
++ (BOOL)removeDairy:(TCDairyModel *)dairy {
     __block BOOL removeResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         removeResult = [db executeUpdateWithFormat:@"delete from timecoco_dairy where primaryId = %ld", (long) dairy.primaryId];
@@ -121,7 +134,7 @@ dispatch_queue_t queue;
     return removeResult;
 }
 
-+ (BOOL)replaceDairy:(TCDairy *)dairy {
++ (BOOL)replaceDairy:(TCDairyModel *)dairy {
     __block BOOL replaceResult = NO;
     [manager inDatabase:^(FMDatabase *db) {
         replaceResult = [db executeUpdateWithFormat:@"replace into timecoco_dairy (pointTime,timeZoneInterval,content,type,primaryId) values(%f, %ld, %@, %ld, %ld)", dairy.pointTime, (long) dairy.timeZoneInterval, dairy.content, (long) dairy.type, (long) dairy.primaryId];

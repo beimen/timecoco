@@ -47,7 +47,7 @@
     self.dashLine.endPoint = CGPointMake(0, self.contentView.frame.size.height);
     self.dashLine.lineColor = [TCColorManager changeColorForType:self.cellType];
 
-    self.frameBorder.height = self.contentView.height;
+    self.frameBorder.height = self.contentView.height - 10;
     self.frameBorder.lineColor = _dashLine.lineColor;
 
     self.contentLabel.height = self.contentView.height - 12;
@@ -92,7 +92,7 @@
 
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
-        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 35, self.contentView.height)];
+        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(40, 5, SCREEN_WIDTH - 48, self.contentView.height - 10)];
 
         [self.contentView addSubview:self.frameBorder];
     }
@@ -101,7 +101,7 @@
 
 - (TTTAttributedLabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 6, SCREEN_WIDTH - 65, self.contentView.height - 12)];
+        self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(8, 1, SCREEN_WIDTH - 64, self.contentView.height - 12)];
         _contentLabel.textColor = TC_TEXT_COLOR;
         _contentLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
         _contentLabel.numberOfLines = 0;
@@ -161,7 +161,7 @@
 
 - (UIButton *)contentButton {
     if (_contentButton == nil) {
-        self.contentButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 54, self.contentView.height - 12)];
+        self.contentButton = [[UIButton alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 50, self.contentView.height - 12)];
 
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
         longPress.cancelsTouchesInView = NO;
@@ -176,7 +176,7 @@
     return _contentButton;
 }
 
-- (void)setDairy:(TCDairy *)dairy {
+- (void)setDairy:(TCDairyModel *)dairy {
     _dairy = dairy;
 
     [self setupContentText:dairy.content];
@@ -260,7 +260,7 @@
 
 #pragma mark - Class Method
 
-+ (CGFloat)cellHeightWithDairy:(TCDairy *)dairy {
++ (CGFloat)cellHeightWithDairy:(TCDairyModel *)dairy {
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:19.0f];
@@ -268,7 +268,7 @@
                             NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
                             NSParagraphStyleAttributeName : style
                             };
-    CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 65, MAXFLOAT)
+    CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 64, MAXFLOAT)
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:attrs
                                               context:nil];

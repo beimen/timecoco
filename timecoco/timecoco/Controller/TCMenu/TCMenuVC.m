@@ -8,7 +8,7 @@
 
 #import "TCMenuVC.h"
 #import "TCHomepageVC.h"
-#import "TCTagpageVC.h"
+#import "TCTagSummaryVC.h"
 #import "TCSettingVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
@@ -52,7 +52,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    NSInteger numberOfRows;
+    if (section == 0) {
+        numberOfRows = 1;
+    } else if (section == 1) {
+        numberOfRows = 2;
+    } else if (section == 2) {
+        numberOfRows = 1;
+    }
+    return numberOfRows;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,6 +84,8 @@
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"标签";
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"搜索";
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
@@ -111,9 +121,10 @@
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            TCTagpageVC *vc = [[TCTagpageVC alloc] init];
+            TCTagSummaryVC *vc = [[TCTagSummaryVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
+        } else if (indexPath.row == 1) {
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {

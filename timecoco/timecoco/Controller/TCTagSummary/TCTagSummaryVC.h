@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCTagpageVC : UITableViewController
+@interface TCTagSummaryVC : UITableViewController
 
 @end

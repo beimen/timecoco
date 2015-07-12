@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCTagpageCell.h"
+#import "TCTagSummaryCell.h"
 #import "TCTagItemModel.h"
 #import "TCFrameBorderView.h"
 #import "TTTAttributedLabel.h"
 
-@interface TCTagpageCell () <TTTAttributedLabelDelegate>
+@interface TCTagSummaryCell () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) TTTAttributedLabel *tagTitleLabel;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation TCTagpageCell
+@implementation TCTagSummaryCell
 
 - (void)awakeFromNib {
     self.backgroundColor = TC_TABLE_BACK_COLOR;

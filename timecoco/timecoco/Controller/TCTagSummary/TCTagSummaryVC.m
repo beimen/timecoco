@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCTagpageVC.h"
+#import "TCTagSummaryVC.h"
 #import "TCDatabaseManager.h"
 #import "TCTagItemModel.h"
-#import "TCTagpageCell.h"
+#import "TCTagSummaryCell.h"
 #import "TCSpecifiedDataVC.h"
 
-@interface TCTagpageVC ()
+@interface TCTagSummaryVC ()
 
 @property (nonatomic, strong) NSCountedSet *tagCountedSet;
 @property (nonatomic, strong) NSMutableArray *tagArray;
 
 @end
 
-@implementation TCTagpageVC
+@implementation TCTagSummaryVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,7 +28,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
     self.tableView.backgroundColor = TC_TABLE_BACK_COLOR;
-    [self.tableView registerClass:[TCTagpageCell class] forCellReuseIdentifier:@"reuseIdentifier"];
+    [self.tableView registerClass:[TCTagSummaryCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     [self.tableView reloadData];
 }
 
@@ -79,9 +79,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TCTagpageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    TCTagSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     cell.tagItem = self.tagArray[indexPath.row];
-    __weak typeof(TCTagpageVC) *weakSelf = self;
+    __weak typeof(TCTagSummaryVC) *weakSelf = self;
     [cell setTapTagBlock:^(NSString *tag) {
         assert(tag.length);
         TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];

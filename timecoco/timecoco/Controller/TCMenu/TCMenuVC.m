@@ -109,6 +109,12 @@
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            TCTagpageVC *vc = [[TCTagpageVC alloc] init];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.frostedViewController.contentViewController = navigationController;
+        }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             TCSettingVC *vc = [[TCSettingVC alloc] init];

@@ -8,22 +8,27 @@
 
 #import "FMDatabaseQueue.h"
 
-@class TCDairy;
+@class TCDairyModel;
 
 @interface TCDatabaseManager : FMDatabaseQueue
 
 + (NSArray *)storedDairyList;
 
+/*!
+ *  仅仅抓取含有#存储的文字
+ */
++ (NSArray *)containHashKeyList;
+
 + (NSArray *)dairyListWithTag:(NSString *)tag;
 
-+ (NSArray *)sameDayDairyListWithDairy:(TCDairy *)dairy;
++ (NSArray *)sameDayDairyListWithDairy:(TCDairyModel *)dairy;
 
 + (NSArray *)storedDairyListFromTime:(NSTimeInterval)startTime toTime:(NSTimeInterval)endTime;
 
-+ (BOOL)addDairy:(TCDairy *)dairy;
++ (BOOL)addDairy:(TCDairyModel *)dairy;
 
-+ (BOOL)replaceDairy:(TCDairy *)dairy;
++ (BOOL)replaceDairy:(TCDairyModel *)dairy;
 
-+ (BOOL)removeDairy:(TCDairy *)dairy;
++ (BOOL)removeDairy:(TCDairyModel *)dairy;
 
 @end

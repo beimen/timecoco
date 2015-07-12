@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, TCDairyType) {
     TCDairyTypeDefault = TCDairyTypeNormal,
 };
 
-@interface TCDairy : NSObject
+@interface TCDairyModel : NSObject
 
 @property (nonatomic, assign) NSInteger primaryId;
 @property (nonatomic, assign) NSInteger timeZoneInterval;

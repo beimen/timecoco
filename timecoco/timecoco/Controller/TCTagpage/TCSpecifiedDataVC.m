@@ -133,10 +133,10 @@
     NSArray *array = [TCDatabaseManager dairyListWithTag:searchedTag];
     [self setDairyList:[array mutableCopy]];
     NSString *subtitle = [NSString stringWithFormat:@"共 %lu 项", (unsigned long) [self.dairyList count]];
-    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(searchedTag, subtitle, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
+    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(searchedTag, subtitle, TC_RED_COLOR, 15, SCREEN_WIDTH - 120);
 }
 
-- (void)setSearchDairy:(TCDairy *)searchDairy {
+- (void)setSearchDairy:(TCDairyModel *)searchDairy {
     _searchDairy = searchDairy;
     NSArray *dairyList = [TCDatabaseManager sameDayDairyListWithDairy:searchDairy];
     [self setDairyList:[dairyList mutableCopy]];
@@ -147,12 +147,8 @@
     [formatter setDateFormat:@"YYYY年MM月dd日"];
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:searchDairy.timeZoneInterval]];
 
-    NSArray *array = @[ @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日" ];
-    NSInteger order = [searchDairy dayOrderInWeek];
-    NSString *title = [NSString stringWithFormat:@"%@ %@", [formatter stringFromDate:date], [array objectAtIndex:order]];
-
     NSString *subtitle = [NSString stringWithFormat:@"共 %lu 项", (unsigned long) [self.dairyList count]];
-    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(title, subtitle, TC_RED_COLOR, 17, SCREEN_WIDTH - 120);
+    self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth([formatter stringFromDate:date], subtitle, TC_RED_COLOR, 15, SCREEN_WIDTH - 120);
 }
 
 - (TCDairyTable *)tableView {
@@ -176,7 +172,7 @@
             }
         }];
 
-        [_tableView setHeaderDateBlock:^(TCDairy *dairy) {
+        [_tableView setHeaderDateBlock:^(TCDairyModel *dairy) {
             __strong typeof(TCSpecifiedDataVC) *strongSelf = weakSelf;
             if ([strongSelf.searchedTag length]) {
                 TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];

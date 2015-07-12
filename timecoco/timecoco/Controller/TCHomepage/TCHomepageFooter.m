@@ -45,7 +45,7 @@
     return _dashLine;
 }
 
-- (void)setDairy:(TCDairy *)dairy {
+- (void)setDairy:(TCDairyModel *)dairy {
     _dairy = dairy;
     
     self.footerType = [dairy estimateWeekend] ? TCHomepageFooterTypeWeekend : TCHomepageFooterTypeWorkday;

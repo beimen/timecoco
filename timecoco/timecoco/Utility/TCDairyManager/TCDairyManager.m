@@ -14,7 +14,7 @@
     NSMutableArray *dateIndex = [NSMutableArray new];
     __block NSInteger lastDate = 0;
     __block NSInteger lastTimeZoneInterval = 0;
-    [dairyList enumerateObjectsUsingBlock:^(TCDairy *dairy, NSUInteger idx, BOOL *stop) {
+    [dairyList enumerateObjectsUsingBlock:^(TCDairyModel *dairy, NSUInteger idx, BOOL *stop) {
         NSInteger date = (NSInteger)(dairy.pointTime + dairy.timeZoneInterval) / T_DAY;
         if ([dateIndex lastObject] && (date == lastDate) && (lastTimeZoneInterval == dairy.timeZoneInterval)) {
             int lastDateCount = [[dateIndex lastObject] intValue];

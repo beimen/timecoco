@@ -23,6 +23,6 @@
 #import "TCConstant.h"
 #import "TCNotification.h"
 
-#import "TCDairy.h"
+#import "TCDairyModel.h"
 
 #endif

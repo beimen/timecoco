@@ -18,6 +18,6 @@ typedef NS_ENUM(NSUInteger, TCHomepageFooterType) {
 
 @interface TCHomepageFooter : UITableViewHeaderFooterView
 
-@property (nonatomic, weak) TCDairy *dairy;
+@property (nonatomic, weak) TCDairyModel *dairy;
 
 @end

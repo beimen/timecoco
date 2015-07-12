@@ -245,7 +245,7 @@ static CGFloat cellFooterHeight = 10.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
+    TCDairyModel *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
     return [TCHomepageCell cellHeightWithDairy:dairy];
 }
@@ -264,7 +264,7 @@ static CGFloat cellFooterHeight = 10.0f;
     cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
     __weak typeof(TCHomepageVC) *weakSelf = self;
-    [cell setLongPressBlock:^(TCDairy *dairy) {
+    [cell setLongPressBlock:^(TCDairyModel *dairy) {
         __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
         if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
             TCEditorVC *vc = [[TCEditorVC alloc] init];
@@ -295,7 +295,7 @@ static CGFloat cellFooterHeight = 10.0f;
     header.yearNowValue = [[NSDateFormatter customYearFormatter] stringFromDate:[NSDate date]].integerValue;
     header.dairy = [self.dairyList objectAtIndex:[self getDairySumBeforeSection:section]];
     __weak typeof(TCHomepageVC) *weakSelf = self;
-    [header setDoubleTapBlock:^(TCDairy *dairy) {
+    [header setDoubleTapBlock:^(TCDairyModel *dairy) {
         __strong typeof(TCHomepageVC) *strongSelf = weakSelf;
         if ([strongSelf.navigationController.topViewController isKindOfClass:[TCHomepageVC class]]) {
             TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
@@ -327,7 +327,7 @@ static CGFloat cellFooterHeight = 10.0f;
     NSInteger count = [dairyIndexPaths count];
     if (count) {
         NSIndexPath *dairyIndexPath = dairyIndexPaths[0];
-        TCDairy *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:dairyIndexPath.section] + dairyIndexPath.row)];
+        TCDairyModel *dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:dairyIndexPath.section] + dairyIndexPath.row)];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:(dairy.timeZoneInterval + dairy.pointTime)];
         self.navigationDateString = [[NSDateFormatter customFormatter] stringFromDate:date];
     }

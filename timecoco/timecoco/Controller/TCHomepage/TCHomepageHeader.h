@@ -18,10 +18,10 @@ typedef NS_ENUM(NSUInteger, TCHomepageHeaderType) {
 
 @interface TCHomepageHeader : UITableViewHeaderFooterView
 
-@property (nonatomic, weak) TCDairy *dairy;
-@property (nonatomic, weak) TCDairy *lastDairy;
+@property (nonatomic, weak) TCDairyModel *dairy;
+@property (nonatomic, weak) TCDairyModel *lastDairy;
 @property (nonatomic, assign) NSInteger yearNowValue;
 @property (nonatomic, assign) BOOL showMonth;
-@property (nonatomic, copy) void (^doubleTapBlock)(TCDairy *dairy);
+@property (nonatomic, copy) void (^doubleTapBlock)(TCDairyModel *dairy);
 
 @end

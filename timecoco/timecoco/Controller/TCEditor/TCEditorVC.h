@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, TCEditorVCType) {
 
 @interface TCEditorVC : UIViewController
 
-@property (nonatomic, strong) TCDairy *editDairy;
+@property (nonatomic, strong) TCDairyModel *editDairy;
 @property (nonatomic, assign) TCEditorVCType type;
 
 @end

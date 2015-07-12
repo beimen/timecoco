@@ -28,7 +28,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2.0);
     CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
-    CGRect rectangle = CGRectMake(15, 6, self.width - 4 - 15, self.height - 12);
+    CGRect rectangle = CGRectMake(1, 1, self.width - 2, self.height - 2);
     CGContextAddRect(context, rectangle);
     CGContextStrokePath(context);
     CGContextSetFillColorWithColor(context, TC_WHITE_COLOR.CGColor);

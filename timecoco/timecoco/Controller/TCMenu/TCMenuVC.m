@@ -8,7 +8,8 @@
 
 #import "TCMenuVC.h"
 #import "TCHomepageVC.h"
-#import "TCTagpageVC.h"
+#import "TCTagSummaryVC.h"
+#import "TCSearchVC.h"
 #import "TCSettingVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
@@ -28,7 +29,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 130, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 120, 0, 0, 0);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,7 +53,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    NSInteger numberOfRows;
+    if (section == 0) {
+        numberOfRows = 1;
+    } else if (section == 1) {
+        numberOfRows = 2;
+    } else if (section == 2) {
+        numberOfRows = 1;
+    }
+    return numberOfRows;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,20 +85,22 @@
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"标签";
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"搜索";
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"设置";
         }
     }
-    cell.textLabel.textColor = [self cellTextColorWithSection:indexPath.section];
+    cell.textLabel.textColor = [self cellTextColorWithIndexPath:indexPath];
     return cell;
 }
 
-- (UIColor *)cellTextColorWithSection:(NSInteger)index {
-    NSArray *array = @[ @"TCHomepageVC", @"TCTagpageVC", @"TCSettingVC" ];
+- (UIColor *)cellTextColorWithIndexPath:(NSIndexPath *)indexPatch {
+    NSArray *array = @[ @[@"TCHomepageVC"], @[@"TCTagSummaryVC", @"TCSearchVC"], @[@"TCSettingVC"] ];
     UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
-    NSString *classString = [array objectAtIndex:index];
+    NSString *classString = (NSString *)[(NSArray *)array[indexPatch.section] objectAtIndex:indexPatch.row];
     if ([topVC isKindOfClass:NSClassFromString(classString)]) {
         return TC_RED_COLOR;
     } else {
@@ -111,7 +122,11 @@
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            TCTagpageVC *vc = [[TCTagpageVC alloc] init];
+            TCTagSummaryVC *vc = [[TCTagSummaryVC alloc] init];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.frostedViewController.contentViewController = navigationController;
+        } else if (indexPath.row == 1) {
+            TCSearchVC *vc = [[TCSearchVC alloc] init];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }

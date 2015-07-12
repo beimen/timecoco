@@ -1,5 +1,5 @@
 //
-//  TCTagpageCell.h
+//  TCTagSummaryCell.h
 //  timecoco
 //
 //  Created by Xie Hong on 7/12/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TCTagItemModel.h"
 
-@interface TCTagpageCell : UITableViewCell
+@interface TCTagSummaryCell : UITableViewCell
 
 @property (nonatomic, strong) TCTagItemModel *tagItem;
 @property (nonatomic, copy) void (^tapTagBlock)(NSString *tag);

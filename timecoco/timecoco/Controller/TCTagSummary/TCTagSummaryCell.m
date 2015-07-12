@@ -1,17 +1,17 @@
 //
-//  TCTagpageCell.m
+//  TCTagSummaryCell.m
 //  timecoco
 //
 //  Created by Xie Hong on 7/12/15.
 //  Copyright (c) 2015 timecoco. All rights reserved.
 //
 
-#import "TCTagpageCell.h"
+#import "TCTagSummaryCell.h"
 #import "TCTagItemModel.h"
 #import "TCFrameBorderView.h"
 #import "TTTAttributedLabel.h"
 
-@interface TCTagpageCell () <TTTAttributedLabelDelegate>
+@interface TCTagSummaryCell () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) TTTAttributedLabel *tagTitleLabel;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation TCTagpageCell
+@implementation TCTagSummaryCell
 
 - (void)awakeFromNib {
     self.backgroundColor = TC_TABLE_BACK_COLOR;
@@ -48,7 +48,7 @@
 
 - (TCFrameBorderView *)frameBorder {
     if (_frameBorder == nil) {
-        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(5, 5, SCREEN_WIDTH - 10, self.contentView.height - 10)];
+        self.frameBorder = [[TCFrameBorderView alloc] initWithFrame:CGRectMake(8, 5, SCREEN_WIDTH - 16, self.contentView.height - 10)];
 
         [self.contentView addSubview:self.frameBorder];
     }
@@ -57,7 +57,7 @@
 
 - (TTTAttributedLabel *)tagTitleLabel {
     if (_tagTitleLabel == nil) {
-        self.tagTitleLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 12, self.contentView.height - 12)];
+        self.tagTitleLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 18, self.contentView.height - 12)];
         _tagTitleLabel.textColor = TC_TEXT_COLOR;
         _tagTitleLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
         _tagTitleLabel.numberOfLines = 1;
@@ -90,7 +90,7 @@
 
 - (UILabel *)tagCountLabel {
     if (_tagCountLabel == nil) {
-        self.tagCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 31, SCREEN_WIDTH - 12, self.contentView.height - 42)];
+        self.tagCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 31, SCREEN_WIDTH - 18, self.contentView.height - 42)];
         _tagCountLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:12.0f];
         _tagCountLabel.textAlignment = NSTextAlignmentCenter;
         _tagCountLabel.textColor = TC_LIGHT_GRAY_COLOR;

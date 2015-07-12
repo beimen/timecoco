@@ -29,7 +29,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 130, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT - 120, 0, 0, 0);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -126,6 +126,9 @@
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         } else if (indexPath.row == 1) {
+            TCSearchVC *vc = [[TCSearchVC alloc] init];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            self.frostedViewController.contentViewController = navigationController;
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {

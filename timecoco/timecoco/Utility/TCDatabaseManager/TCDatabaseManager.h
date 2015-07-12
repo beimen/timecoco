@@ -21,6 +21,8 @@
 
 + (NSArray *)dairyListWithTag:(NSString *)tag;
 
++ (NSArray *)dairyListWithKeyword:(NSString *)keyword;
+
 + (NSArray *)sameDayDairyListWithDairy:(TCDairyModel *)dairy;
 
 + (NSArray *)storedDairyListFromTime:(NSTimeInterval)startTime toTime:(NSTimeInterval)endTime;

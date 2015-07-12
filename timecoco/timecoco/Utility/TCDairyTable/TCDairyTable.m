@@ -134,6 +134,10 @@ static CGFloat cellFooterHeight = 10.0f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_TABLEVIEW_BEGIN_DRAGGING object:nil];
+}
+
 #pragma mark - UITableViewDataSource Methods
 
 @end

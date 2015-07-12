@@ -7,8 +7,13 @@
 //
 
 #import "TCSearchVC.h"
+#import "TCDairyTable.h"
+#import "SVProgressHUD.h"
 
-@interface TCSearchVC ()
+@interface TCSearchVC () <UISearchBarDelegate>
+
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) TCDairyTable *tableView;
 
 @end
 
@@ -17,11 +22,86 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = TC_BACK_COLOR;
-    self.navigationItem.titleView = createTitleViewForTitle(@"搜索", TC_RED_COLOR, 17);
+    [self updateTitleWithCount:nil];
+    [self.view addSubview:self.searchBar];
+    [self.view addSubview:self.tableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dismissKeyboard)
+                                                 name:NOTIFICATION_TABLEVIEW_BEGIN_DRAGGING
+                                               object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.searchBar becomeFirstResponder];
+    [SVProgressHUD setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:13]];
+    [SVProgressHUD setForegroundColor:TC_RED_COLOR];
+    [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc {
+    NSLog(@"TCSearchVC is deallocated.");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Lazy Loading
+
+- (UISearchBar *)searchBar {
+    if (_searchBar == nil) {
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
+        _searchBar.searchBarStyle = UISearchBarStyleMinimal;
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
+}
+
+- (TCDairyTable *)tableView {
+    if (_tableView == nil) {
+        self.tableView = [[TCDairyTable alloc] initWithFrame:CGRectMake(0, self.searchBar.bottom, self.view.width, self.view.height - self.searchBar.bottom) style:UITableViewStyleGrouped];
+        _tableView.tableOption = TCDairyTableOptionShowMonth;
+    }
+    return _tableView;
+}
+
+#pragma mark - Actions
+
+- (void)updateTitleWithCount:(NSNumber *)count {
+    if (count == nil) {
+        self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(@"搜索", @"请输入关键字", TC_RED_COLOR, 15, MAXFLOAT);
+    } else {
+        NSString *subTitle = [NSString stringWithFormat:@"共 %@ 项", count];
+        self.navigationItem.titleView = createTitleViewForTitleWithMaxWidth(@"搜索", subTitle, TC_RED_COLOR, 15, MAXFLOAT);
+    }
+}
+
+- (void)dismissKeyboard {
+    [self.view endEditing:YES];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if ([searchText length]) {
+        NSArray *resultArray = [TCDatabaseManager dairyListWithKeyword:searchText];
+        if ([resultArray count] == 0) {
+            [SVProgressHUD showInfoWithStatus:@"无记录" maskType:SVProgressHUDMaskTypeClear];
+        }
+        self.tableView.dairyList = [resultArray mutableCopy];
+        [self updateTitleWithCount:@([resultArray count])];
+        [self.tableView reloadData];
+    } else {
+        self.tableView.dairyList = nil;
+        [self updateTitleWithCount:nil];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
+    [self dismissKeyboard];
 }
 
 @end

@@ -67,9 +67,13 @@ dispatch_queue_t queue;
 }
 
 + (NSArray *)dairyListWithTag:(NSString *)tag {
+    return [self dairyListWithKeyword:tag];
+}
+
++ (NSArray *)dairyListWithKeyword:(NSString *)keyword {
     __block NSMutableArray *items = [NSMutableArray new];
     [manager inDatabase:^(FMDatabase *db) {
-        NSString *searchString = [NSString stringWithFormat:@"%%%@%%", tag];
+        NSString *searchString = [NSString stringWithFormat:@"%%%@%%", keyword];
         FMResultSet *set = [db executeQuery:@"select pointTime,timeZoneInterval,content,type,primaryId from timecoco_dairy where content like ? order by pointTime asc, type desc", searchString];
         while (set.next) {
             TCDairyModel *dairy = [TCDairyModel new];
@@ -78,7 +82,7 @@ dispatch_queue_t queue;
             dairy.content = [set stringForColumnIndex:2];
             dairy.type = [set intForColumnIndex:3];
             dairy.primaryId = [set intForColumnIndex:4];
-
+            
             [items addObject:dairy];
         }
     }];

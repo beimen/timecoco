@@ -35,7 +35,7 @@ UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle,
     [titleText setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:fontSize]];
     [titleText sizeToFit];
     [titleView addSubview:titleText];
-    
+
     UILabel *subTitleText = [[UILabel alloc] init];
 
     if (subtitle != nil) {
@@ -46,11 +46,11 @@ UIView *createTitleViewForTitleWithMaxWidth(NSString *title, NSString *subtitle,
         [subTitleText setTextColor:titleColor];
         [subTitleText sizeToFit];
         [titleView addSubview:subTitleText];
-        titleView.size = CGSizeMake(MIN(titleText.size.width, maxWidth), titleText.size.height + subTitleText.size.height);
+        titleView.size = CGSizeMake(MIN(MAX(titleText.size.width, subTitleText.size.width), maxWidth), titleText.size.height + subTitleText.size.height);
     } else {
         titleView.size = CGSizeMake(MIN(titleText.size.width, maxWidth), titleText.size.height);
     }
-    
+
     titleText.width = subTitleText.width = titleView.width;
     subTitleText.y = titleView.height - subTitleText.height;
 

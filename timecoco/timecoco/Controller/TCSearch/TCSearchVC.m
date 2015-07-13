@@ -8,6 +8,7 @@
 
 #import "TCSearchVC.h"
 #import "TCDairyTable.h"
+#import "TCSpecifiedDataVC.h"
 #import "SVProgressHUD.h"
 
 @interface TCSearchVC () <UISearchBarDelegate>
@@ -33,10 +34,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.searchBar performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.35f];
-    [SVProgressHUD setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:13]];
-    [SVProgressHUD setForegroundColor:TC_RED_COLOR];
-    [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
+    if ([self.tableView.dairyList count] == 0) {
+        [self.searchBar performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.35f];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +64,17 @@
     if (_tableView == nil) {
         self.tableView = [[TCDairyTable alloc] initWithFrame:CGRectMake(0, self.searchBar.bottom, self.view.width, self.view.height - self.searchBar.bottom) style:UITableViewStyleGrouped];
         _tableView.tableOption = TCDairyTableOptionShowMonth;
+        __weak typeof(TCSearchVC) *weakSelf = self;
+        [_tableView setTapTagBlock:^(NSString *tag) {
+            TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
+            vc.searchedTag = tag;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
+        [_tableView setHeaderDateBlock:^(TCDairyModel *dairy) {
+            TCSpecifiedDataVC *vc = [[TCSpecifiedDataVC alloc] init];
+            vc.searchDairy = dairy;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }];
     }
     return _tableView;
 }
@@ -89,6 +100,9 @@
     if ([searchText length]) {
         NSArray *resultArray = [TCDatabaseManager dairyListWithKeyword:searchText];
         if ([resultArray count] == 0) {
+            [SVProgressHUD setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:13]];
+            [SVProgressHUD setForegroundColor:TC_RED_COLOR];
+            [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
             [SVProgressHUD showInfoWithStatus:@"无记录" maskType:SVProgressHUDMaskTypeClear];
         }
         self.tableView.dairyList = [resultArray mutableCopy];

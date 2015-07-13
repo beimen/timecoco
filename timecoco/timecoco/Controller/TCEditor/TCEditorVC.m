@@ -10,7 +10,6 @@
 
 @interface TCEditorVC () <UITextViewDelegate>
 
-@property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UITextView *textView;
 @property (nonatomic, assign) TCDairyType dairyType;
 
@@ -200,10 +199,11 @@
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10 + self.navigationController.navigationBar.bottom, self.view.width - 20, self.view.height - 20 - self.navigationController.navigationBar.bottom)];
     textView.backgroundColor = TC_WHITE_COLOR;
     textView.textColor = TC_DARK_GRAY_COLOR;
-    textView.font = [UIFont systemFontOfSize:16.0f];
+    textView.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:16.0f];
     textView.layer.borderColor = TC_RED_COLOR.CGColor;
     textView.layer.borderWidth = 1.0f;
     textView.layoutManager.allowsNonContiguousLayout = NO;
+    textView.tintColor = TC_RED_COLOR;
     [self.view addSubview:textView];
     self.textView = textView;
 }

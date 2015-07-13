@@ -33,7 +33,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.searchBar becomeFirstResponder];
+    [self.searchBar performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.35f];
     [SVProgressHUD setFont:[UIFont fontWithName:CUSTOM_FONT_NAME size:13]];
     [SVProgressHUD setForegroundColor:TC_RED_COLOR];
     [SVProgressHUD setBackgroundColor:TC_BACK_COLOR];
@@ -55,6 +55,7 @@
         self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
         _searchBar.delegate = self;
+        _searchBar.tintColor = TC_RED_COLOR;
     }
     return _searchBar;
 }

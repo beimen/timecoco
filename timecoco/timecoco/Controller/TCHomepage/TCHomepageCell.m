@@ -191,28 +191,32 @@
 }
 
 - (void)setupContentText:(NSString *)text {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(#\\w+#)" options:0 error:nil];
-    NSArray *matches = [regex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
-    if ([matches count]) {
-        [self.contentLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-            [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
-                //设定可点击文字的的大小
-                UIFont *targetFont = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
-                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) targetFont.fontName, targetFont.pointSize, NULL);
-                if (font) {
-                    //设置可点击文本的大小
-                    [mutableAttributedString addAttribute:(NSString *) kCTFontAttributeName value:(__bridge id) font range:match.range];
-                    //设置可点击文本的颜色
-                    [mutableAttributedString addAttribute:(NSString *) kCTForegroundColorAttributeName value:(id)[[UIColor blueColor] CGColor] range:match.range];
-                    
-                    CFRelease(font);
-                }
+    if ([text containsString:@"#"]) {
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(#\\w+#)" options:0 error:nil];
+        NSArray *matches = [regex matchesInString:text options:0 range:NSMakeRange(0, [text length])];
+        if ([matches count]) {
+            [self.contentLabel setText:text afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
+                    //设定可点击文字的的大小
+                    UIFont *targetFont = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
+                    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) targetFont.fontName, targetFont.pointSize, NULL);
+                    if (font) {
+                        //设置可点击文本的大小
+                        [mutableAttributedString addAttribute:(NSString *) kCTFontAttributeName value:(__bridge id) font range:match.range];
+                        //设置可点击文本的颜色
+                        [mutableAttributedString addAttribute:(NSString *) kCTForegroundColorAttributeName value:(id)[[UIColor blueColor] CGColor] range:match.range];
+                        
+                        CFRelease(font);
+                    }
+                }];
+                return mutableAttributedString;
             }];
-            return mutableAttributedString;
-        }];
-        [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
-            [self.contentLabel addLinkWithTextCheckingResult:match];
-        }];
+            [matches enumerateObjectsUsingBlock:^(NSTextCheckingResult *match, NSUInteger idx, BOOL *stop) {
+                [self.contentLabel addLinkWithTextCheckingResult:match];
+            }];
+        } else {
+            [self.contentLabel setText:text];
+        }
     } else {
         [self.contentLabel setText:text];
     }
@@ -230,19 +234,19 @@
         self.minuteLabel.text = (minuteLabelText.length == 1) ? [NSString stringWithFormat:@"0%@", minuteLabelText] : minuteLabelText;
         self.minuteLabel.textColor = [TCColorManager changeTextColorForType:self.cellType];
         [UIView animateWithDuration:1.0f
-                         animations:^{
-                             self.minuteLabel.alpha = 1.0f;
-                         }
-                         completion:^(BOOL finished) {
-                             [UIView animateWithDuration:1.0f
-                                                   delay:0.0f
-                                                 options:UIViewAnimationOptionCurveLinear
-                                              animations:^{
-                                                  self.minuteLabel.alpha = 0.0f;
-                                              }
-                                              completion:^(BOOL finished){
-                                              }];
-                         }];
+            animations:^{
+                self.minuteLabel.alpha = 1.0f;
+            }
+            completion:^(BOOL finished) {
+                [UIView animateWithDuration:1.0f
+                    delay:0.0f
+                    options:UIViewAnimationOptionCurveLinear
+                    animations:^{
+                        self.minuteLabel.alpha = 0.0f;
+                    }
+                    completion:^(BOOL finished){
+                    }];
+            }];
     }
 }
 
@@ -265,9 +269,9 @@
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:19.0f];
     NSDictionary *attrs = @{
-                            NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
-                            NSParagraphStyleAttributeName : style
-                            };
+        NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
+        NSParagraphStyleAttributeName : style
+    };
     CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 64, MAXFLOAT)
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:attrs

@@ -14,7 +14,6 @@
 
 @interface TCTagSummaryVC ()
 
-@property (nonatomic, strong) NSCountedSet *tagCountedSet;
 @property (nonatomic, strong) NSMutableArray *tagArray;
 
 @end

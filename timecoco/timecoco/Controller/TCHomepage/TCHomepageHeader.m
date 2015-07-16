@@ -21,6 +21,7 @@
 @implementation TCHomepageHeader
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
 }
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {

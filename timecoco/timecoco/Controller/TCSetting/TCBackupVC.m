@@ -18,7 +18,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = TC_BACK_COLOR;
     self.navigationItem.titleView = createTitleViewForTitle(@"备份", TC_RED_COLOR, 17);
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -50,6 +50,7 @@
 - (void)setupTableView {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [_tableView registerClass:[TCSettingCell class] forCellReuseIdentifier:CellIdentifier];
+    _tableView.backgroundColor = TC_TABLE_BACK_COLOR;
     _tableView.delegate = self;
     _tableView.dataSource = self;
 }
@@ -57,7 +58,7 @@
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -71,6 +72,10 @@
         if (indexPath.row == 0) {
             cell.textLabel.text = @"语言";
             cell.detailTextLabel.text = @"中文";
+        }
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"数据";
         }
     }
  

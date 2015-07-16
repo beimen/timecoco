@@ -24,6 +24,7 @@
         self.maximumLineHeight = 19.0f;
         self.minimumLineHeight = 19.0f;
         self.lineSpacing = 0.0f;
+        self.textInsets = UIEdgeInsetsMake(0, 7, 0, 7);
         
         NSMutableDictionary *linkAttributes = [NSMutableDictionary dictionaryWithDictionary:self.linkAttributes];
         [linkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *) kCTUnderlineStyleAttributeName];
@@ -36,11 +37,6 @@
         self.activeLinkAttributes = attributes;
     }
     return self;
-}
-
-- (void)drawTextInRect:(CGRect)rect {
-    UIEdgeInsets insets = {0, 7, 0, 7};
-    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

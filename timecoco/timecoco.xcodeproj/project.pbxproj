@@ -46,10 +46,12 @@
 		FE8406EA1B19F26B009A9500 /* extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FE8406DD1B19F26B009A9500 /* extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FE8406F11B19F4A1009A9500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE8406F31B19F4A1009A9500 /* InfoPlist.strings */; };
 		FEA116971B510325008ACC10 /* TCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA116961B510325008ACC10 /* TCProgressHUD.m */; };
+		FEAD28431B57F8C1000B2EBD /* TCLanguageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEAD28421B57F8C1000B2EBD /* TCLanguageSettingVC.m */; };
 		FEC6CB371B524B4000F3BEC7 /* TCTagSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB361B524B4000F3BEC7 /* TCTagSummaryCell.m */; };
 		FEC6CB3F1B52520500F3BEC7 /* TCTagItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB3E1B52520500F3BEC7 /* TCTagItemModel.m */; };
 		FEC6CB431B526B3400F3BEC7 /* TCSpecifiedDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB421B526B3400F3BEC7 /* TCSpecifiedDataVC.m */; };
 		FEC6CB471B526D3000F3BEC7 /* TCSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB461B526D3000F3BEC7 /* TCSearchVC.m */; };
+		FED641101B581FAC0077B896 /* TCTouchLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FED6410F1B581FAC0077B896 /* TCTouchLabel.m */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
 		FEF785081B14BAD600DB4859 /* TCBackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF785071B14BAD600DB4859 /* TCBackupVC.m */; };
 /* End PBXBuildFile section */
@@ -168,6 +170,8 @@
 		FE8406F71B19F4AB009A9500 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FEA116951B510325008ACC10 /* TCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProgressHUD.h; sourceTree = "<group>"; };
 		FEA116961B510325008ACC10 /* TCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProgressHUD.m; sourceTree = "<group>"; };
+		FEAD28411B57F8C1000B2EBD /* TCLanguageSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLanguageSettingVC.h; sourceTree = "<group>"; };
+		FEAD28421B57F8C1000B2EBD /* TCLanguageSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLanguageSettingVC.m; sourceTree = "<group>"; };
 		FEC6CB351B524B4000F3BEC7 /* TCTagSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagSummaryCell.h; sourceTree = "<group>"; };
 		FEC6CB361B524B4000F3BEC7 /* TCTagSummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagSummaryCell.m; sourceTree = "<group>"; };
 		FEC6CB3D1B52520500F3BEC7 /* TCTagItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagItemModel.h; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 		FEC6CB421B526B3400F3BEC7 /* TCSpecifiedDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSpecifiedDataVC.m; sourceTree = "<group>"; };
 		FEC6CB451B526D3000F3BEC7 /* TCSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearchVC.h; sourceTree = "<group>"; };
 		FEC6CB461B526D3000F3BEC7 /* TCSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearchVC.m; sourceTree = "<group>"; };
+		FED6410E1B581FAC0077B896 /* TCTouchLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTouchLabel.h; sourceTree = "<group>"; };
+		FED6410F1B581FAC0077B896 /* TCTouchLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTouchLabel.m; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FEF785061B14BAD600DB4859 /* TCBackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBackupVC.h; sourceTree = "<group>"; };
 		FEF785071B14BAD600DB4859 /* TCBackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBackupVC.m; sourceTree = "<group>"; };
@@ -364,6 +370,8 @@
 				FE3883711AB71B16002C6817 /* TCHomepageHeader.m */,
 				FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */,
 				FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */,
+				FED6410E1B581FAC0077B896 /* TCTouchLabel.h */,
+				FED6410F1B581FAC0077B896 /* TCTouchLabel.m */,
 			);
 			path = TCHomepage;
 			sourceTree = "<group>";
@@ -438,12 +446,14 @@
 		FE65CE541AD57D7F00C00637 /* TCSetting */ = {
 			isa = PBXGroup;
 			children = (
-				FEF785061B14BAD600DB4859 /* TCBackupVC.h */,
-				FEF785071B14BAD600DB4859 /* TCBackupVC.m */,
-				FE65CE581AD57DBB00C00637 /* TCSettingVC.h */,
-				FE65CE591AD57DBB00C00637 /* TCSettingVC.m */,
 				FE5238C31B569BED000C20FF /* TCSettingCell.h */,
 				FE5238C41B569BED000C20FF /* TCSettingCell.m */,
+				FE65CE581AD57DBB00C00637 /* TCSettingVC.h */,
+				FE65CE591AD57DBB00C00637 /* TCSettingVC.m */,
+				FEF785061B14BAD600DB4859 /* TCBackupVC.h */,
+				FEF785071B14BAD600DB4859 /* TCBackupVC.m */,
+				FEAD28411B57F8C1000B2EBD /* TCLanguageSettingVC.h */,
+				FEAD28421B57F8C1000B2EBD /* TCLanguageSettingVC.m */,
 			);
 			path = TCSetting;
 			sourceTree = "<group>";
@@ -755,6 +765,7 @@
 				FE36DCBD1B0CDFAC00F65F2E /* TCTagSummaryVC.m in Sources */,
 				FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */,
 				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
+				FEAD28431B57F8C1000B2EBD /* TCLanguageSettingVC.m in Sources */,
 				F55A53931AB69781007AD020 /* TCFrameBorderView.m in Sources */,
 				FE1F48DC1B50BD6C002F7CE4 /* TCDairyTable.m in Sources */,
 				FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */,
@@ -770,6 +781,7 @@
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
+				FED641101B581FAC0077B896 /* TCTouchLabel.m in Sources */,
 				FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */,
 				FEC6CB431B526B3400F3BEC7 /* TCSpecifiedDataVC.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,

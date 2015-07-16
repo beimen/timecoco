@@ -9,7 +9,7 @@
 #import "TCHomepageCell.h"
 #import "TCDashLineView.h"
 #import "TCFrameBorderView.h"
-#import "TTTAttributedLabel.h"
+#import "TCTouchLabel.h"
 
 @interface TCHomepageCell () <TTTAttributedLabelDelegate>
 
@@ -17,8 +17,8 @@
 @property (nonatomic, strong) TCDashLineView *dashLine;
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) UILabel *hourLabel;
-@property (nonatomic, strong) TTTAttributedLabel *contentLabel;
-@property (nonatomic, strong) UIButton *contentButton;
+@property (nonatomic, strong) TCTouchLabel *contentLabel;
+//@property (nonatomic, strong) UIButton *contentButton;
 @property (nonatomic, strong) UILabel *minuteLabel;
 
 @end
@@ -52,7 +52,7 @@
     self.frameBorder.lineColor = _dashLine.lineColor;
 
     self.contentLabel.height = self.contentView.height - 12;
-    self.contentButton.height = self.contentLabel.height;
+//    self.contentButton.height = self.contentLabel.height;
     [self.frameBorder bringSubviewToFront:self.contentLabel];
 
     self.hourLabel.height = self.contentView.height;
@@ -100,30 +100,16 @@
     return _frameBorder;
 }
 
-- (TTTAttributedLabel *)contentLabel {
+- (TCTouchLabel *)contentLabel {
     if (_contentLabel == nil) {
-        self.contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(8, 1, SCREEN_WIDTH - 64, self.contentView.height - 12)];
-        _contentLabel.textColor = TC_TEXT_COLOR;
-        _contentLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
-        _contentLabel.numberOfLines = 0;
-        _contentLabel.backgroundColor = TC_WHITE_COLOR;
-        _contentLabel.clipsToBounds = YES;
+        self.contentLabel = [[TCTouchLabel alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 50, self.contentView.height - 12)];
 
-        _contentLabel.extendsLinkTouchArea = NO;
-        _contentLabel.maximumLineHeight = 19.0f;
-        _contentLabel.minimumLineHeight = 19.0f;
-        _contentLabel.lineSpacing = 0.0f;
         _contentLabel.delegate = self;
-
-        NSMutableDictionary *linkAttributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.linkAttributes];
-        [linkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *) kCTUnderlineStyleAttributeName];
-        [linkAttributes setObject:(__bridge id) TC_RED_COLOR.CGColor forKey:(NSString *) kCTForegroundColorAttributeName];
-        _contentLabel.linkAttributes = linkAttributes;
-        NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:_contentLabel.activeLinkAttributes];
-        [attributes setObject:(__bridge id) TC_LIGHT_GRAY_COLOR.CGColor forKey:(NSString *) kTTTBackgroundFillColorAttributeName];
-        [attributes setObject:(__bridge id) TC_RED_COLOR.CGColor forKey:(NSString *) kCTForegroundColorAttributeName];
-        [attributes setObject:[NSNumber numberWithDouble:2.0f] forKey:(NSString *) kTTTBackgroundCornerRadiusAttributeName];
-        _contentLabel.activeLinkAttributes = attributes;
+        
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
+        longPress.cancelsTouchesInView = NO;
+        longPress.minimumPressDuration = 0.5f;
+        [_contentLabel addGestureRecognizer:longPress];
 
         [self.frameBorder addSubview:_contentLabel];
     }
@@ -158,23 +144,6 @@
         [self.contentView addSubview:_minuteLabel];
     }
     return _minuteLabel;
-}
-
-- (UIButton *)contentButton {
-    if (_contentButton == nil) {
-        self.contentButton = [[UIButton alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 50, self.contentView.height - 12)];
-
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
-        longPress.cancelsTouchesInView = NO;
-        longPress.minimumPressDuration = 0.7f;
-        [_contentButton addGestureRecognizer:longPress];
-
-        _contentButton.alpha = 0.15f;
-        [_contentButton setBackgroundImage:[UIImage imageFromColor:TC_GRAY_COLOR] forState:UIControlStateHighlighted];
-
-        [self.frameBorder addSubview:_contentButton];
-    }
-    return _contentButton;
 }
 
 - (void)setDairy:(TCDairyModel *)dairy {
@@ -224,8 +193,9 @@
 }
 
 - (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
-    if (gesture.state == UIGestureRecognizerStateBegan) {
+    if (gesture.state == UIGestureRecognizerStateBegan && (self.contentLabel.isTouchingInCorrectRect)) {
         self.longPressBlock(self.dairy);
+        [self.contentLabel setBackgroundColor:TC_WHITE_COLOR];
     }
 }
 

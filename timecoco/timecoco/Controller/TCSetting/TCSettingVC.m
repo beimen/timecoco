@@ -11,7 +11,9 @@
 
 #define CellIdentifier (@"TCSettingCell")
 
-@interface TCSettingVC ()
+@interface TCSettingVC () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -19,8 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.titleView = createTitleViewForTitle(@"设置", TC_RED_COLOR, 17);
-    [self.tableView registerClass:[TCSettingCell class] forCellReuseIdentifier:@"TCSettingCell"];
+    
+    [self setupUI];
+
+    [self.view addSubview:self.tableView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,10 +40,24 @@
     NSLog(@"TCSettingVC is deallocated.");
 }
 
-#pragma mark - Table view data source
+#pragma mark - Setup UI
+
+- (void)setupUI {
+    self.navigationItem.titleView = createTitleViewForTitle(@"设置", TC_RED_COLOR, 17);
+    [self setupTableView];
+}
+
+- (void)setupTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [_tableView registerClass:[TCSettingCell class] forCellReuseIdentifier:CellIdentifier];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+}
+
+#pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -42,9 +65,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TCSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    TCSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"语言";
+            cell.detailTextLabel.text = @"中文";
+        }
+    }
  
     return cell;
+}
+
+#pragma mark - UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

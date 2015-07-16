@@ -19,6 +19,7 @@
 @implementation TCHomepageFooter
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
 }
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {

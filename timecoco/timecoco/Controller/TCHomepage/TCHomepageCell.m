@@ -28,6 +28,7 @@
 //@synthesize cellType = _cellType;
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.contentView.backgroundColor = TC_TABLE_BACK_COLOR;
     self.backgroundColor = TC_TABLE_BACK_COLOR;
 }

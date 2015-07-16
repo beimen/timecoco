@@ -13,6 +13,7 @@
 @synthesize lineColor = _lineColor;
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.backgroundColor = TC_TABLE_BACK_COLOR;
 }
 

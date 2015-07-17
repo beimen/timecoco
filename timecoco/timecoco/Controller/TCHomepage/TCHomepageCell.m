@@ -194,8 +194,10 @@
 
 - (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan && (self.contentLabel.isTouchingInCorrectRect)) {
-        self.longPressBlock(self.dairy);
-        [self.contentLabel setBackgroundColor:TC_WHITE_COLOR];
+        if (self.longPressBlock) {
+            self.longPressBlock(self.dairy);
+            [self.contentLabel setBackgroundColor:TC_WHITE_COLOR];
+        }
     }
 }
 

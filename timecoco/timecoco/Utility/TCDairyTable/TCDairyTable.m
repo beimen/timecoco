@@ -96,7 +96,12 @@ static CGFloat cellFooterHeight = 10.0f;
     cell.dairy = [self.dairyList objectAtIndex:([self getDairySumBeforeSection:indexPath.section] + indexPath.row)];
 
     __weak typeof(TCDairyTable) *weakSelf = self;
-    [cell setTapTagBlock:weakSelf.tapTagBlock];
+    if (self.tapTagBlock) {
+        [cell setTapTagBlock:weakSelf.tapTagBlock];
+    }
+    if (self.longPressBlock) {
+        [cell setLongPressBlock:weakSelf.longPressBlock];
+    }
 
     return cell;
 }

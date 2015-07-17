@@ -18,6 +18,7 @@ typedef NS_OPTIONS(NSUInteger, TCDairyTableOption) {
 @property (nonatomic, strong) NSMutableArray *dairyList;
 @property (nonatomic, assign) TCDairyTableOption tableOption;
 @property (nonatomic, copy) void (^tapTagBlock)(NSString *tag);
+@property (nonatomic, copy) void (^longPressBlock)(TCDairyModel *dairy);
 @property (nonatomic, copy) void (^headerDateBlock)(TCDairyModel *dairy);
 
 @end

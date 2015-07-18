@@ -11,5 +11,6 @@
 @interface TCTouchLabel : TTTAttributedLabel
 
 @property (nonatomic, assign) BOOL isTouchingInCorrectRect;
+@property (nonatomic, assign) BOOL allowLongPress;
 
 @end

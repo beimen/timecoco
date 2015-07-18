@@ -36,7 +36,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"TCTagSummaryVC is dealocated");
+    NSLog(@"TCTagSummaryVC is deallocated");
 }
 
 #pragma mark - Update TagCountedSet

@@ -18,7 +18,6 @@
 @property (nonatomic, strong) TCFrameBorderView *frameBorder;
 @property (nonatomic, strong) UILabel *hourLabel;
 @property (nonatomic, strong) TCTouchLabel *contentLabel;
-//@property (nonatomic, strong) UIButton *contentButton;
 @property (nonatomic, strong) UILabel *minuteLabel;
 
 @end
@@ -52,7 +51,9 @@
     self.frameBorder.lineColor = _dashLine.lineColor;
 
     self.contentLabel.height = self.contentView.height - 12;
-//    self.contentButton.height = self.contentLabel.height;
+    if (self.longPressBlock) {
+        self.contentLabel.allowLongPress = YES;
+    }
     [self.frameBorder bringSubviewToFront:self.contentLabel];
 
     self.hourLabel.height = self.contentView.height;
@@ -105,7 +106,7 @@
         self.contentLabel = [[TCTouchLabel alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 50, self.contentView.height - 12)];
 
         _contentLabel.delegate = self;
-        
+
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
         longPress.cancelsTouchesInView = NO;
         longPress.minimumPressDuration = 0.5f;
@@ -242,9 +243,9 @@
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:19.0f];
     NSDictionary *attrs = @{
-                            NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
-                            NSParagraphStyleAttributeName : style
-                            };
+        NSFontAttributeName : [UIFont fontWithName:CUSTOM_FONT_NAME size:15],
+        NSParagraphStyleAttributeName : style
+    };
     CGRect rect = [dairy.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 64, MAXFLOAT)
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:attrs

@@ -41,12 +41,14 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
-    NSSet *allTouches = [event allTouches];
-    UITouch *touch = [allTouches anyObject];
-    CGPoint point = [touch locationInView:self];
-    if (![self containslinkAtPoint:point]) {
-        [self performSelector:@selector(setBackgroundColorForTouch) withObject:nil afterDelay:0.1f];
-        self.isTouchingInCorrectRect = YES;
+    if (self.allowLongPress) {
+        NSSet *allTouches = [event allTouches];
+        UITouch *touch = [allTouches anyObject];
+        CGPoint point = [touch locationInView:self];
+        if (![self containslinkAtPoint:point]) {
+            [self performSelector:@selector(setBackgroundColorForTouch) withObject:nil afterDelay:0.1f];
+            self.isTouchingInCorrectRect = YES;
+        }
     }
 }
 
@@ -56,14 +58,18 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
-    [self setBackgroundColor:TC_WHITE_COLOR];
-    self.isTouchingInCorrectRect = NO;
+    if (self.allowLongPress) {
+        [self setBackgroundColor:TC_WHITE_COLOR];
+        self.isTouchingInCorrectRect = NO;
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesCancelled:touches withEvent:event];
-    [self setBackgroundColor:TC_WHITE_COLOR];
-    self.isTouchingInCorrectRect = NO;
+    if (self.allowLongPress) {
+        [self setBackgroundColor:TC_WHITE_COLOR];
+        self.isTouchingInCorrectRect = NO;
+    }
 }
 
 - (void)setBackgroundColorForTouch {

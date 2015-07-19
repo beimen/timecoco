@@ -10,21 +10,17 @@
 
 @implementation TCTouchLabel
 
+@synthesize longpressInterval = _longpressInterval;
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.textColor = TC_TEXT_COLOR;
-        self.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
-        self.numberOfLines = 0;
         self.backgroundColor = TC_WHITE_COLOR;
         self.clipsToBounds = YES;
         self.multipleTouchEnabled = NO;
        
         self.extendsLinkTouchArea = NO;
-        self.maximumLineHeight = 19.0f;
-        self.minimumLineHeight = 19.0f;
         self.lineSpacing = 0.0f;
-        self.textInsets = UIEdgeInsetsMake(0, 7, 0, 7);
         
         NSMutableDictionary *linkAttributes = [NSMutableDictionary dictionaryWithDictionary:self.linkAttributes];
         [linkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *) kCTUnderlineStyleAttributeName];
@@ -48,6 +44,7 @@
         if (![self containslinkAtPoint:point]) {
             [self performSelector:@selector(setBackgroundColorForTouch) withObject:nil afterDelay:0.1f];
             self.isTouchingInCorrectRect = YES;
+            [self performSelector:@selector(resetBackgroundColorFroTouch) withObject:nil afterDelay:self.longpressInterval];
         }
     }
 }
@@ -76,6 +73,23 @@
     if (self.isTouchingInCorrectRect) {
         [self setBackgroundColor:TC_GRAY_BACK_COLOR];
     }
+}
+
+- (void)resetBackgroundColorFroTouch {
+    [self setBackgroundColor:TC_WHITE_COLOR];
+}
+
+#pragma mark - Setter
+
+- (void)setLongpressInterval:(NSTimeInterval)longpressInterval {
+    _longpressInterval = longpressInterval;
+}
+
+- (NSTimeInterval)longpressInterval {
+    if (_longpressInterval == 0) {
+        self.longpressInterval = 0.5f;
+    }
+    return _longpressInterval;
 }
 
 @end

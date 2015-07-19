@@ -31,6 +31,7 @@
 		FE36DCBD1B0CDFAC00F65F2E /* TCTagSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE36DCBC1B0CDFAC00F65F2E /* TCTagSummaryVC.m */; };
 		FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883711AB71B16002C6817 /* TCHomepageHeader.m */; };
 		FE3883751AB71B2B002C6817 /* TCHomepageFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */; };
+		FE40BF341B5B94D100EF8201 /* TCTouchLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE40BF331B5B94D100EF8201 /* TCTouchLabel.m */; };
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
 		FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE4DB3331AC456FE0098156E /* InfoPlist.strings */; };
 		FE5238C51B569BED000C20FF /* TCSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5238C41B569BED000C20FF /* TCSettingCell.m */; };
@@ -51,7 +52,6 @@
 		FEC6CB3F1B52520500F3BEC7 /* TCTagItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB3E1B52520500F3BEC7 /* TCTagItemModel.m */; };
 		FEC6CB431B526B3400F3BEC7 /* TCSpecifiedDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB421B526B3400F3BEC7 /* TCSpecifiedDataVC.m */; };
 		FEC6CB471B526D3000F3BEC7 /* TCSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC6CB461B526D3000F3BEC7 /* TCSearchVC.m */; };
-		FED641101B581FAC0077B896 /* TCTouchLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FED6410F1B581FAC0077B896 /* TCTouchLabel.m */; };
 		FED641131B58330D0077B896 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FED641111B58330D0077B896 /* README.md */; };
 		FED641141B58330D0077B896 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FED641121B58330D0077B896 /* LICENSE */; };
 		FEE35D231ABD004600317341 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE35D221ABD004600317341 /* Accelerate.framework */; };
@@ -140,6 +140,8 @@
 		FE3883711AB71B16002C6817 /* TCHomepageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageHeader.m; sourceTree = "<group>"; };
 		FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageFooter.h; sourceTree = "<group>"; };
 		FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageFooter.m; sourceTree = "<group>"; };
+		FE40BF321B5B94D100EF8201 /* TCTouchLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTouchLabel.h; sourceTree = "<group>"; };
+		FE40BF331B5B94D100EF8201 /* TCTouchLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTouchLabel.m; sourceTree = "<group>"; };
 		FE4572671AC1B14600CE4C7C /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		FE4DB3321AC456FE0098156E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -182,8 +184,6 @@
 		FEC6CB421B526B3400F3BEC7 /* TCSpecifiedDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSpecifiedDataVC.m; sourceTree = "<group>"; };
 		FEC6CB451B526D3000F3BEC7 /* TCSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearchVC.h; sourceTree = "<group>"; };
 		FEC6CB461B526D3000F3BEC7 /* TCSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearchVC.m; sourceTree = "<group>"; };
-		FED6410E1B581FAC0077B896 /* TCTouchLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTouchLabel.h; sourceTree = "<group>"; };
-		FED6410F1B581FAC0077B896 /* TCTouchLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTouchLabel.m; sourceTree = "<group>"; };
 		FED641111B58330D0077B896 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		FED641121B58330D0077B896 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		FEE35D221ABD004600317341 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -376,8 +376,6 @@
 				FE3883711AB71B16002C6817 /* TCHomepageHeader.m */,
 				FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */,
 				FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */,
-				FED6410E1B581FAC0077B896 /* TCTouchLabel.h */,
-				FED6410F1B581FAC0077B896 /* TCTouchLabel.m */,
 			);
 			path = TCHomepage;
 			sourceTree = "<group>";
@@ -406,6 +404,7 @@
 				FE1F48D91B50BD3C002F7CE4 /* TCDairyTable */,
 				FE78B8321AB569FC0026241E /* TCDatabaseManager */,
 				FEA116941B510228008ACC10 /* TCProgressHUD */,
+				FE40BF311B5B94D100EF8201 /* TCTouchLabel */,
 				FE78B83C1AB57C520026241E /* TCUtilityView */,
 			);
 			path = Utility;
@@ -438,6 +437,15 @@
 				FEC6CB361B524B4000F3BEC7 /* TCTagSummaryCell.m */,
 			);
 			path = TCTagSummary;
+			sourceTree = "<group>";
+		};
+		FE40BF311B5B94D100EF8201 /* TCTouchLabel */ = {
+			isa = PBXGroup;
+			children = (
+				FE40BF321B5B94D100EF8201 /* TCTouchLabel.h */,
+				FE40BF331B5B94D100EF8201 /* TCTouchLabel.m */,
+			);
+			path = TCTouchLabel;
 			sourceTree = "<group>";
 		};
 		FE62CDCD1B50275100099CD3 /* TCDairyManager */ = {
@@ -770,6 +778,7 @@
 				FEA116971B510325008ACC10 /* TCProgressHUD.m in Sources */,
 				F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */,
 				FE36DCBD1B0CDFAC00F65F2E /* TCTagSummaryVC.m in Sources */,
+				FE40BF341B5B94D100EF8201 /* TCTouchLabel.m in Sources */,
 				FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */,
 				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
 				FEAD28431B57F8C1000B2EBD /* TCLanguageSettingVC.m in Sources */,
@@ -789,7 +798,6 @@
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
-				FED641101B581FAC0077B896 /* TCTouchLabel.m in Sources */,
 				FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */,
 				FEC6CB431B526B3400F3BEC7 /* TCSpecifiedDataVC.m in Sources */,
 				FE1E783D1AB53FA5000157B6 /* TCEditorVC.m in Sources */,

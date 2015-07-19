@@ -104,12 +104,19 @@
 - (TCTouchLabel *)contentLabel {
     if (_contentLabel == nil) {
         self.contentLabel = [[TCTouchLabel alloc] initWithFrame:CGRectMake(1, 1, SCREEN_WIDTH - 50, self.contentView.height - 12)];
-
+        self.contentLabel.textColor = TC_TEXT_COLOR;
+        self.contentLabel.font = [UIFont fontWithName:CUSTOM_FONT_NAME size:15];
+        self.contentLabel.numberOfLines = 0;
+        
+        self.contentLabel.maximumLineHeight = 19.0f;
+        self.contentLabel.minimumLineHeight = 19.0f;
+        self.contentLabel.textInsets = UIEdgeInsetsMake(0, 7, 0, 7);
+        
         _contentLabel.delegate = self;
 
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
         longPress.cancelsTouchesInView = NO;
-        longPress.minimumPressDuration = 0.5f;
+        longPress.minimumPressDuration = self.contentLabel.longPressInterval;
         [_contentLabel addGestureRecognizer:longPress];
 
         [self.frameBorder addSubview:_contentLabel];
@@ -197,7 +204,6 @@
     if (gesture.state == UIGestureRecognizerStateBegan && (self.contentLabel.isTouchingInCorrectRect)) {
         if (self.longPressBlock) {
             self.longPressBlock(self.dairy);
-            [self.contentLabel setBackgroundColor:TC_WHITE_COLOR];
         }
     }
 }

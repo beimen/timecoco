@@ -12,6 +12,6 @@
 
 @property (nonatomic, assign) BOOL isTouchingInCorrectRect;
 @property (nonatomic, assign) BOOL allowLongPress;
-@property (nonatomic, assign) NSTimeInterval longpressInterval;
+@property (nonatomic, assign) NSTimeInterval longPressInterval;
 
 @end

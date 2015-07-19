@@ -10,7 +10,7 @@
 
 @implementation TCTouchLabel
 
-@synthesize longpressInterval = _longpressInterval;
+@synthesize longPressInterval = _longPressInterval;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -44,7 +44,7 @@
         if (![self containslinkAtPoint:point]) {
             [self performSelector:@selector(setBackgroundColorForTouch) withObject:nil afterDelay:0.1f];
             self.isTouchingInCorrectRect = YES;
-            [self performSelector:@selector(resetBackgroundColorFroTouch) withObject:nil afterDelay:self.longpressInterval];
+            [self performSelector:@selector(resetBackgroundColorFroTouch) withObject:nil afterDelay:self.longPressInterval];
         }
     }
 }
@@ -81,15 +81,15 @@
 
 #pragma mark - Setter
 
-- (void)setLongpressInterval:(NSTimeInterval)longpressInterval {
-    _longpressInterval = longpressInterval;
+- (void)setLongPressInterval:(NSTimeInterval)longpressInterval {
+    _longPressInterval = longpressInterval;
 }
 
-- (NSTimeInterval)longpressInterval {
-    if (_longpressInterval == 0) {
-        self.longpressInterval = 0.5f;
+- (NSTimeInterval)longPressInterval {
+    if (_longPressInterval == 0) {
+        self.longPressInterval = 0.5f;
     }
-    return _longpressInterval;
+    return _longPressInterval;
 }
 
 @end

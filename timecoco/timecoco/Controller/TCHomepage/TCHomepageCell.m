@@ -116,7 +116,7 @@
 
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
         longPress.cancelsTouchesInView = NO;
-        longPress.minimumPressDuration = self.contentLabel.longpressInterval;
+        longPress.minimumPressDuration = self.contentLabel.longPressInterval;
         [_contentLabel addGestureRecognizer:longPress];
 
         [self.frameBorder addSubview:_contentLabel];
@@ -204,7 +204,6 @@
     if (gesture.state == UIGestureRecognizerStateBegan && (self.contentLabel.isTouchingInCorrectRect)) {
         if (self.longPressBlock) {
             self.longPressBlock(self.dairy);
-            [self.contentLabel setBackgroundColor:TC_WHITE_COLOR];
         }
     }
 }

@@ -24,10 +24,10 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_back"]
                                                                                    target:self
                                                                                  selector:@selector(backAction:)];
-    self.navigationItem.rightBarButtonItems = @[ [UIBarButtonItem createBarButtonItemWithImages:@[ [UIImage imageNamed:@"button_confirm"],
-                                                                                                   [UIImage imageNamed:@"button_confirm_disable"] ]
-                                                                                         target:self
-                                                                                       selector:@selector(confirmAction:)] ];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImages:@[ [UIImage imageNamed:@"button_confirm"],
+                                                                                               [UIImage imageNamed:@"button_confirm_disable"] ]
+                                                                                     target:self
+                                                                                   selector:@selector(confirmAction:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self setupUI];
     self.textView.delegate = self;

@@ -13,6 +13,7 @@
 #import "TCSettingVC.h"
 #import "REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
+#import "TCSlideNavigationController.h"
 
 @interface TCMenuVC ()
 
@@ -117,23 +118,23 @@
 #else
             TCHomepageVC *vc = [[TCHomepageVC alloc] init];
 #endif
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            TCSlideNavigationController *navigationController = [[TCSlideNavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             TCTagSummaryVC *vc = [[TCTagSummaryVC alloc] init];
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            TCSlideNavigationController *navigationController = [[TCSlideNavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         } else if (indexPath.row == 1) {
             TCSearchVC *vc = [[TCSearchVC alloc] init];
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            TCSlideNavigationController *navigationController = [[TCSlideNavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             TCSettingVC *vc = [[TCSettingVC alloc] init];
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+            TCSlideNavigationController *navigationController = [[TCSlideNavigationController alloc] initWithRootViewController:vc];
             self.frostedViewController.contentViewController = navigationController;
         }
     }

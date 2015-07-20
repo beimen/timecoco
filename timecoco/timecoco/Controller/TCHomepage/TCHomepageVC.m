@@ -95,6 +95,8 @@ static CGFloat cellFooterHeight = 10.0f;
                                                                                     target:self
                                                                                   selector:@selector(addAction:)];
     self.navigationItem.leftBarButtonItem = nil;
+    
+    [self.navigationController.view addSubview:self.dateLabel];
 
     if (self.firstAppear) {
         [self initDairyList];
@@ -223,6 +225,7 @@ static CGFloat cellFooterHeight = 10.0f;
         _dateLabel.textColor = TC_DARK_GRAY_COLOR;
         _dateLabel.backgroundColor = TC_CLEAR_COLOR;
         _dateLabel.numberOfLines = 0;
+        _dateLabel.clipsToBounds = YES;
         [self.navigationController.view addSubview:_dateLabel];
     }
     return _dateLabel;

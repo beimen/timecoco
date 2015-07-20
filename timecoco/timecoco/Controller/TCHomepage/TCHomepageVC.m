@@ -68,10 +68,7 @@ static CGFloat cellFooterHeight = 10.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = TC_RED_COLOR;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
-                                                                                    target:self
-                                                                                  selector:@selector(addAction:)];
-
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
@@ -93,6 +90,13 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem createBarButtonItemWithImage:[UIImage imageNamed:@"button_add"]
+                                                                                    target:self
+                                                                                  selector:@selector(addAction:)];
+    self.navigationItem.leftBarButtonItem = nil;
+    
+    [self.navigationController.view addSubview:self.dateLabel];
 
     if (self.firstAppear) {
         [self initDairyList];
@@ -213,15 +217,17 @@ static CGFloat cellFooterHeight = 10.0f;
 
 - (UILabel *)dateLabel {
     if (_dateLabel == nil) {
-        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.height, self.navigationController.navigationBar.height)];
+        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 48, self.navigationController.navigationBar.height)];
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         _dateLabel.font = [UIFont systemFontOfSize:12];
+        _dateLabel.adjustsFontSizeToFitWidth = YES;
+        _dateLabel.minimumScaleFactor = 0.5f;
         _dateLabel.textColor = TC_DARK_GRAY_COLOR;
         _dateLabel.backgroundColor = TC_CLEAR_COLOR;
         _dateLabel.numberOfLines = 0;
+        _dateLabel.clipsToBounds = YES;
+        [self.navigationController.view addSubview:_dateLabel];
     }
-    //这里可能需要修改，可能目前这种处理不是太好
-    [self.navigationController.navigationBar addSubview:_dateLabel];
     return _dateLabel;
 }
 

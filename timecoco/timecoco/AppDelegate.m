@@ -10,9 +10,9 @@
 #import "TCDatabaseManager.h"
 #import "TCHomepageVC.h"
 #import "TCEditorVC.h"
-#import "TCSettingVC.h"
 #import "TCMenuVC.h"
 #import "REFrostedViewController.h"
+#import "TCSlideNavigationController.h"
 
 @interface AppDelegate () <REFrostedViewControllerDelegate, UIGestureRecognizerDelegate>
 
@@ -29,7 +29,7 @@
 #else
     TCHomepageVC *homepageVC = [[TCHomepageVC alloc] init];
 #endif
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homepageVC];
+    TCSlideNavigationController *navigationController = [[TCSlideNavigationController alloc] initWithRootViewController:homepageVC];
     TCMenuVC *menuController = [[TCMenuVC alloc] initWithStyle:UITableViewStyleGrouped];
     REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
     frostedViewController.direction = REFrostedViewControllerDirectionLeft;
@@ -38,6 +38,7 @@
     frostedViewController.delegate = self;
     frostedViewController.panGestureEnabled = YES;
     UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+    gesture.delegate = self;
     [frostedViewController.view addGestureRecognizer:gesture];
 
     self.frostedViewController = frostedViewController;
@@ -73,7 +74,7 @@
     if ([url.path isEqualToString:@"/add"]) {
         REFrostedViewController *frostedVC = (REFrostedViewController *) self.window.rootViewController;
         [frostedVC hideMenuViewController];
-        UIViewController *topVC = [(UINavigationController *) frostedVC.contentViewController topViewController];
+        UIViewController *topVC = [(TCSlideNavigationController *) frostedVC.contentViewController topViewController];
 #ifdef HOMEPAGE_SINGLETON
         TCHomepageVC *homepageVC = [TCHomepageVC sharedVC];
 #else
@@ -83,7 +84,7 @@
             [(TCHomepageVC *) topVC addAction:nil];
         } else if ([topVC isKindOfClass:[TCEditorVC class]]) {
         } else {
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homepageVC];
+            TCSlideNavigationController *navigationController = [[TCSlideNavigationController alloc] initWithRootViewController:homepageVC];
             frostedVC.contentViewController = navigationController;
             [homepageVC performSelector:@selector(addAction:) withObject:nil afterDelay:0.5];
         }
@@ -91,17 +92,17 @@
     return YES;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return ([[self.frostedViewController.contentViewController childViewControllers] count] == 1);
+}
+
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer {
-    NSArray *targetClassArray = @[ @"TCHomepageVC", @"TCTagSummaryVC", @"TCSearchVC", @"TCSettingVC" ];
-    UIViewController *topVC = [(UINavigationController *) self.frostedViewController.contentViewController topViewController];
-    if ([targetClassArray containsObject:NSStringFromClass([topVC class])]) {
-        [topVC.view endEditing:YES];
-        [self.frostedViewController panGestureRecognized:recognizer];
-    }
+    UIViewController *topVC = [(TCSlideNavigationController *) self.frostedViewController.contentViewController topViewController];
+    [topVC.view endEditing:YES];
+    [self.frostedViewController panGestureRecognized:recognizer];
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer {
-    //    NSLog(@"didRecongnize");
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController willShowMenuViewController:(UIViewController *)menuViewController {

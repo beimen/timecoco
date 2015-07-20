@@ -202,8 +202,9 @@
 
 - (void)longPressTap:(UILongPressGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan && (self.contentLabel.isTouchingInCorrectRect)) {
+        __weak typeof(self) weakSelf = self;
         if (self.longPressBlock) {
-            self.longPressBlock(self.dairy);
+            self.longPressBlock(weakSelf.dairy);
         }
     }
 }

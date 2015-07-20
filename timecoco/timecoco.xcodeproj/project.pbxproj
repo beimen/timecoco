@@ -35,6 +35,7 @@
 		FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4572681AC1B14600CE4C7C /* UIImage+Extensions.m */; };
 		FE4DB3311AC456FE0098156E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE4DB3331AC456FE0098156E /* InfoPlist.strings */; };
 		FE5238C51B569BED000C20FF /* TCSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5238C41B569BED000C20FF /* TCSettingCell.m */; };
+		FE62707A1B5C1F1B00D91D06 /* TCSlideNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE6270791B5C1F1B00D91D06 /* TCSlideNavigationController.m */; };
 		FE62CDD01B50276A00099CD3 /* TCDairyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE62CDCF1B50276A00099CD3 /* TCDairyManager.m */; };
 		FE65CE5A1AD57DBB00C00637 /* TCSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE65CE591AD57DBB00C00637 /* TCSettingVC.m */; };
 		FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE78B8341AB56A5E0026241E /* TCDatabaseManager.m */; };
@@ -150,6 +151,8 @@
 		FE4DB3361AC457370098156E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FE5238C31B569BED000C20FF /* TCSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSettingCell.h; sourceTree = "<group>"; };
 		FE5238C41B569BED000C20FF /* TCSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSettingCell.m; sourceTree = "<group>"; };
+		FE6270781B5C1F1B00D91D06 /* TCSlideNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSlideNavigationController.h; sourceTree = "<group>"; };
+		FE6270791B5C1F1B00D91D06 /* TCSlideNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSlideNavigationController.m; sourceTree = "<group>"; };
 		FE62CDCE1B50276A00099CD3 /* TCDairyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDairyManager.h; sourceTree = "<group>"; };
 		FE62CDCF1B50276A00099CD3 /* TCDairyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDairyManager.m; sourceTree = "<group>"; };
 		FE65CE581AD57DBB00C00637 /* TCSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSettingVC.h; sourceTree = "<group>"; };
@@ -394,6 +397,7 @@
 		FE1E783E1AB54814000157B6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				FE6270771B5C1F1B00D91D06 /* TCSlideNavigationController */,
 				FE03F6081AB9CCB800597FAA /* TCConstant.h */,
 				FE03F6071AB9CC8800597FAA /* TCNotification.h */,
 				F5E895BC1AB6C41000862723 /* TCUtility.h */,
@@ -446,6 +450,15 @@
 				FE40BF331B5B94D100EF8201 /* TCTouchLabel.m */,
 			);
 			path = TCTouchLabel;
+			sourceTree = "<group>";
+		};
+		FE6270771B5C1F1B00D91D06 /* TCSlideNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FE6270781B5C1F1B00D91D06 /* TCSlideNavigationController.h */,
+				FE6270791B5C1F1B00D91D06 /* TCSlideNavigationController.m */,
+			);
+			path = TCSlideNavigationController;
 			sourceTree = "<group>";
 		};
 		FE62CDCD1B50275100099CD3 /* TCDairyManager */ = {
@@ -779,6 +792,7 @@
 				F5BAEC9C1ABBBFBE0062167C /* TCEditorOptionView.m in Sources */,
 				FE36DCBD1B0CDFAC00F65F2E /* TCTagSummaryVC.m in Sources */,
 				FE40BF341B5B94D100EF8201 /* TCTouchLabel.m in Sources */,
+				FE62707A1B5C1F1B00D91D06 /* TCSlideNavigationController.m in Sources */,
 				FE2EEA8C1B0E2B000037C924 /* NSDateFormatter+Custom.m in Sources */,
 				FE81CDA51AC63EC9001A033A /* NSArray+DairyIndex.m in Sources */,
 				FEAD28431B57F8C1000B2EBD /* TCLanguageSettingVC.m in Sources */,

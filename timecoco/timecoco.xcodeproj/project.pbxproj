@@ -20,6 +20,7 @@
 		F5DA7F9A1B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = F5DA7F991B4E61980052F724 /* NotoSansCJKsc-DemiLight.otf */; };
 		F5E895BE1AB6C41000862723 /* TCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E895BD1AB6C41000862723 /* TCUtility.m */; };
 		FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */; };
+		FE13C5D01B5FEB3000FC3290 /* TCMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE13C5CF1B5FEB3000FC3290 /* TCMainVC.m */; };
 		FE1E78231AB51C7A000157B6 /* TCHomepageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */; };
 		FE1E78241AB51C7A000157B6 /* TCHomepageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1E78221AB51C7A000157B6 /* TCHomepageCell.xib */; };
 		FE1E78371AB53EF1000157B6 /* TCHomepageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1E78361AB53EF1000157B6 /* TCHomepageVC.m */; };
@@ -119,6 +120,8 @@
 		FE0387BC1ABE65F1007A3831 /* TCMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMenuVC.m; sourceTree = "<group>"; };
 		FE03F6071AB9CC8800597FAA /* TCNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNotification.h; sourceTree = "<group>"; };
 		FE03F6081AB9CCB800597FAA /* TCConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCConstant.h; sourceTree = "<group>"; };
+		FE13C5CE1B5FEB3000FC3290 /* TCMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMainVC.h; sourceTree = "<group>"; };
+		FE13C5CF1B5FEB3000FC3290 /* TCMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMainVC.m; sourceTree = "<group>"; };
 		FE1478521AB487BC007C8395 /* TCHomepageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageVC.h; sourceTree = "<group>"; };
 		FE1E78201AB51C7A000157B6 /* TCHomepageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomepageCell.h; sourceTree = "<group>"; };
 		FE1E78211AB51C7A000157B6 /* TCHomepageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHomepageCell.m; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				FE3883711AB71B16002C6817 /* TCHomepageHeader.m */,
 				FE3883731AB71B2B002C6817 /* TCHomepageFooter.h */,
 				FE3883741AB71B2B002C6817 /* TCHomepageFooter.m */,
+				FE13C5CE1B5FEB3000FC3290 /* TCMainVC.h */,
+				FE13C5CF1B5FEB3000FC3290 /* TCMainVC.m */,
 			);
 			path = TCHomepage;
 			sourceTree = "<group>";
@@ -811,6 +816,7 @@
 				FE78B83F1AB57C750026241E /* TCDashLineView.m in Sources */,
 				FE0387BD1ABE65F1007A3831 /* TCMenuVC.m in Sources */,
 				FE78B8351AB56A5E0026241E /* TCDatabaseManager.m in Sources */,
+				FE13C5D01B5FEB3000FC3290 /* TCMainVC.m in Sources */,
 				FE3883721AB71B16002C6817 /* TCHomepageHeader.m in Sources */,
 				FE4572691AC1B14600CE4C7C /* UIImage+Extensions.m in Sources */,
 				FEC6CB431B526B3400F3BEC7 /* TCSpecifiedDataVC.m in Sources */,

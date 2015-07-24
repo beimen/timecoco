@@ -5,6 +5,6 @@ use_frameworks!
 pod 'AsyncDisplayKit'
 pod 'DHSmartScreenshot'
 pod 'FMDB'
-pod 'REFrostedViewController', '~> 2.4.7'
+pod 'REFrostedViewController'
 pod 'SVProgressHUD'
 pod 'TTTAttributedLabel'

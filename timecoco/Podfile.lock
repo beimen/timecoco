@@ -1,7 +1,7 @@
 PODS:
-  - AsyncDisplayKit (1.2.2):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.2)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.2.2)
+  - AsyncDisplayKit (1.2.3):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
   - DHSmartScreenshot (1.3.1)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
@@ -21,11 +21,11 @@ DEPENDENCIES:
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 6b943f45844558fde1d82468820dbefcc77c7271
+  AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
   DHSmartScreenshot: ee749048bd7126c4826748f98df3a4adc6ad6c78
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
-COCOAPODS: 0.38.1
+COCOAPODS: 0.38.2

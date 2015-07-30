@@ -1,0 +1,7 @@
+CLANG_CXX_LANGUAGE_STANDARD = c++11
+CLANG_CXX_LIBRARY = libc++
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AsyncDisplayKit" "${PODS_ROOT}/Headers/Public/DHSmartScreenshot" "${PODS_ROOT}/Headers/Public/FMDB" "${PODS_ROOT}/Headers/Public/REFrostedViewController" "${PODS_ROOT}/Headers/Public/SVProgressHUD" "${PODS_ROOT}/Headers/Public/TTTAttributedLabel"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AsyncDisplayKit" -isystem "${PODS_ROOT}/Headers/Public/DHSmartScreenshot" -isystem "${PODS_ROOT}/Headers/Public/FMDB" -isystem "${PODS_ROOT}/Headers/Public/REFrostedViewController" -isystem "${PODS_ROOT}/Headers/Public/SVProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/TTTAttributedLabel"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AsyncDisplayKit" -l"DHSmartScreenshot" -l"FMDB" -l"REFrostedViewController" -l"SVProgressHUD" -l"TTTAttributedLabel" -l"c++" -l"sqlite3" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreText" -framework "QuartzCore" -framework "UIKit" -weak_framework "Photos"
+PODS_ROOT = ${SRCROOT}/Pods
